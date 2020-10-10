@@ -1,0 +1,44 @@
+{
+  "parser": "@babel/eslint-parser",
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "airbnb",
+    "prettier",
+    "prettier/react",
+    "./.eslintrc.rules.json"
+  ],
+  "plugins": ["prettier", "react", "jsx-a11y", "import"],
+  "env": { "browser": true, "es6": true },
+  "parserOptions": {
+    "sourceType": "module"
+  },
+  "overrides": [
+    {
+      "files": ["./scripts/**/*.js", "./next.config.js"],
+      "env": { "node": true },
+      "rules": {
+        "import/no-extraneous-dependencies": [
+          2,
+          {
+            "devDependencies": true,
+            "optionalDependencies": false,
+            "peerDependencies": false
+          }
+        ]
+      }
+    },
+    {
+      "files": ["*.{js,jsx}"],
+      "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended",
+        "airbnb",
+        "prettier",
+        "prettier/react",
+        "./.eslintrc.rules.json"
+      ],
+      "plugins": ["prettier", "react", "jsx-a11y", "import"]
+    }
+  ]
+}

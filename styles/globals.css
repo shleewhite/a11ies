@@ -1,3 +1,6 @@
+@import '~tachyons/css/tachyons.css';
+@import './variables.css';
+
 html,
 body {
   padding: 0;

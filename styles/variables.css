@@ -1,0 +1,11 @@
+/* Light Mode Palette */
+:root[color-mode="light"] {
+  --primary-c:gold;
+  --secondary-c: indigo;
+  --tertiary-c: mediumpurple;
+  --background-c: white;
+  --background-darker-c: midnightblue;
+}
+
+/* Dark Mode Palette */
+/* :root[color-mode="dark"] {} */
