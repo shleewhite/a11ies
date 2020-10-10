@@ -26,8 +26,8 @@ const Header = ({}) => {
         <a>A11ies.info</a>
       </Link>
       {
-        header_links.map((link) =>(
-          <Link href={link.href}>
+        header_links.map((link, i) =>(
+          <Link href={link.href} key={i}>
             <a>{link.name}</a>
           </Link>
         ))

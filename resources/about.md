@@ -1,3 +1,7 @@
+---
+title: "About A11ies.info"
+---
+
 ## How it works
 
 There are a lot of awesome social justice resources circulating online to help people take action and make positive change in their communities. Unfortunately, many of these resources are in the form of images of text, which can present accessibility barriers for a bunch of folks, including those who are blind, have learning disabilities, or primarily speak a different language.

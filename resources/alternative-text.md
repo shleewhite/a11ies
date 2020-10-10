@@ -1,3 +1,7 @@
+---
+title: "Writing Alternative Text"
+---
+
 # Alternative Text
 
 Alternative text is metadata you can provide about an image so that users of screen readers and other assistive technology can know what the image represents.
