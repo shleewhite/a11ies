@@ -6,12 +6,12 @@ const Footer = ({}) => {
     <footer>
       <ul className="ma0 pa3">
         <li>
-          <Link href="/">
+          <Link href="/resources/terms-of-use">
             <a>Terms of Use</a>
           </Link>
         </li>
         <li>
-          <Link href="/">
+          <Link href="/resources/code-of-conduct">
             <a>Code of Conduct</a>
           </Link>
         </li>
