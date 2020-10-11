@@ -1,7 +1,7 @@
-import React from 'react';
+import React from "react";
 import Link from "next/link";
 
-const Footer = ({}) => {
+const Footer = () => {
   return (
     <footer>
       <ul className="ma0 pa3">
@@ -16,7 +16,13 @@ const Footer = ({}) => {
           </Link>
         </li>
         <li>
-          <a href="mailto:contact@a11y.info" target="_blank" rel="noopener noreferrer">contact@a11y.info</a>
+          <a
+            href="mailto:contact@a11y.info"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            contact@a11y.info
+          </a>
         </li>
       </ul>
       <style jsx>

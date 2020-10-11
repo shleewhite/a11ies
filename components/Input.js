@@ -1,7 +1,7 @@
-import React from 'react';
-import shortid from 'shortid';
+import React from "react";
+import shortid from "shortid";
 
-const Input = ({label, required, type}) => {
+const Input = ({ label, required, type }) => {
   const id = shortid.generate();
   return (
     <div>
@@ -9,12 +9,12 @@ const Input = ({label, required, type}) => {
       <input id={id} required={required} type={type} />
     </div>
   );
-}
+};
 
 Input.defaultProps = {
-  label: 'HEY YOU NEED A LABEL',
+  label: "HEY YOU NEED A LABEL",
   required: false,
-  type: 'text',
-}
+  type: "text",
+};
 
 export default Input;

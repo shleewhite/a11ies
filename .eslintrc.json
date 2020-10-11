@@ -8,9 +8,14 @@
     "prettier/react",
     "./.eslintrc.rules.json"
   ],
-  "plugins": ["prettier", "react", "jsx-a11y", "import"],
+  "plugins": ["prettier", "react", "react-hooks", "jsx-a11y", "import"],
   "env": { "browser": true, "es6": true },
   "parserOptions": {
     "sourceType": "module"
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
   }
 }

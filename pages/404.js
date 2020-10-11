@@ -1,4 +1,4 @@
-import Layout from '../components/Layout';
+import Layout from "../components/Layout";
 
 export default function PageNotFound() {
   return (
@@ -8,5 +8,5 @@ export default function PageNotFound() {
         <p>Page not found. Sorry!</p>
       </div>
     </Layout>
-  )
+  );
 }

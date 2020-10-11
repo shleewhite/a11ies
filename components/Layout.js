@@ -1,8 +1,10 @@
-import Head from 'next/head';
-import Footer from '../components/Footer';
-import Header from '../components/Header';
+import React from "react";
+import Head from "next/head";
 
-export default function Layout({children, title}) {
+import Footer from "./Footer";
+import Header from "./Header";
+
+export default function Layout({ children, title }) {
   return (
     <div>
       <Head>
@@ -10,10 +12,8 @@ export default function Layout({children, title}) {
         <link rel="icon" href="/favicon.svg" />
       </Head>
       <Header />
-      <main>
-        {children}
-      </main>
+      <main>{children}</main>
       <Footer />
     </div>
-  )
+  );
 }

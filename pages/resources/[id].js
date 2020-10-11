@@ -1,33 +1,31 @@
-import React from 'react';
-import { getAllResourceIds, getResourceData } from '../../lib/resources';
+import React from "react";
 
-import Layout from '../../components/Layout';
+import { getAllResourceIds, getResourceData } from "../../lib/resources";
+
+import Layout from "../../components/Layout";
 
 export async function getStaticPaths() {
-  const paths = getAllResourceIds()
+  const paths = getAllResourceIds();
   return {
     paths,
-    fallback: false
-  }
+    fallback: false,
+  };
 }
 
 export async function getStaticProps({ params }) {
-  const resourceData = await getResourceData(params.id)
+  const resourceData = await getResourceData(params.id);
   return {
     props: {
-      resourceData
-    }
-  }
+      resourceData,
+    },
+  };
 }
-
 
 export default function Resource({ resourceData }) {
   return (
     <Layout title={`${resourceData.title} | A11ies.info`}>
       <div dangerouslySetInnerHTML={{ __html: resourceData.contentHtml }} />
-      <style jsx>
-        {``}
-      </style>
+      <style jsx />
     </Layout>
-  )
-};
+  );
+}
