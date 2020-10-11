@@ -18,7 +18,7 @@ const ResourceList = ({resourceData}) => {
       <ul>
         {
           resourceData.map((item) => (
-            <li>
+            <li key={item.id}>
               <Link href={`/resources/${item.id}`}>
                 <a>{item.title}</a>
               </Link>

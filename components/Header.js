@@ -1,18 +1,19 @@
 import React from 'react';
 import Link from "next/link";
+import { useRouter } from 'next/router';
 
 const header_links = [{
     name: 'Browse',
-    href: '/',
+    href: '/browse',
   }, {
     name: 'Create',
-    href: '/',
+    href: '/create',
   }, {
     name: 'Request',
-    href: '/',
+    href: '/request',
   }, {
     name: 'Contribute',
-    href: '/'
+    href: '/contribute'
   }, {
     name: 'Resources',
     href: '/resources',
@@ -20,17 +21,21 @@ const header_links = [{
 ];
 
 const Header = ({}) => {
+  const router = useRouter();
+
   return (
     <>
       <nav className="pa3">
         <Link href="/">
-          <a className="b">A11ies.info</a>
+          <a className="b" aria-current={router.pathname === '/'}>A11ies.info</a>
         </Link>
         <div className="nav-link-container tc">
           {
             header_links.map((link, i) =>(
               <Link href={link.href} key={i}>
-                <a>{link.name}</a>
+                <a aria-current={router.pathname === link.href}>
+                  {link.name}
+                </a>
               </Link>
             ))
           }
@@ -65,9 +70,12 @@ const Header = ({}) => {
             border-left: 3px solid black;
           }
 
-          a:hover, a:focus {
-            outline: none;
+          a[aria-current="true"] {
             text-decoration: underline;
+          }
+
+          a:hover, a:focus {
+            outline: 2px solid var(--secondary-c);
           }
         `}
       </style>
