@@ -1,6 +1,8 @@
 import React from 'react';
 import { getAllResourceIds, getResourceData } from '../../lib/resources';
 
+import Layout from '../../components/Layout';
+
 export async function getStaticPaths() {
   const paths = getAllResourceIds()
   return {
@@ -10,7 +12,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const resourceData = getResourceData(params.id)
+  const resourceData = await getResourceData(params.id)
   return {
     props: {
       resourceData
@@ -21,6 +23,11 @@ export async function getStaticProps({ params }) {
 
 export default function Resource({ resourceData }) {
   return (
-    <>{resourceData.title}</>
+    <Layout title={`${resourceData.title} | A11ies.info`}>
+      <div dangerouslySetInnerHTML={{ __html: resourceData.contentHtml }} />
+      <style jsx>
+        {``}
+      </style>
+    </Layout>
   )
 };
