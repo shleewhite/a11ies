@@ -25,7 +25,6 @@ export default function Resource({ resourceData }) {
   return (
     <Layout title={`${resourceData.title} | A11ies.info`}>
       <div dangerouslySetInnerHTML={{ __html: resourceData.contentHtml }} />
-      <style jsx />
     </Layout>
   );
 }

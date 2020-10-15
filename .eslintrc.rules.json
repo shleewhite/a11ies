@@ -62,7 +62,12 @@
     ],
     "jsx-a11y/no-static-element-interactions": 1,
     "jsx-a11y/click-events-have-key-events": 0,
-    "jsx-a11y/label-has-associated-control": 1,
+    "jsx-a11y/label-has-associated-control": [
+      1,
+      {
+        "assert": "either"
+      }
+    ],
 
     "react/react-in-jsx-scope": 0,
     "react/jsx-props-no-spreading": 0,
