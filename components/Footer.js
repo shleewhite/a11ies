@@ -28,7 +28,7 @@ const Footer = () => {
       <style jsx>
         {`
           footer {
-            background-color: var(--background-darker-c);
+            background-color: transparent;
             width: 100%;
           }
 
@@ -41,7 +41,6 @@ const Footer = () => {
           }
 
           a {
-            color: #f2f3f4;
             text-decoration: underline;
             font-weight: bold;
           }

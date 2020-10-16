@@ -1,10 +1,10 @@
-import Layout from "../components/Layout";
-import Input from "../components/Input";
-import TextEditor from "../components/TextEditor";
+import ContributeLayout from "../../components/Layouts/ContributeLayout";
+import Input from "../../components/Input";
+import TextEditor from "../../components/TextEditor";
 
 export default function Create() {
   return (
-    <Layout title="Contribute | A11ies.info">
+    <ContributeLayout title="Contribute | A11ies.info">
       <h1>Transcribe</h1>
       <p>random descriptive text</p>
 
@@ -31,6 +31,6 @@ export default function Create() {
       <Input label="Custom URL for transcript" />
 
       <button>Submit Application</button>
-    </Layout>
+    </ContributeLayout>
   );
 }

@@ -1,25 +1,23 @@
 import React from "react";
-import { useRouter } from "next/router";
 
 import { getTranscriptData } from "../lib/transcripts";
 
-import Layout from "../components/Layout";
+import Layout from "../components/Layouts/Layout";
 
 export async function getServerSideProps({ params }) {
   const transcriptData = await getTranscriptData(params.id);
   return {
-    props: {
-      transcriptData,
-    },
+    props: { transcriptData },
   };
 }
 
 export default function Transcript({ transcriptData }) {
-  const id = useRouter().query.id;
+  const { name, link, contentHtml, hashtags } = transcriptData;
   return (
-    <Layout title={`${id} | A11ies.info`}>
-      <h1>{id}</h1>
-      {/* <div dangerouslySetInnerHTML={{ __html: transcriptData.contentHtml }} /> */}
+    <Layout title={`${name} | A11ies.info`}>
+      <h1>{name}</h1>
+      <h2>Transcript</h2>
+      <div dangerouslySetInnerHTML={{ __html: contentHtml }} />
     </Layout>
   );
 }

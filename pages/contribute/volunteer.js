@@ -1,9 +1,9 @@
-import Layout from "../components/Layout";
-import Input from "../components/Input";
+import ContributeLayout from "../../components/Layouts/ContributeLayout";
+import Input from "../../components/Input";
 
 export default function Contribute() {
   return (
-    <Layout title="Contribute | A11ies.info">
+    <ContributeLayout title="Volunteer | A11ies.info">
       <h1>Contribute</h1>
       <p>
         This is a description of how awesome it is to help out with a11ies.info.
@@ -13,6 +13,6 @@ export default function Contribute() {
       <Input label="Why do you want to help transcribe?" required />
 
       <button>Submit Application</button>
-    </Layout>
+    </ContributeLayout>
   );
 }

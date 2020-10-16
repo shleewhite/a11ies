@@ -1,8 +1,8 @@
 import React from "react";
 
-import { getAllResourceIds, getResourceData } from "../../lib/resources";
+import { getAllResourceIds, getResourceData } from "../../../lib/resources";
 
-import Layout from "../../components/Layout";
+import Layout from "../../../components/Layouts/Layout";
 
 export async function getStaticPaths() {
   const paths = getAllResourceIds();

@@ -1,4 +1,4 @@
-import Layout from "../components/Layout";
+import Layout from "../components/Layouts/Layout";
 import Input from "../components/Input";
 
 export default function Request() {

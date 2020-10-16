@@ -2,8 +2,8 @@ import React from "react";
 
 import Link from "next/link";
 
-import { getAllResourceData } from "../../lib/resources";
-import Layout from "../../components/Layout";
+import { getAllResourceData } from "../../../lib/resources";
+import ContributeLayout from "../../../components/Layouts/ContributeLayout";
 
 export async function getStaticProps() {
   const resourceData = await getAllResourceData();
@@ -16,7 +16,7 @@ export async function getStaticProps() {
 
 const ResourceList = ({ resourceData }) => {
   return (
-    <Layout title="Resources | A11ies.info">
+    <ContributeLayout title="Resources | A11ies.info">
       <ul>
         {resourceData.map((item) => (
           <li key={item.id}>
@@ -26,7 +26,7 @@ const ResourceList = ({ resourceData }) => {
           </li>
         ))}
       </ul>
-    </Layout>
+    </ContributeLayout>
   );
 };
 
