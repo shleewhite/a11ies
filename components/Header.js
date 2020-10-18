@@ -46,7 +46,6 @@ const Header = () => {
       <style jsx>
         {`
           nav {
-            background-color: white;
             font-size: 1rem;
             display: grid;
             grid-template-columns: 1fr 2fr;

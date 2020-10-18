@@ -1,3 +1,7 @@
+:root {
+  --page-w: 82em;
+}
+
 /* Light Mode Palette */
 :root[color-mode="light"] {
   --headline-c: #082100;

@@ -2,11 +2,8 @@ import Layout from "../components/Layouts/Layout";
 
 export default function PageNotFound() {
   return (
-    <Layout title="404 | A11ies.info">
-      <div>
-        <h1>404</h1>
-        <p>Page not found. Sorry!</p>
-      </div>
+    <Layout title="404">
+      <p>Page not found. Sorry!</p>
     </Layout>
   );
 }

@@ -3,8 +3,7 @@ import Input from "../../components/Input";
 
 export default function Contribute() {
   return (
-    <ContributeLayout title="Volunteer | A11ies.info">
-      <h1>Contribute</h1>
+    <ContributeLayout title="Volunteer">
       <p>
         This is a description of how awesome it is to help out with a11ies.info.
         Wow like it is truly the best decision I have ever made in my life.

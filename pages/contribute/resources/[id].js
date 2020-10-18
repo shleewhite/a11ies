@@ -23,7 +23,7 @@ export async function getStaticProps({ params }) {
 
 export default function Resource({ resourceData }) {
   return (
-    <Layout title={`${resourceData.title} | A11ies.info`}>
+    <Layout title={resourceData.title}>
       <div dangerouslySetInnerHTML={{ __html: resourceData.contentHtml }} />
     </Layout>
   );

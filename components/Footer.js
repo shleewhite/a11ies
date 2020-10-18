@@ -1,48 +1,47 @@
 import React from "react";
 import Link from "next/link";
 
+import SocialIcon from "./SocialIcon";
+
 const Footer = () => {
   return (
     <footer>
-      <ul className="ma0 pa3">
-        <li>
-          <Link href="/resources/terms-of-use">
-            <a>Terms of Use</a>
-          </Link>
-        </li>
-        <li>
-          <Link href="/resources/code-of-conduct">
-            <a>Code of Conduct</a>
-          </Link>
-        </li>
-        <li>
-          <a
-            href="mailto:contact@a11y.info"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            contact@a11y.info
-          </a>
-        </li>
-      </ul>
+      <div>
+        <Link href="/resources/terms-of-use">
+          <a>Terms of Use</a>
+        </Link>
+        <Link href="/resources/code-of-conduct">
+          <a>Code of Conduct</a>
+        </Link>
+        <a
+          href="mailto:contact@a11y.info"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          contact@a11y.info
+        </a>
+        <span aria-hidden="true">\\</span>
+        <a aria-label="Twitter" href="https://twitter.com/a11ies_info">
+          Twitter
+          {/* <SocialIcon icon="twitter" /> */}
+        </a>
+      </div>
       <style jsx>
         {`
           footer {
-            background-color: transparent;
-            width: 100%;
-          }
-
-          ul {
-            grid-template-columns: 1fr 1fr 1fr;
-            justify-items: center;
-            text-align: center;
             display: grid;
-            list-style: none;
+            grid-template-columns: 1fr 1fr;
+            justify-items: end;
+            color: var(--border-c);
+            padding-bottom: 1em;
           }
 
-          a {
-            text-decoration: underline;
-            font-weight: bold;
+          footer > div {
+            grid-column: 2 / span 1;
+          }
+
+          div > * {
+            margin: 0px 0.5rem 0px 0.5rem;
           }
         `}
       </style>

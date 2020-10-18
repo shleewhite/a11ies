@@ -1,16 +1,16 @@
 module.exports = {
   presets: [
     [
-      'next/babel',
+      "next/babel",
       {
-        'styled-jsx': {
+        "styled-jsx": {
           plugins: [
             [
-              'styled-jsx-plugin-sass',
+              "styled-jsx-plugin-sass",
               {
                 sassOptions: {
-                  includePaths: ['./'],
-                  importer: require('node-sass-tilde-importer'),
+                  includePaths: ["./"],
+                  importer: require("node-sass-tilde-importer"),
                 },
               },
             ],

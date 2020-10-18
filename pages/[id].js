@@ -14,8 +14,7 @@ export async function getServerSideProps({ params }) {
 export default function Transcript({ transcriptData }) {
   const { name, link, contentHtml, hashtags } = transcriptData;
   return (
-    <Layout title={`${name} | A11ies.info`}>
-      <h1>{name}</h1>
+    <Layout title={name}>
       <h2>Transcript</h2>
       <div dangerouslySetInnerHTML={{ __html: contentHtml }} />
     </Layout>

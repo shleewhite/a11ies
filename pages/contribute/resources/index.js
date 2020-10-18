@@ -16,7 +16,7 @@ export async function getStaticProps() {
 
 const ResourceList = ({ resourceData }) => {
   return (
-    <ContributeLayout title="Resources | A11ies.info">
+    <ContributeLayout title="Resources">
       <ul>
         {resourceData.map((item) => (
           <li key={item.id}>
