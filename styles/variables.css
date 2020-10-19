@@ -1,5 +1,11 @@
 :root {
   --page-w: 82em;
+
+  /* font size variables */
+  --text-s: 1rem;
+  --text-m: 3rem;
+  --text-l: 5rem;
+  --text-xl: 5rem;
 }
 
 /* Light Mode Palette */

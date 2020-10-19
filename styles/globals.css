@@ -8,36 +8,34 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   color: var(--body-c);
   background-color: var(--bg-light-c);
-}
-
-main,
-footer {
-  width: 100vw;
-  max-width: var(--page-w);
-  overflow-x: hidden;
+  height: 100vh;
 }
 
 #page-container {
   display: grid;
   grid-template-rows: auto 1fr auto;
-  height: 100vh;
-  gap: 1em;
-  grid-gap: 1em;
   justify-items: center;
+  height: 100vh;
+}
+
+#page-container > * {
+  width: 100vw;
 }
 
 #nav-container {
-  width: 100vw;
   background-color: white;
   padding-top: 0.5em;
   padding-bottom: 0.5em;
-  /* hack to make the full width have a white background */
-  padding-left: calc(calc(100vw - calc(var(--page-w))) / 2);
-  padding-right: calc(calc(100vw - calc(var(--page-w))) / 2);
 }
 
-#hero-container {
-  background-color: white;
+#nav-container > div,
+#hero-container > div,
+#main-content,
+footer {
+  max-width: var(--page-w);
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 1em 0 1em;
 }
 
 /* @media (min-width: 43em) {}
