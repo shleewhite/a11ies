@@ -19,12 +19,22 @@ const Card = ({ header, headerLevel, children, hasTopZazz, style }) => {
             padding: var(--space-m);
           }
 
+          div > * {
+            margin-bottom: var(--space-s);
+          }
+
           h3 {
             margin-top: var(--space-0);
+            font-size: var(--text-m);
+          }
+
+          h3[aria-level="2"] {
+            font-size: var(--text-l);
           }
 
           .has-top-zazz {
             border-top: 10px solid var(--zazz-c);
+            padding-top: var(--space-s);
           }
 
           ${style}

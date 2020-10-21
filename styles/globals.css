@@ -24,8 +24,8 @@ body {
 
 #nav-container {
   background-color: white;
-  padding-top: 0.5em;
-  padding-bottom: 0.5em;
+  padding-top: var(--space-s);
+  padding-bottom: var(--space-xs);
 }
 
 #nav-container > div,
@@ -35,7 +35,11 @@ footer {
   max-width: var(--page-w);
   margin-left: auto;
   margin-right: auto;
-  padding: 0 1em 0 1em;
+  padding: var(--space-0) var(--space-s) var(--space-0) var(--space-s);
+}
+
+#hero-container > div {
+  padding: var(--space-0) var(--space-m) var(--space-0) var(--space-m);
 }
 
 /* @media (min-width: 43em) {}

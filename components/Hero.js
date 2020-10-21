@@ -2,7 +2,7 @@ import React from "react";
 
 const Hero = ({ title, subtitle }) => {
   return (
-    <div className="pv3" id="hero-container">
+    <div id="hero-container">
       <div>
         <h1 className="mv0">{title}</h1>
         {subtitle ? <p>{subtitle}</p> : null}
@@ -11,6 +11,7 @@ const Hero = ({ title, subtitle }) => {
         {`
           #hero-container {
             background-color: white;
+            padding-bottom: var(--space-xs);
           }
 
           h1 {

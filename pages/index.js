@@ -32,67 +32,67 @@ export default function Home() {
               share accessible, text-only versions of the resources you love.
             </p>
           </Card>
-          <Card
-            header="Transcribe"
-            hasTopZazz
-            style={`
-            align-self: start;
-            max-width: 90%;
-          `}
-          >
+          {/* eslint-disable-next-line react/jsx-curly-brace-presence */}
+          <Card header="Transcribe" hasTopZazz style={`align-self: start;`}>
             <p>
               Have a resource you want to transcribe, or want to volunteer to
               transcribe a requested resource?
             </p>
-            <Link href="/contribute">
-              <a>Transcribe</a>
-            </Link>
+            <div className="link-wrapper">
+              <Link href="/contribute">
+                <a>Transcribe</a>
+              </Link>
+            </div>
           </Card>
-          <Card
-            header="Request"
-            hasTopZazz
-            style={`
-            align-self: center;
-            max-width: 90%;
-          `}
-          >
+          {/* eslint-disable-next-line react/jsx-curly-brace-presence */}
+          <Card header="Request" hasTopZazz style={`align-self: center;`}>
             <p>
               Have a resource you want transcribed? Fill out this form with a
               link to the resource and one of our volunteers will transcribe it
               for you.
             </p>
-            <Link href="/request">
-              <a>Request</a>
-            </Link>
+            <div className="link-wrapper">
+              <Link href="/request">
+                <a>Request</a>
+              </Link>
+            </div>
           </Card>
-          <Card
-            header="Guidance"
-            hasTopZazz
-            style={`
-            align-self: end;
-            max-width: 90%;
-          `}
-          >
+          {/* eslint-disable-next-line react/jsx-curly-brace-presence */}
+          <Card header="Guidance" hasTopZazz style={`align-self: end;`}>
             <p>
               There are also a lot of ways to make your resources accessible by
               default. Check out our Resources section for tools, best
               practices, and other info to help you make your movement
               accessible to all.
             </p>
-            <Link href="/contribute/resources">
-              <a>Get Guidance</a>
-            </Link>
+            <div className="link-wrapper">
+              <Link href="/contribute/resources">
+                <a>Get Guidance</a>
+              </Link>
+            </div>
           </Card>
         </div>
       </HomeLayout>
       <style jsx>
         {`
           #main-content {
-            margin: var(--space-l) var(--space-m) var(--space-l) var(--space-m);
+            margin: var(--space-m) auto;
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            grid-gap: var(--space-l) var(--space-s);
-            gap: var(--space-l) var(--space-s);
+            grid-template-columns: 350px 350px 350px;
+            grid-template-rows: auto 1fr;
+            grid-gap: var(--space-m) var(--space-s);
+            gap: var(--space-m) var(--space-s);
+          }
+
+          .link-wrapper {
+            margin-top: var(--space-m);
+          }
+
+          a {
+            color: inherit;
+            background-color: white;
+            border-radius: 9999px;
+            padding: var(--space-xs) var(--space-s);
           }
         `}
       </style>

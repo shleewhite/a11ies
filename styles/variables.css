@@ -2,10 +2,10 @@
   --page-w: 82em;
 
   /* font size variables */
-  --text-s: 1rem;
-  --text-m: 3rem;
-  --text-l: 5rem;
-  --text-xl: 5rem;
+  --text-s: 1em;
+  --text-m: 1.25em;
+  --text-l: 2em;
+  --text-xl: 5em;
 
   /* spacing variables */
   --space-0: 0rem;
