@@ -2,7 +2,7 @@ import React from "react";
 
 import { getAllResourceIds, getResourceData } from "../../../lib/resources";
 
-import Layout from "../../../components/Layouts/Layout";
+import ContributeLayout from "../../../components/Layouts/ContributeLayout";
 
 export async function getStaticPaths() {
   const paths = getAllResourceIds();
@@ -23,8 +23,8 @@ export async function getStaticProps({ params }) {
 
 export default function Resource({ resourceData }) {
   return (
-    <Layout title={resourceData.title}>
+    <ContributeLayout title={resourceData.title}>
       <div dangerouslySetInnerHTML={{ __html: resourceData.contentHtml }} />
-    </Layout>
+    </ContributeLayout>
   );
 }

@@ -3,31 +3,39 @@ import Head from "next/head";
 
 import Footer from "../Footer";
 import Header from "../Header";
-import SubNav from "../SubNav";
 import Hero from "../Hero";
 
-export default function Layout({ children, title, subtitle, subNavItems }) {
-  const formattedTitle = title === `${title} | a11ies.info`;
+export default function HomeLayout({ children }) {
   return (
     <>
       <Head>
-        <title>{formattedTitle}</title>
+        <title>a11ies.info</title>
         <link rel="icon" href="/favicon.svg" />
       </Head>
       <div id="page-container">
         <div id="nav-container">
           <div>
             <Header />
-            {subNavItems ? <SubNav items={subNavItems} /> : null}
           </div>
         </div>
 
         <main>
-          <Hero title={title} subtitle={subtitle} />
+          <Hero
+            title="a11ies.info"
+            subtitle="Let's make resources more accessible."
+          />
           {children}
         </main>
         <Footer />
       </div>
+      <style jsx>
+        {`
+          main {
+            display: grid;
+            grid-template-rows: auto 1fr;
+          }
+        `}
+      </style>
     </>
   );
 }

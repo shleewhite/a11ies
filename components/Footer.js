@@ -1,16 +1,16 @@
 import React from "react";
 import Link from "next/link";
 
-import SocialIcon from "./SocialIcon";
+// import SocialIcon from "./SocialIcon";
 
 const Footer = () => {
   return (
     <footer>
       <div>
-        <Link href="/resources/terms-of-use">
+        <Link href="/contribute/resources/terms-of-use">
           <a>Terms of Use</a>
         </Link>
-        <Link href="/resources/code-of-conduct">
+        <Link href="/contribute/resources/code-of-conduct">
           <a>Code of Conduct</a>
         </Link>
         <a
@@ -33,7 +33,7 @@ const Footer = () => {
             grid-template-columns: 1fr 1fr;
             justify-items: end;
             color: var(--border-c);
-            padding-bottom: 1em;
+            padding-bottom: var(--space-s);
           }
 
           footer > div {
@@ -41,7 +41,8 @@ const Footer = () => {
           }
 
           div > * {
-            margin: 0px 0.5rem 0px 0.5rem;
+            margin: var(--space-0) var(--space-xs) var(--space-0)
+              var(--space-xs);
           }
         `}
       </style>

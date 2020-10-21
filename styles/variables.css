@@ -6,6 +6,14 @@
   --text-m: 3rem;
   --text-l: 5rem;
   --text-xl: 5rem;
+
+  /* spacing variables */
+  --space-0: 0rem;
+  --space-xs: 0.5rem;
+  --space-s: 1rem;
+  --space-m: 2rem;
+  --space-l: 4rem;
+  --space-xl: 6rem;
 }
 
 /* Light Mode Palette */

@@ -15,11 +15,12 @@ const Hero = ({ title, subtitle }) => {
 
           h1 {
             font-size: var(--text-xl);
+            color: var(--headline-c);
           }
 
           p {
-            margin-bottom: 1em;
-            padding-bottom: 0.5em;
+            margin-bottom: var(--space-s);
+            padding-bottom: var(--space-xs);
             border-bottom: 10px solid var(--zazz-c);
             width: max-content;
             font-style: italic;

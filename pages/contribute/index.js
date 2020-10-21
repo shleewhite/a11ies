@@ -4,7 +4,7 @@ import TextEditor from "../../components/TextEditor";
 
 export default function Create() {
   return (
-    <ContributeLayout title="Contribute">
+    <ContributeLayout title="Transcribe">
       <p>random descriptive text</p>
 
       <Input label="Document Name (required)" required />

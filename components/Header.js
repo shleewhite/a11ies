@@ -46,7 +46,7 @@ const Header = () => {
       <style jsx>
         {`
           nav {
-            font-size: 1rem;
+            font-size: var(--text-s);
             display: grid;
             grid-template-columns: 1fr 2fr;
           }
@@ -89,7 +89,7 @@ const Header = () => {
           }
 
           label {
-            font-size: 1rem;
+            font-size: var(--text-s);
             justify-self: end;
           }
         `}

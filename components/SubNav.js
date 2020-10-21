@@ -28,7 +28,7 @@ const SubnNav = ({ items }) => {
           nav {
             display: grid;
             grid-template-columns: repeat(${items.length}, 1fr);
-            margin: 1rem 4rem 0 4rem;
+            margin: var(--space-s) var(--space-l) var(--space-0) var(--space-l);
             width: fit-content;
             grid-gap: 20px;
           }
