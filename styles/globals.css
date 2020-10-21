@@ -18,6 +18,12 @@
   font-style: italic;
 }
 
+@font-face {
+  font-family: "Lato";
+  src: url(/public/fonts/lato/Lato-Bold.ttf);
+  font-weight: bold;
+}
+
 html,
 body {
   margin: 0;
