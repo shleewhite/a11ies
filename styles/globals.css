@@ -59,7 +59,7 @@ h3 {
 
 #nav-container {
   background-color: white;
-  padding-top: var(--space-s);
+  /* padding-top: var(--space-s); */
   padding-bottom: var(--space-xs);
 }
 
