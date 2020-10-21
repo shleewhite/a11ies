@@ -11,7 +11,6 @@ const Hero = ({ title, subtitle }) => {
         {`
           #hero-container {
             background-color: white;
-            padding-bottom: var(--space-xs);
           }
 
           h1 {

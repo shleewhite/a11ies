@@ -32,7 +32,6 @@ const Footer = () => {
             display: grid;
             grid-template-columns: 1fr 1fr;
             justify-items: end;
-            color: var(--border-c);
             padding-bottom: var(--space-s);
           }
 

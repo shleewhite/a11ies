@@ -1,14 +1,43 @@
 @import "~tachyons/css/tachyons.css";
 @import "./variables.css";
 
+@font-face {
+  font-family: "AbrilFatFace";
+  src: url(/public/fonts/abrilfatface/AbrilFatface-Regular.ttf)
+    format("truetype");
+}
+
+@font-face {
+  font-family: "Lato";
+  src: url(/public/fonts/lato/Lato-Regular.ttf);
+}
+
+@font-face {
+  font-family: "Lato";
+  src: url(/public/fonts/lato/Lato-Italic.ttf);
+  font-style: italic;
+}
+
 html,
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+  font-family: Lato, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   color: var(--body-c);
   background-color: var(--bg-light-c);
   height: 100vh;
+}
+
+h1,
+h2,
+h3 {
+  font-family: AbrilFatFace;
+  font-weight: normal;
+}
+
+h2,
+h3 {
+  letter-spacing: 0.05ch;
 }
 
 #page-container {
