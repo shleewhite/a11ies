@@ -2,7 +2,7 @@ import React from "react";
 
 import { getAllResourceIds, getResourceData } from "../../../lib/resources";
 
-import Layout from "../../../components/Layouts/Layout";
+import SecondaryNavLayout from "../../../components/Layouts/SecondaryNavLayout";
 
 export async function getStaticPaths() {
   const paths = getAllResourceIds();
@@ -23,8 +23,9 @@ export async function getStaticProps({ params }) {
 
 export default function Resource({ resourceData }) {
   return (
-    <Layout title={resourceData.title}>
+    <SecondaryNavLayout title={resourceData.title} subnav="Contribute">
+      {/* eslint-disable-next-line react/no-danger */}
       <div dangerouslySetInnerHTML={{ __html: resourceData.contentHtml }} />
-    </Layout>
+    </SecondaryNavLayout>
   );
 }

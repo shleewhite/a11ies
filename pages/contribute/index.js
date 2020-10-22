@@ -1,10 +1,10 @@
-import ContributeLayout from "../../components/Layouts/ContributeLayout";
+import SecondaryNavLayout from "../../components/Layouts/SecondaryNavLayout";
 import Input from "../../components/Input";
 import TextEditor from "../../components/TextEditor";
 
 export default function Create() {
   return (
-    <ContributeLayout title="Contribute">
+    <SecondaryNavLayout title="Transcribe" subnav="Contribute">
       <p>random descriptive text</p>
 
       <Input label="Document Name (required)" required />
@@ -30,6 +30,6 @@ export default function Create() {
       <Input label="Custom URL for transcript" />
 
       <button>Submit Application</button>
-    </ContributeLayout>
+    </SecondaryNavLayout>
   );
 }

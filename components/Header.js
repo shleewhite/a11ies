@@ -10,7 +10,7 @@ const Header = () => {
 
   return (
     <>
-      <nav>
+      <nav aria-label="Primary">
         <div className="nav-link-container tc">
           {HEADER_PATHS.map((link, i) => {
             let isCurrent;
@@ -28,6 +28,7 @@ const Header = () => {
                 <div
                   className={cn({
                     "half-circle": isCurrent,
+                    "hidden-half-circle": !isCurrent,
                   })}
                 />
                 <Link href={link.href}>
@@ -38,6 +39,7 @@ const Header = () => {
           })}
         </div>
         <div className="nav-secondary">
+          <div />
           <label htmlFor="global-search">Search</label>
           <input id="global-search" type="search" />
           <button>Login</button>
@@ -46,7 +48,7 @@ const Header = () => {
       <style jsx>
         {`
           nav {
-            font-size: 1rem;
+            font-size: var(--text-s);
             display: grid;
             grid-template-columns: 1fr 2fr;
           }
@@ -54,7 +56,6 @@ const Header = () => {
           .nav-link-container {
             display: grid;
             grid-template-columns: repeat(${HEADER_PATHS.length}, auto);
-            align-items: center;
           }
 
           .nav-secondary {
@@ -63,25 +64,33 @@ const Header = () => {
 
             display: grid;
             grid-template-columns: auto 2fr 1fr;
+            grid-template-rows: 10px auto;
             align-items: center;
-            gap: 20px 10px;
-            grid-gap: 20px 10px;
+            gap: 0px 20px;
+            grid-gap: 0px 20px;
             justify-items: center;
+          }
+
+          .nav-secondary > :first-child {
+            grid-column: 1 / span 3;
           }
 
           .nav-link {
             display: grid;
-            grid-template-rows: 1fr;
+            grid-template-rows: auto 1fr;
             justify-items: center;
           }
 
           .half-circle {
-            position: absolute;
-            top: 0;
             width: 40px;
             height: 20px;
             border-radius: 0 0 150px 150px;
             background-color: var(--zazz-c);
+          }
+
+          .hidden-half-circle {
+            width: 40px;
+            height: 20px;
           }
 
           button {
@@ -89,7 +98,7 @@ const Header = () => {
           }
 
           label {
-            font-size: 1rem;
+            font-size: var(--text-s);
             justify-self: end;
           }
         `}

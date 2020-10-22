@@ -1,5 +1,19 @@
 :root {
   --page-w: 82em;
+
+  /* font size variables */
+  --text-s: 1em;
+  --text-m: 1.5em;
+  --text-l: 2em;
+  --text-xl: 8em;
+
+  /* spacing variables */
+  --space-0: 0rem;
+  --space-xs: 0.5rem;
+  --space-s: 1rem;
+  --space-m: 2rem;
+  --space-l: 4rem;
+  --space-xl: 6rem;
 }
 
 /* Light Mode Palette */

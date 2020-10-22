@@ -6,9 +6,14 @@ import Header from "../Header";
 import SubNav from "../SubNav";
 import Hero from "../Hero";
 
-export default function Layout({ children, title, subNavItems }) {
-  const formattedTitle =
-    title === "A11ies.info" ? title : `${title} | A11ies.info`;
+export default function Layout({
+  children,
+  title,
+  subtitle,
+  subNavItems,
+  mainStyles,
+}) {
+  const formattedTitle = title === `${title} | a11ies.info`;
   return (
     <>
       <Head>
@@ -17,15 +22,26 @@ export default function Layout({ children, title, subNavItems }) {
       </Head>
       <div id="page-container">
         <div id="nav-container">
-          <Header />
-          {subNavItems ? <SubNav items={subNavItems} /> : null}
+          <div>
+            <Header />
+            {subNavItems ? <SubNav items={subNavItems} /> : null}
+          </div>
         </div>
+
         <main>
-          <Hero title={title} />
+          <Hero title={title} subtitle={subtitle} />
           {children}
         </main>
         <Footer />
       </div>
+
+      <style jsx>
+        {`
+          main {
+            ${mainStyles}
+          }
+        `}
+      </style>
     </>
   );
 }
