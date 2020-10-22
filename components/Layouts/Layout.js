@@ -6,7 +6,13 @@ import Header from "../Header";
 import SubNav from "../SubNav";
 import Hero from "../Hero";
 
-export default function Layout({ children, title, subtitle, subNavItems }) {
+export default function Layout({
+  children,
+  title,
+  subtitle,
+  subNavItems,
+  mainStyles,
+}) {
   const formattedTitle = title === `${title} | a11ies.info`;
   return (
     <>
@@ -28,6 +34,14 @@ export default function Layout({ children, title, subtitle, subNavItems }) {
         </main>
         <Footer />
       </div>
+
+      <style jsx>
+        {`
+          main {
+            ${mainStyles}
+          }
+        `}
+      </style>
     </>
   );
 }

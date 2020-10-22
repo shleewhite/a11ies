@@ -9,6 +9,10 @@ export default function Home() {
       <Layout
         title="a11ies.info"
         subtitle="Let's make resources more accessible."
+        mainStyles={`
+          display: grid;
+          grid-template-rows: auto 1fr;
+        `}
       >
         <div id="main-content">
           <Card
