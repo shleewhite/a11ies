@@ -5,7 +5,7 @@ const Hero = ({ title, subtitle }) => {
     <div id="hero-container">
       <div>
         <h1 className="mv0">{title}</h1>
-        {subtitle ? <p>{subtitle}</p> : null}
+        {subtitle ? <p>{subtitle}</p> : <span />}
       </div>
       <style jsx>
         {`
@@ -19,11 +19,20 @@ const Hero = ({ title, subtitle }) => {
           }
 
           p {
+            display: inline-block;
             margin-bottom: var(--space-s);
             padding-bottom: var(--space-xs);
             border-bottom: 10px solid var(--zazz-c);
             width: max-content;
             font-style: italic;
+          }
+
+          span {
+            display: inline-block;
+            height: 10px;
+            background-color: var(--zazz-c);
+            width: 25%;
+            margin-bottom: var(--space-s);
           }
         `}
       </style>

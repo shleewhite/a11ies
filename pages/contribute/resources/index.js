@@ -3,7 +3,7 @@ import React from "react";
 import Link from "next/link";
 
 import { getAllResourceData } from "../../../lib/resources";
-import ContributeLayout from "../../../components/Layouts/ContributeLayout";
+import SecondaryNavLayout from "../../../components/Layouts/SecondaryNavLayout";
 
 export async function getStaticProps() {
   const resourceData = await getAllResourceData();
@@ -16,7 +16,7 @@ export async function getStaticProps() {
 
 const ResourceList = ({ resourceData }) => {
   return (
-    <ContributeLayout title="Resources">
+    <SecondaryNavLayout title="Resources" subnav="Contribute">
       <ul>
         {resourceData.map((item) => (
           <li key={item.id}>
@@ -26,7 +26,7 @@ const ResourceList = ({ resourceData }) => {
           </li>
         ))}
       </ul>
-    </ContributeLayout>
+    </SecondaryNavLayout>
   );
 };
 

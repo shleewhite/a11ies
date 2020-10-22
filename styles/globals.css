@@ -31,7 +31,8 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   color: var(--body-c);
   background-color: var(--bg-light-c);
-  height: 100vh;
+  overflow-x: hidden;
+  min-height: 100vh;
 }
 
 h1,
@@ -50,7 +51,6 @@ h3 {
   display: grid;
   grid-template-rows: auto 1fr auto;
   justify-items: center;
-  height: 100vh;
 }
 
 #page-container > * {
@@ -59,7 +59,6 @@ h3 {
 
 #nav-container {
   background-color: white;
-  /* padding-top: var(--space-s); */
   padding-bottom: var(--space-xs);
 }
 
@@ -75,6 +74,14 @@ footer {
 
 #hero-container > div {
   padding: var(--space-0) var(--space-m) var(--space-0) var(--space-m);
+}
+
+#main-content {
+  margin: var(--space-m) auto;
+  display: grid;
+  grid-gap: var(--space-m) var(--space-s);
+  gap: var(--space-m) var(--space-s);
+  justify-content: center;
 }
 
 /* @media (min-width: 43em) {}

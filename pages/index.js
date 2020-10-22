@@ -1,12 +1,15 @@
 import Link from "next/link";
 
-import HomeLayout from "../components/Layouts/HomeLayout";
+import Layout from "../components/Layouts/Layout";
 import Card from "../components/Card";
 
 export default function Home() {
   return (
     <>
-      <HomeLayout>
+      <Layout
+        title="a11ies.info"
+        subtitle="Let's make resources more accessible."
+      >
         <div id="main-content">
           <Card
             header="How it works"
@@ -72,16 +75,12 @@ export default function Home() {
             </div>
           </Card>
         </div>
-      </HomeLayout>
+      </Layout>
       <style jsx>
         {`
           #main-content {
-            margin: var(--space-m) auto;
-            display: grid;
             grid-template-columns: 350px 350px 350px;
             grid-template-rows: auto 1fr;
-            grid-gap: var(--space-m) var(--space-s);
-            gap: var(--space-m) var(--space-s);
           }
 
           .link-wrapper {

@@ -16,6 +16,7 @@ export default function Transcript({ transcriptData }) {
   return (
     <Layout title={name}>
       <h2>Transcript</h2>
+      {/* eslint-disable-next-line react/no-danger */}
       <div dangerouslySetInnerHTML={{ __html: contentHtml }} />
     </Layout>
   );

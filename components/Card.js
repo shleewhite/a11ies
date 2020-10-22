@@ -1,7 +1,14 @@
 import React from "react";
 import classnames from "classnames";
 
-const Card = ({ header, headerLevel, children, hasTopZazz, style }) => {
+const Card = ({
+  header,
+  headerLevel,
+  children,
+  hasTopZazz,
+  style,
+  imgLink,
+}) => {
   return (
     <>
       <div
@@ -9,14 +16,28 @@ const Card = ({ header, headerLevel, children, hasTopZazz, style }) => {
           "has-top-zazz": hasTopZazz,
         })}
       >
-        <h3 aria-level={headerLevel}>{header}</h3>
-        {children}
+        {imgLink ? <img src={imgLink} alt="" /> : null}
+        <div
+          id="text-content"
+          className={classnames({
+            "sm-top-padding": hasTopZazz,
+          })}
+        >
+          <h3 aria-level={headerLevel}>{header}</h3>
+          {children}
+        </div>
       </div>
       <style jsx>
         {`
           div {
             background-color: var(--bg-dark-c);
-            padding: var(--space-m);
+          }
+
+          img {
+            width: 100%;
+            width: -moz-available; /* For Mozzila */
+            width: -webkit-fill-available; /* For Chrome */
+            width: stretch;
           }
 
           div > * {
@@ -32,9 +53,16 @@ const Card = ({ header, headerLevel, children, hasTopZazz, style }) => {
             font-size: var(--text-l);
           }
 
+          #text-content {
+            padding: var(--space-m);
+          }
+
+          .sm-top-padding {
+            padding-top: var(--space-s) !important;
+          }
+
           .has-top-zazz {
             border-top: 10px solid var(--zazz-c);
-            padding-top: var(--space-s);
           }
 
           ${style}
