@@ -25,6 +25,10 @@ const Footer = () => {
           Twitter
           {/* <SocialIcon icon="twitter" /> */}
         </a>
+        <a aria-label="Instagram" href="https://www.instagram.com/a11ies.info/">
+          Instagram
+          {/* <SocialIcon icon="instagram" /> */}
+        </a>
       </div>
       <style jsx>
         {`

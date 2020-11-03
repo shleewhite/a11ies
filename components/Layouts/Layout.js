@@ -14,6 +14,7 @@ export default function Layout({
   mainStyles,
 }) {
   const formattedTitle = title === `${title} | a11ies.info`;
+
   return (
     <>
       <Head>
