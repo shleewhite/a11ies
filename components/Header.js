@@ -6,10 +6,13 @@ import * as cn from "classnames";
 import AuthModal from "./AuthModal";
 
 import { HEADER_PATHS } from "../lib/constants";
+import { signOut, getIsLoggedIn } from "../lib/auth";
 
 const Header = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const router = useRouter();
+
+  const isLoggedIn = getIsLoggedIn();
 
   return (
     <>
@@ -45,13 +48,17 @@ const Header = () => {
           <div />
           <label htmlFor="global-search">Search</label>
           <input id="global-search" type="search" />
-          <button
-            onClick={() => {
-              setIsModalOpen(true);
-            }}
-          >
-            Login
-          </button>
+          {isLoggedIn ? (
+            <button onClick={signOut}>Log Out</button>
+          ) : (
+            <button
+              onClick={() => {
+                setIsModalOpen(true);
+              }}
+            >
+              Login
+            </button>
+          )}
         </div>
       </nav>
       <AuthModal
