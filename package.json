@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint --fix . --ignore-path ./.gitignore"
+    "lint": "eslint --fix . --ignore-path ./.gitignore",
+    "deploy-funcs": "firebase deploy --only functions"
   },
   "dependencies": {
     "@ckeditor/ckeditor5-build-classic": "^23.0.0",

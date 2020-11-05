@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import { auth, getAccessLevel } from "../lib/auth";
+import { UserContext } from "../lib/user_context";
 
 import "../styles/globals.css";
 
@@ -23,12 +24,14 @@ function App({ Component, pageProps }) {
   }, []);
 
   return (
-    <Component
-      {...{
+    <UserContext.Provider
+      value={{
         user: currentUser,
-        ...pageProps,
+        isLoggedIn: currentUser !== undefined,
       }}
-    />
+    >
+      <Component {...pageProps} />
+    </UserContext.Provider>
   );
 }
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import * as cn from "classnames";
@@ -6,13 +6,13 @@ import * as cn from "classnames";
 import AuthModal from "./AuthModal";
 
 import { HEADER_PATHS } from "../lib/constants";
-import { signOut, getIsLoggedIn } from "../lib/auth";
+import { signOut } from "../lib/auth";
+import { UserContext } from "../lib/user_context";
 
 const Header = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const router = useRouter();
-
-  const isLoggedIn = getIsLoggedIn();
+  const context = useContext(UserContext);
 
   return (
     <>
@@ -43,12 +43,25 @@ const Header = () => {
               </div>
             );
           })}
+          {context.user !== undefined && context.user.accessLevel > 0 ? (
+            <div className="nav-link">
+              <div
+                className={cn({
+                  "half-circle": router.pathname.includes("admin"),
+                  "hidden-half-circle": !router.pathname.includes("admin"),
+                })}
+              />
+              <Link href="/admin">
+                <a aria-current={false}>Admin</a>
+              </Link>
+            </div>
+          ) : null}
         </div>
         <div className="nav-secondary">
           <div />
           <label htmlFor="global-search">Search</label>
           <input id="global-search" type="search" />
-          {isLoggedIn ? (
+          {context.isLoggedIn ? (
             <button onClick={signOut}>Log Out</button>
           ) : (
             <button
@@ -78,7 +91,13 @@ const Header = () => {
 
           .nav-link-container {
             display: grid;
-            grid-template-columns: repeat(${HEADER_PATHS.length}, auto);
+            grid-template-columns: repeat(
+              ${HEADER_PATHS.length +
+              (context.user !== undefined && context.user.accessLevel > 0
+                ? 1
+                : 0)},
+              auto
+            );
           }
 
           .nav-secondary {
