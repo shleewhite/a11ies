@@ -42,7 +42,7 @@ class TextEditor extends React.Component {
 
   getMarkdownFromEditor(editor) {
     const markdown = turndownService.turndown(editor.getData());
-    this.setState(markdown);
+    this.setState({ markdown });
     if (this.props.whenMarkdownUpdates) {
       this.props.whenMarkdownUpdates(markdown);
     }
