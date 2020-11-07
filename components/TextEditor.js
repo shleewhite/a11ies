@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unused-state */
 import React from "react";
-import nanoid from "nanoid";
+import { english as nanoid } from "nanoid-generate"; // generates unique id without characters that look similar ie. 1 and I
 import Turndown from "turndown";
 
 const turndownService = new Turndown();
@@ -26,7 +26,7 @@ class TextEditor extends React.Component {
     this.state = {
       markdown: "",
       isServer: true,
-      keyboardInfoId: undefined,
+      keyboardInfoId: nanoid(8),
     };
 
     this.getMarkdownFromEditor = this.getMarkdownFromEditor.bind(this);
@@ -37,10 +37,7 @@ class TextEditor extends React.Component {
   componentDidMount() {
     this.CKEditor = require("@ckeditor/ckeditor5-react");
     this.ClassicEditor = require("@ckeditor/ckeditor5-build-classic");
-    this.setState({
-      isServer: false,
-      keyboardInfoId: nanoid(),
-    });
+    this.setState({ isServer: false });
   }
 
   getMarkdownFromEditor(editor) {
