@@ -1,17 +1,12 @@
-import React from "react";
-import shortid from "shortid";
+import React, { useState } from "react";
+import { nanoid } from "nanoid";
 
 const Input = ({ label, required, type, id }) => {
-  const backupID = shortid.generate();
+  const [realID] = useState(id !== "" ? id : nanoid);
   return (
     <div>
-      <label htmlFor={id !== "" ? id : backupID}>{label}</label>
-      <input
-        id={id !== "" ? id : backupID}
-        required={required}
-        type={type}
-        name={id !== "" ? id : backupID}
-      />
+      <label htmlFor={realID}>{label}</label>
+      <input id={realID} required={required} type={type} name={realID} />
     </div>
   );
 };

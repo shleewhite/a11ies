@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import shortid from "shortid";
+import { customAlphabet } from "nanoid";
 import Link from "next/link";
 
 import SecondaryNavLayout from "../../components/Layouts/SecondaryNavLayout";
@@ -10,6 +10,8 @@ import { UserContext } from "../../lib/user_context";
 import { createTranscript } from "../../lib/transcripts";
 // TODO: Url validation: import { URL_REGEX } from '../constants';
 // TODO: Url validation: throw an error if the short url already exists
+
+const nanoid = customAlphabet("abcdefghijklmnopqrstuvwxyz1234567890-_", 5);
 
 export default function Create() {
   const context = useContext(UserContext);
@@ -27,7 +29,7 @@ export default function Create() {
               .get("hashtags")
               .replace("#", "")
               .split(/\s*,*\s+#*/);
-      url = data.get("url") === "" ? shortid.generate() : data.get("url");
+      url = data.get("url") === "" ? nanoid() : data.get("url");
 
       createTranscript(
         url,

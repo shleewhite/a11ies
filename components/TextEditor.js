@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unused-state */
 import React from "react";
-import shortid from "shortid";
+import { nanoid } from "nanoid";
 import Turndown from "turndown";
 
 const turndownService = new Turndown();
@@ -26,9 +26,9 @@ class TextEditor extends React.Component {
     this.state = {
       markdown: "",
       isServer: true,
+      keyboardInfoId: nanoid(),
     };
 
-    this.keyboardInfoId = shortid.generate();
     this.getMarkdownFromEditor = this.getMarkdownFromEditor.bind(this);
   }
 
@@ -69,14 +69,17 @@ class TextEditor extends React.Component {
                 );
                 writer.setAttribute(
                   "aria-describedby",
-                  this.keyboardInfoId,
+                  this.state.keyboardInfoId,
                   viewEditableRoot
                 );
               });
             }}
           />
         )}
-        <small className="f6 black-60 db mt1 mb3" id={this.keyboardInfoId}>
+        <small
+          className="f6 black-60 db mt1 mb3"
+          id={this.state.keyboardInfoId}
+        >
           Press Alt + F10 to navigate to text editor toolbar.
         </small>
         <textarea
