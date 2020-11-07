@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { customAlphabet } from "nanoid";
+import { nolookalikes } from "nanoid-generate"; // generates unique id without characters that look similar ie. 1 and I
 import Link from "next/link";
 
 import SecondaryNavLayout from "../../components/Layouts/SecondaryNavLayout";
@@ -11,12 +11,10 @@ import { createTranscript } from "../../lib/transcripts";
 // TODO: Url validation: import { URL_REGEX } from '../constants';
 // TODO: Url validation: throw an error if the short url already exists
 
-const nanoid = customAlphabet("abcdefghijklmnopqrstuvwxyz1234567890-_", 5);
-
 export default function Create() {
   const context = useContext(UserContext);
   const [isPublished, setIsPublished] = useState(false);
-  let url;
+  const [url, setURL] = useState("");
 
   const submitTranscript = (event) => {
     event.preventDefault();
@@ -29,7 +27,8 @@ export default function Create() {
               .get("hashtags")
               .replace("#", "")
               .split(/\s*,*\s+#*/);
-      url = data.get("url") === "" ? nanoid() : data.get("url");
+
+      setURL(data.get("url") === "" ? nolookalikes(6) : data.get("url"));
 
       createTranscript(
         url,
@@ -85,7 +84,7 @@ export default function Create() {
         </span>
         <TextEditor
           name="transcript"
-          label="Transcript, Rich Text Editor"
+          label="Transcript (required), Rich Text Editor"
           id="transcript"
         />
 

@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 
 import SecondaryNavLayout from "../../components/Layouts/SecondaryNavLayout";
 import Input from "../../components/Input";
+import TextEditor from "../../components/TextEditor";
 
 import { createVolunteerApp } from "../../lib/volunteers";
 import { UserContext } from "../../lib/user_context";
@@ -12,7 +13,8 @@ export default function Contribute() {
 
   const submitApplication = async () => {
     if (context.isLoggedIn) {
-      const response = document.getElementById("free-response").value;
+      const response = {};
+      // const response = document.getElementById("free-response").value;
       await createVolunteerApp(
         context.user.uid,
         { response },
@@ -39,10 +41,13 @@ export default function Contribute() {
         Wow like it is truly the best decision I have ever made in my life.
       </p> */}
 
-      <Input
-        id="free-response"
-        label="Why do you want to help transcribe? (required)"
-        required
+      <span className="f6 db mb2">
+        <span className="b">Why do you want to help transcribe?</span>{" "}
+        (required)
+      </span>
+      <TextEditor
+        label="Why do you want to help transcribe? (required), rich text editor"
+        name="free-response"
       />
 
       <button onClick={submitApplication}>Submit Application</button>

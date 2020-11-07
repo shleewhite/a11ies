@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unused-state */
 import React from "react";
-import { nanoid } from "nanoid";
+import nanoid from "nanoid";
 import Turndown from "turndown";
 
 const turndownService = new Turndown();
@@ -26,7 +26,7 @@ class TextEditor extends React.Component {
     this.state = {
       markdown: "",
       isServer: true,
-      keyboardInfoId: nanoid(),
+      keyboardInfoId: undefined,
     };
 
     this.getMarkdownFromEditor = this.getMarkdownFromEditor.bind(this);
@@ -37,7 +37,10 @@ class TextEditor extends React.Component {
   componentDidMount() {
     this.CKEditor = require("@ckeditor/ckeditor5-react");
     this.ClassicEditor = require("@ckeditor/ckeditor5-build-classic");
-    this.setState({ isServer: false });
+    this.setState({
+      isServer: false,
+      keyboardInfoId: nanoid(),
+    });
   }
 
   getMarkdownFromEditor(editor) {
