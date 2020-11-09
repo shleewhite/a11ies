@@ -52,6 +52,7 @@ const Header = () => {
                 })}
               />
               <Link href="/admin">
+                {/* TODO: make this not false */}
                 <a aria-current={false}>Admin</a>
               </Link>
             </div>

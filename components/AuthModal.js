@@ -4,7 +4,7 @@ import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 
 import { uiConfig, auth } from "../lib/auth";
 
-const AuthModal = ({ isOpen, handleClose }) => {
+const AuthModal = ({ isOpen, handleClose, children }) => {
   const modalRef = useRef();
 
   useEffect(() => {
@@ -15,6 +15,7 @@ const AuthModal = ({ isOpen, handleClose }) => {
   return (
     <Modal isOpen={isOpen} contentLabel="Log In" ref={modalRef}>
       <h2>Log in to a11ies.info</h2>
+      {children}
       <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={auth} />
       <button aria-label="close" onClick={handleClose}>
         X

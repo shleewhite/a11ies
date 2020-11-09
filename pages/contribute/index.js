@@ -1,24 +1,27 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { nolookalikes } from "nanoid-generate"; // generates unique id without characters that look similar ie. 1 and I
 import Link from "next/link";
 
 import SecondaryNavLayout from "../../components/Layouts/SecondaryNavLayout";
 import Input from "../../components/Input";
 import TextEditor from "../../components/TextEditor";
+import FormAuth from "../../components/FormAuth";
 
-import { UserContext } from "../../lib/user_context";
 import { createTranscript } from "../../lib/transcripts";
 // TODO: Url validation: import { URL_REGEX } from '../constants';
 // TODO: Url validation: throw an error if the short url already exists
 
 export default function Create() {
-  const context = useContext(UserContext);
   const [isPublished, setIsPublished] = useState(false);
   const [url, setURL] = useState("");
+  const [{ isLoggedIn, uid }, setContext] = useState({
+    isLoggedIn: false,
+    uid: "",
+  });
 
   const submitTranscript = (event) => {
     event.preventDefault();
-    if (context.isLoggedIn) {
+    if (isLoggedIn) {
       const data = new FormData(document.forms.create);
       const hashtags =
         data.get("hashtags") === ""
@@ -40,7 +43,7 @@ export default function Create() {
           transcript: data.get("transcript"),
           searchable: data.get("searchable") !== null,
           hashtags,
-          uid: context.user.uid,
+          uid,
         },
         () => {
           setIsPublished(true);
@@ -63,43 +66,45 @@ export default function Create() {
   }
 
   return (
-    <SecondaryNavLayout title="Transcribe" subnav="Contribute">
-      {/* <p>random descriptive text</p> */}
-      <form action="" className="" onSubmit={submitTranscript} id="create">
-        <Input label="Document Name (required)" required id="name" />
+    <FormAuth cb={setContext}>
+      <SecondaryNavLayout title="Transcribe" subnav="Contribute">
+        {/* <p>random descriptive text</p> */}
+        <form action="" className="" onSubmit={submitTranscript} id="create">
+          <Input label="Document Name (required)" required id="name" />
 
-        <Input
-          label="Link to original document (required)"
-          required
-          type="url"
-          id="link"
-        />
+          <Input
+            label="Link to original document (required)"
+            required
+            type="url"
+            id="link"
+          />
 
-        <Input label="Original creator's name" id="creatorName" />
+          <Input label="Original creator's name" id="creatorName" />
 
-        <Input label="Link to original creator" type="url" id="creatorLink" />
+          <Input label="Link to original creator" type="url" id="creatorLink" />
 
-        <span className="f6 db mb2">
-          <span className="b">Transcript</span> (required)
-        </span>
-        <TextEditor
-          name="transcript"
-          label="Transcript (required), Rich Text Editor"
-          id="transcript"
-        />
+          <span className="f6 db mb2">
+            <span className="b">Transcript</span> (required)
+          </span>
+          <TextEditor
+            name="transcript"
+            label="Transcript (required), Rich Text Editor"
+            id="transcript"
+          />
 
-        <Input label="Relevant hashtags" id="hashtags" />
+          <Input label="Relevant hashtags" id="hashtags" />
 
-        <Input
-          label="Transcript can appear in a11ies.info search results"
-          type="checkbox"
-          id="searchable"
-        />
+          <Input
+            label="Transcript can appear in a11ies.info search results"
+            type="checkbox"
+            id="searchable"
+          />
 
-        <Input label="Custom URL for transcript" id="url" />
+          <Input label="Custom URL for transcript" id="url" />
 
-        <input type="submit" value="Publish Transcript" name="submit" />
-      </form>
-    </SecondaryNavLayout>
+          <input type="submit" value="Publish Transcript" name="submit" />
+        </form>
+      </SecondaryNavLayout>
+    </FormAuth>
   );
 }

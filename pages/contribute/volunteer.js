@@ -1,25 +1,22 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 
 import SecondaryNavLayout from "../../components/Layouts/SecondaryNavLayout";
-import Input from "../../components/Input";
 import TextEditor from "../../components/TextEditor";
+import FormAuth from "../../components/FormAuth";
 
 import { createVolunteerApp } from "../../lib/volunteers";
-import { UserContext } from "../../lib/user_context";
 
 export default function Contribute() {
-  const context = useContext(UserContext);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [{ isLoggedIn, uid }, setContext] = useState({
+    isLoggedIn: false,
+    uid: "",
+  });
 
   const submitApplication = async () => {
-    if (context.isLoggedIn) {
-      const response = {};
-      // const response = document.getElementById("free-response").value;
-      await createVolunteerApp(
-        context.user.uid,
-        { response },
-        setIsSubmitted(true)
-      );
+    if (isLoggedIn) {
+      const response = document.getElementById("free-response").value;
+      await createVolunteerApp(uid, { response }, setIsSubmitted(true));
     }
   };
 
@@ -35,22 +32,24 @@ export default function Contribute() {
   }
 
   return (
-    <SecondaryNavLayout title="Volunteer" subnav="Contribute">
-      {/* <p>
+    <FormAuth cb={setContext}>
+      <SecondaryNavLayout title="Volunteer" subnav="Contribute">
+        {/* <p>
         This is a description of how awesome it is to help out with a11ies.info.
         Wow like it is truly the best decision I have ever made in my life.
       </p> */}
 
-      <span className="f6 db mb2">
-        <span className="b">Why do you want to help transcribe?</span>{" "}
-        (required)
-      </span>
-      <TextEditor
-        label="Why do you want to help transcribe? (required), rich text editor"
-        name="free-response"
-      />
+        <span className="f6 db mb2">
+          <span className="b">Why do you want to help transcribe?</span>{" "}
+          (required)
+        </span>
+        <TextEditor
+          label="Why do you want to help transcribe? (required), rich text editor"
+          name="free-response"
+        />
 
-      <button onClick={submitApplication}>Submit Application</button>
-    </SecondaryNavLayout>
+        <button onClick={submitApplication}>Submit Application</button>
+      </SecondaryNavLayout>
+    </FormAuth>
   );
 }
