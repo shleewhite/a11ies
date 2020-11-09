@@ -13,7 +13,8 @@ export default function Layout({
   subNavItems,
   mainStyles,
 }) {
-  const formattedTitle = title === `${title} | a11ies.info`;
+  const formattedTitle =
+    title === "a11ies.info" ? title : `${title} | a11ies.info`;
 
   return (
     <>
