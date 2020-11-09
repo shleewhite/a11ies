@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import SecondaryNavLayout from "../../components/Layouts/SecondaryNavLayout";
 import TextEditor from "../../components/TextEditor";
 import FormAuth from "../../components/FormAuth";
+import FormSuccess from "../../components/FormSuccess";
 
 import { createVolunteerApp } from "../../lib/volunteers";
 
@@ -20,35 +21,37 @@ export default function Contribute() {
     }
   };
 
-  if (isSubmitted) {
-    return (
-      <SecondaryNavLayout title="Success" subnav="Contribute">
-        <p>
-          Your application has been submitted. We will get back to you as soon
-          as possible.
-        </p>
-      </SecondaryNavLayout>
-    );
-  }
-
   return (
     <FormAuth cb={setContext}>
       <SecondaryNavLayout title="Volunteer" subnav="Contribute">
-        {/* <p>
-        This is a description of how awesome it is to help out with a11ies.info.
-        Wow like it is truly the best decision I have ever made in my life.
-      </p> */}
+        {isSubmitted ? (
+          <FormSuccess
+            ctaButtons={[
+              {
+                link: "/contribute/resources",
+                label: "Learn about writing transcripts",
+              },
+            ]}
+          >
+            <p>
+              Thank you for applying! We will get back to you as soon as
+              possible.
+            </p>
+          </FormSuccess>
+        ) : (
+          <>
+            <span className="f6 db mb2">
+              <span className="b">Why do you want to help transcribe?</span>{" "}
+              (required)
+            </span>
+            <TextEditor
+              label="Why do you want to help transcribe? (required), rich text editor"
+              name="free-response"
+            />
 
-        <span className="f6 db mb2">
-          <span className="b">Why do you want to help transcribe?</span>{" "}
-          (required)
-        </span>
-        <TextEditor
-          label="Why do you want to help transcribe? (required), rich text editor"
-          name="free-response"
-        />
-
-        <button onClick={submitApplication}>Submit Application</button>
+            <button onClick={submitApplication}>Submit Application</button>
+          </>
+        )}
       </SecondaryNavLayout>
     </FormAuth>
   );

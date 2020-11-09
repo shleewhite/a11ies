@@ -6,6 +6,7 @@ import SecondaryNavLayout from "../../components/Layouts/SecondaryNavLayout";
 import Input from "../../components/Input";
 import TextEditor from "../../components/TextEditor";
 import FormAuth from "../../components/FormAuth";
+import FormSuccess from "../../components/FormSuccess";
 
 import { createTranscript } from "../../lib/transcripts";
 // TODO: Url validation: import { URL_REGEX } from '../constants';
@@ -52,58 +53,61 @@ export default function Create() {
     }
   };
 
-  if (isPublished) {
-    return (
-      <SecondaryNavLayout title="Success" subnav="Contribute">
-        <p>
-          Your transcript is now published at:{" "}
-          <Link href={`/${url}`}>
-            <a>{`a11ies.info/${url}`}</a>
-          </Link>
-        </p>
-      </SecondaryNavLayout>
-    );
-  }
-
   return (
     <FormAuth cb={setContext}>
       <SecondaryNavLayout title="Transcribe" subnav="Contribute">
-        {/* <p>random descriptive text</p> */}
-        <form action="" className="" onSubmit={submitTranscript} id="create">
-          <Input label="Document Name (required)" required id="name" />
+        {isPublished ? (
+          <FormSuccess
+            ctaButtons={[{ link: "", label: "Make another transcript" }]}
+          >
+            <p>
+              Your transcript is now published at:{" "}
+              <Link href={`/${url}`}>
+                <a>{`a11ies.info/${url}`}</a>
+              </Link>
+            </p>
+          </FormSuccess>
+        ) : (
+          <form action="" className="" onSubmit={submitTranscript} id="create">
+            <Input label="Document Name (required)" required id="name" />
 
-          <Input
-            label="Link to original document (required)"
-            required
-            type="url"
-            id="link"
-          />
+            <Input
+              label="Link to original document (required)"
+              required
+              type="url"
+              id="link"
+            />
 
-          <Input label="Original creator's name" id="creatorName" />
+            <Input label="Original creator's name" id="creatorName" />
 
-          <Input label="Link to original creator" type="url" id="creatorLink" />
+            <Input
+              label="Link to original creator"
+              type="url"
+              id="creatorLink"
+            />
 
-          <span className="f6 db mb2">
-            <span className="b">Transcript</span> (required)
-          </span>
-          <TextEditor
-            name="transcript"
-            label="Transcript (required), Rich Text Editor"
-            id="transcript"
-          />
+            <span className="f6 db mb2">
+              <span className="b">Transcript</span> (required)
+            </span>
+            <TextEditor
+              name="transcript"
+              label="Transcript (required), Rich Text Editor"
+              id="transcript"
+            />
 
-          <Input label="Relevant hashtags" id="hashtags" />
+            <Input label="Relevant hashtags" id="hashtags" />
 
-          <Input
-            label="Transcript can appear in a11ies.info search results"
-            type="checkbox"
-            id="searchable"
-          />
+            <Input
+              label="Transcript can appear in a11ies.info search results"
+              type="checkbox"
+              id="searchable"
+            />
 
-          <Input label="Custom URL for transcript" id="url" />
+            <Input label="Custom URL for transcript" id="url" />
 
-          <input type="submit" value="Publish Transcript" name="submit" />
-        </form>
+            <input type="submit" value="Publish Transcript" name="submit" />
+          </form>
+        )}
       </SecondaryNavLayout>
     </FormAuth>
   );
