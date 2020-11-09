@@ -18,7 +18,7 @@ export default function Request() {
     if (isLoggedIn) {
       const link = document.getElementById("link").value;
       const emailAlert = document.getElementById("email-alert").checked;
-      await createRequest(uid, { link, emailAlert }, setIsSubmitted(true));
+      await createRequest({ link, emailAlert, uid }, setIsSubmitted(true));
     }
   };
 

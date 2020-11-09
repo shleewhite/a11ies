@@ -1,7 +1,7 @@
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
 
-const { flagged_words } = require("./flagged-words");
+const { flagged_words, flagged_hashtags } = require("./moderator");
 
 admin.initializeApp();
 
@@ -9,9 +9,14 @@ exports.moderator = functions.firestore
   .document("/test/{documentId}")
   .onCreate((snap, context) => {
     const transcript = snap.data().transcript;
+    const hashtags = snap.data().hashtags.join("|");
     let flagged = false;
 
     if (new RegExp(flagged_words.join("|")).test(transcript)) {
+      flagged = true;
+    }
+
+    if (new RegExp(flagged_hashtags.join("|").test(hashtags))) {
       flagged = true;
     }
 

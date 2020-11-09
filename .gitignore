@@ -31,3 +31,5 @@ firebase-debug.log*
 
 # vercel
 .vercel
+
+moderator.js
