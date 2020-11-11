@@ -19,7 +19,7 @@ export default function Transcript({ transcriptData }) {
   return (
     <>
       <Layout title={name}>
-        <div className="container">
+        <div id="main-content">
           <div>
             <Card header="About" headerLevel="2">
               <a href={link} target="_blank" className="i b">{name}</a>
@@ -73,24 +73,23 @@ export default function Transcript({ transcriptData }) {
           }
 
           @media (min-width: 620px) {
-            .container {
+            #main-content {
               column-count: 1;
             }
             
-            .container > div {
+            #main-content > div {
               break-inside: avoid;
             }
           }
 
           @media (min-width: 960px) {
-            .container {
-              display: grid;
+            #main-content {
               column-count: 2;
-              column-gap: 40px;
+              column-gap: 80px;
               grid-template-columns: 1fr 400px;
             }
 
-            .container div:first-child {
+            #main-content div:first-child {
               order: 2;
             }
           }
