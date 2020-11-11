@@ -23,7 +23,7 @@ const Card = ({
             "sm-top-padding": hasTopZazz,
           })}
         >
-          <h3 aria-level={headerLevel}>{header}</h3>
+          {header ? <h3 aria-level={headerLevel}>{header}</h3> : null}
           {children}
         </div>
       </div>

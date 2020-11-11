@@ -1,7 +1,9 @@
+import Link from "next/link";
+
 import SecondaryNavLayout from "../../components/Layouts/SecondaryNavLayout";
 import Card from "../../components/Card";
 
-export default function Home() {
+export default function Browse() {
   return (
     <>
       <SecondaryNavLayout title="Featured" subnav="Browse">
@@ -28,7 +30,7 @@ export default function Home() {
           </Card>
           <Card header="Recent transcripts" headerLevel={2} hasTopZazz>
             <ul>
-              <li>How to call your reps when you have social anxiety</li>
+              <li><Link href="call-your-reps"><a>How to call your reps when you have social anxiety</a></Link></li>
             </ul>
           </Card>
         </div>
