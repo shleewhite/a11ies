@@ -32,7 +32,9 @@ export default function Layout({
 
         <main>
           <Hero title={title} subtitle={subtitle} />
-          {children}
+          <div id="main-content">
+            {children}
+          </div>
         </main>
         <Footer />
       </div>
