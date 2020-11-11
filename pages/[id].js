@@ -19,34 +19,44 @@ export default function Transcript({ transcriptData }) {
   return (
     <>
       <Layout title={name}>
-        <Card header="About" headerLevel="3">
-          <a href={link} target="_blank">View original resource</a>
-
-          {creatorName ? ' by ' : null}
-          {creatorName ? 
-            creatorLink ?
-            <a href={creatorLink} target="_blank">{creatorName}</a> :
-            creatorName :
-          null}
-
-          <ul className="hashtags">
-          {hashtags.map((hashtag, i) => {
-            return (
-              <li key={i}>
-                <Link href="something"><a>#{hashtag}</a></Link>
-              </li>)
-          })}
-          </ul>
-        </Card>
-
-        <h2>Transcript</h2>
-        {/* eslint-disable-next-line react/no-danger */}
-        <div dangerouslySetInnerHTML={{ __html: contentHtml }} />
+        <div className="container">
+          <div>
+            <Card header="About" headerLevel="2">
+              <a href={link} target="_blank" className="i b">{name}</a>
+              { creatorName ?
+                  creatorLink ?
+                    (<>{' by'} <a href={creatorLink} target="_blank" className="b">{creatorName}</a></>) :
+                    ' by ' + creatorName
+                  : null }
+              <ul className="hashtags">
+                {hashtags.map((hashtag, i) => {
+                  return (
+                    <li key={i}>
+                      <Link href="something"><a>#{hashtag}</a></Link>
+                    </li>)
+                })}
+              </ul>
+            </Card>
+          </div>
+          <div>
+            <h2>Transcript</h2>
+            {/* eslint-disable-next-line react/no-danger */}
+            <div dangerouslySetInnerHTML={{ __html: contentHtml }} />
+          </div>
+        </div>
       </Layout>
       <style jsx>
         {`
-          a {
-            font-weight: 800
+          * {
+            line-height: 1.4rem;
+          }
+
+          .i {
+            font-style: italic;
+          }
+
+          .b {
+            font-weight: 800;
           }
 
           ul.hashtags {
@@ -56,6 +66,33 @@ export default function Transcript({ transcriptData }) {
 
           ul.hashtags li {
 
+          }
+
+          h2 {
+            font-size: var(--text-l);
+          }
+
+          @media (min-width: 620px) {
+            .container {
+              column-count: 1;
+            }
+            
+            .container > div {
+              break-inside: avoid;
+            }
+          }
+
+          @media (min-width: 960px) {
+            .container {
+              display: grid;
+              column-count: 2;
+              column-gap: 40px;
+              grid-template-columns: 1fr 400px;
+            }
+
+            .container div:first-child {
+              order: 2;
+            }
           }
         `}
       </style>
