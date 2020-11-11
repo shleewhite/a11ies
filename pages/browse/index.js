@@ -1,9 +1,20 @@
 import Link from "next/link";
 
+import { getTranscriptList } from "../../lib/transcripts";
 import SecondaryNavLayout from "../../components/Layouts/SecondaryNavLayout";
 import Card from "../../components/Card";
 
-export default function Browse() {
+export async function getStaticProps() {
+  const transcriptList = await getTranscriptList();
+  console.log('transcriptList', transcriptList);
+  return {
+    props: {
+      transcriptList
+    },
+  };
+}
+
+export default function Browse({transcriptList}) {
   return (
     <>
       <SecondaryNavLayout title="Featured" subnav="Browse">
@@ -30,7 +41,13 @@ export default function Browse() {
           </Card>
           <Card header="Recent transcripts" headerLevel={2} hasTopZazz>
             <ul>
-              <li><Link href="call-your-reps"><a>How to call your reps when you have social anxiety</a></Link></li>
+              {transcriptList.map((transcript) => (
+                <li key={transcript.id}>
+                  <Link href={transcript.id}>
+                    <a>{transcript.name}</a>
+                  </Link>
+                </li>
+               ))}
             </ul>
           </Card>
         </div>
@@ -39,6 +56,14 @@ export default function Browse() {
         {`
           #main-content {
             grid-template-columns: 3fr 5fr;
+          }
+
+          li {
+            padding-top: var(--space-xs);
+          }
+
+          li:first-child {
+            padding-top: var(--space-0);
           }
         `}
       </style>

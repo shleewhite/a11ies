@@ -31,9 +31,7 @@ export default function Layout({
 
         <main>
           <Hero title={title} subtitle={subtitle} />
-          <div id="main-content">
-            {children}
-          </div>
+          {children}
         </main>
         <Footer />
       </div>
