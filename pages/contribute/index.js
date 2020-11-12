@@ -32,7 +32,7 @@ export default function Create() {
               .replace("#", "")
               .split(/\s*,*\s+#*/);
 
-      setURL(data.get("url") === "" ? nolookalikes(6) : data.get("url"));
+      setURL(data.get("url").length > 0 ? nolookalikes(6) : data.get("url"));
 
       createTranscript(
         url,
@@ -53,19 +53,23 @@ export default function Create() {
     }
   };
 
+  const resetForm = () => {
+    setIsPublished(false);
+    setURL("");
+  };
+
   return (
     <FormAuth cb={setContext}>
       <SecondaryNavLayout title="Transcribe" subnav="Contribute">
         {isPublished ? (
-          <FormSuccess
-            ctaButtons={[{ link: "", label: "Make another transcript" }]}
-          >
+          <FormSuccess>
             <p>
               Your transcript is now published at:{" "}
               <Link href={`/${url}`}>
                 <a>{`a11ies.info/${url}`}</a>
               </Link>
             </p>
+            <button onClick={resetForm}>Write another transcript</button>
           </FormSuccess>
         ) : (
           <form action="" className="" onSubmit={submitTranscript} id="create">
