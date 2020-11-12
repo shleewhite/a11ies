@@ -86,10 +86,6 @@ export default function Browse({transcripts, hashtags}) {
           li {
             padding-top: var(--space-xs);
           }
-
-          li:first-child {
-            padding-top: var(--space-0);
-          }
         `}
       </style>
     </>
