@@ -4,17 +4,36 @@ import { getTranscriptList } from "../../lib/transcripts";
 import SecondaryNavLayout from "../../components/Layouts/SecondaryNavLayout";
 import Card from "../../components/Card";
 
+const COUNT = 5;
+
+function orderByFrequency(els, limit) {
+  let hash = {};
+
+  els.forEach((el) => {
+    let lc = el.toLowerCase();
+    if (!hash[lc]) hash[lc] = { val: el, count: 0};
+    hash[lc].count++;
+  });
+
+  let values = Object.values(hash).sort((a, b) => {return b.count - a.count});
+  return limit ? values.slice(0, limit) : values;
+}
+
 export async function getStaticProps() {
-  const transcriptList = await getTranscriptList();
-  console.log('transcriptList', transcriptList);
+  const transcripts = await getTranscriptList(COUNT);
+  let hashtags = [];
+  transcripts.forEach((transcript) => {
+    hashtags = hashtags.concat(transcript.hashtags);
+  });
   return {
     props: {
-      transcriptList
+      transcripts: transcripts,
+      hashtags: orderByFrequency(hashtags, COUNT)
     },
   };
 }
 
-export default function Browse({transcriptList}) {
+export default function Browse({transcripts, hashtags}) {
   return (
     <>
       <SecondaryNavLayout title="Featured" subnav="Browse">
@@ -34,14 +53,20 @@ export default function Browse({transcriptList}) {
               and federal representatives.
             </p>
           </Card>
-          <Card header="Recent hashtags" headerLevel={2} hasTopZazz>
+          <Card header="Trending hashtags" headerLevel={2} hasTopZazz>
             <ul>
-              <li>#BLM</li>
+              {hashtags.map((hashtag) => (
+                <li key={hashtag.val}>
+                  <Link href={`/browse/hashtags/${hashtag.val}`}>
+                    <a>#{hashtag.val}</a>
+                  </Link>
+                </li>
+               ))}
             </ul>
           </Card>
           <Card header="Recent transcripts" headerLevel={2} hasTopZazz>
             <ul>
-              {transcriptList.map((transcript) => (
+              {transcripts.map((transcript) => (
                 <li key={transcript.id}>
                   <Link href={transcript.id}>
                     <a>{transcript.name}</a>
