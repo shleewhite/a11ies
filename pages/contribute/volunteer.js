@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Link from "next/link";
 
 import SecondaryNavLayout from "../../components/Layouts/SecondaryNavLayout";
 import TextEditor from "../../components/TextEditor";
@@ -25,18 +26,14 @@ export default function Contribute() {
     <FormAuth cb={setContext}>
       <SecondaryNavLayout title="Volunteer" subnav="Contribute">
         {isSubmitted ? (
-          <FormSuccess
-            ctaButtons={[
-              {
-                link: "/contribute/resources",
-                label: "Learn about writing transcripts",
-              },
-            ]}
-          >
+          <FormSuccess>
             <p>
               Thank you for applying! We will get back to you as soon as
               possible.
             </p>
+            <Link href="/contribute/resources">
+              <a>Learn how to write transcripts</a>
+            </Link>
           </FormSuccess>
         ) : (
           <>

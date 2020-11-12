@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Link from "next/link";
 
 import Layout from "../components/Layouts/Layout";
 import Input from "../components/Input";
@@ -22,17 +23,20 @@ export default function Request() {
     }
   };
 
+  const resetForm = () => {
+    setIsSubmitted(false);
+  };
+
   return (
     <FormAuth cb={setContext}>
       <Layout title="Request">
         {isSubmitted ? (
-          <FormSuccess
-            ctaButtons={[
-              { link: "", label: "Submit another request" },
-              { link: "/browse", label: "Browse transcripts" },
-            ]}
-          >
+          <FormSuccess>
             <p>Your request has been submitted!</p>
+            <button onClick={resetForm}>Submit another request</button>
+            <Link href="/browse">
+              <a>Browse existing transcripts</a>
+            </Link>
           </FormSuccess>
         ) : (
           <>
