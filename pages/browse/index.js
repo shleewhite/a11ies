@@ -1,7 +1,39 @@
+import Link from "next/link";
+
+import { getTranscriptList } from "../../lib/transcripts";
 import SecondaryNavLayout from "../../components/Layouts/SecondaryNavLayout";
 import Card from "../../components/Card";
 
-export default function Home() {
+const COUNT = 5;
+
+function orderByFrequency(els, limit) {
+  let hash = {};
+
+  els.forEach((el) => {
+    let lc = el.toLowerCase();
+    if (!hash[lc]) hash[lc] = { val: el, count: 0 };
+    hash[lc].count++;
+  });
+
+  let values = Object.values(hash).sort((a, b) => {return b.count - a.count});
+  return limit ? values.slice(0, limit) : values;
+}
+
+export async function getStaticProps() {
+  const transcripts = await getTranscriptList(COUNT);
+  let hashtags = [];
+  transcripts.forEach((transcript) => {
+    hashtags = hashtags.concat(transcript.hashtags);
+  });
+  return {
+    props: {
+      transcripts: transcripts,
+      hashtags: orderByFrequency(hashtags, COUNT)
+    },
+  };
+}
+
+export default function Browse({transcripts, hashtags}) {
   return (
     <>
       <SecondaryNavLayout title="Featured" subnav="Browse">
@@ -23,12 +55,24 @@ export default function Home() {
           </Card>
           <Card header="Recent hashtags" headerLevel={2} hasTopZazz>
             <ul>
-              <li>#BLM</li>
+              {hashtags.map((hashtag) => (
+                <li key={hashtag.val}>
+                  <Link href={`/browse/hashtags/${hashtag.val}`}>
+                    <a>#{hashtag.val}</a>
+                  </Link>
+                </li>
+               ))}
             </ul>
           </Card>
           <Card header="Recent transcripts" headerLevel={2} hasTopZazz>
             <ul>
-              <li>How to call your reps when you have social anxiety</li>
+              {transcripts.map((transcript) => (
+                <li key={transcript.id}>
+                  <Link href={transcript.id}>
+                    <a>{transcript.name}</a>
+                  </Link>
+                </li>
+               ))}
             </ul>
           </Card>
         </div>
@@ -37,6 +81,10 @@ export default function Home() {
         {`
           #main-content {
             grid-template-columns: 3fr 5fr;
+          }
+
+          li {
+            padding-top: var(--space-xs);
           }
         `}
       </style>
