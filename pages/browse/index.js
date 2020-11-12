@@ -11,7 +11,7 @@ function orderByFrequency(els, limit) {
 
   els.forEach((el) => {
     let lc = el.toLowerCase();
-    if (!hash[lc]) hash[lc] = { val: el, count: 0};
+    if (!hash[lc]) hash[lc] = { val: el, count: 0 };
     hash[lc].count++;
   });
 
