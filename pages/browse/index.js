@@ -53,7 +53,7 @@ export default function Browse({transcripts, hashtags}) {
               and federal representatives.
             </p>
           </Card>
-          <Card header="Trending hashtags" headerLevel={2} hasTopZazz>
+          <Card header="Recent hashtags" headerLevel={2} hasTopZazz>
             <ul>
               {hashtags.map((hashtag) => (
                 <li key={hashtag.val}>
