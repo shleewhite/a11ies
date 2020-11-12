@@ -32,7 +32,7 @@ export default function Transcript({ transcriptData }) {
                 {hashtags.map((hashtag, i) => {
                   return (
                     <li key={i}>
-                      <Link href="something"><a>#{hashtag}</a></Link>
+                      <Link href={`browse/hashtags/${hashtag}`}><a>#{hashtag}</a></Link>
                     </li>)
                 })}
               </ul>
@@ -62,10 +62,6 @@ export default function Transcript({ transcriptData }) {
           ul.hashtags {
             list-style-type: none;
             padding: 0;
-          }
-
-          ul.hashtags li {
-
           }
 
           h2 {
