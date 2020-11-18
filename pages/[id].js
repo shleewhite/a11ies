@@ -4,6 +4,7 @@ import Link from "next/link";
 import { getTranscriptData } from "../lib/transcripts";
 
 import Card from "../components/Card";
+import Prompt from "../components/Prompt";
 import Layout from "../components/Layouts/Layout";
 
 export async function getServerSideProps({ params }) {
@@ -14,6 +15,16 @@ export async function getServerSideProps({ params }) {
 }
 
 export default function Transcript({ transcriptData }) {
+  if (!transcriptData) {
+    return (
+      <Layout title="Hm...">
+        <div id="main-content">
+          <Prompt/>
+        </div>
+      </Layout>
+    );
+  }
+
   const { name, link, contentHtml, hashtags, creatorName, creatorLink } = transcriptData;
     
   return (
@@ -48,7 +59,7 @@ export default function Transcript({ transcriptData }) {
       <style jsx>
         {`
           * {
-            line-height: 1.4rem;
+            line-height: var(--lh-m);
           }
 
           .i {

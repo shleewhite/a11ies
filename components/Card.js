@@ -55,6 +55,7 @@ const Card = ({
 
           #text-content {
             padding: var(--space-m);
+            line-height: var(--lh-m);
           }
 
           .sm-top-padding {

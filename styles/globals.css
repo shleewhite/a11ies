@@ -44,6 +44,7 @@ h3 {
 h2,
 h3 {
   letter-spacing: 0.05ch;
+  line-height: var(--lh-s);
 }
 
 #page-container {

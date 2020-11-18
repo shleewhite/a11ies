@@ -43,6 +43,7 @@ export default function Create() {
           creatorLink: data.get("creatorLink"),
           transcript: data.get("transcript"),
           searchable: data.get("searchable") !== null,
+          publishDate: Date.now(),
           hashtags,
           uid,
         },
