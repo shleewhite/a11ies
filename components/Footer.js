@@ -14,11 +14,11 @@ const Footer = () => {
           <a>Code of Conduct</a>
         </Link>
         <a
-          href="mailto:contact@a11y.info"
+          href="mailto:contact@a11ies.info"
           target="_blank"
           rel="noopener noreferrer"
         >
-          contact@a11y.info
+          contact@a11ies.info
         </a>
         <span aria-hidden="true">\\</span>
         <a aria-label="Twitter" href="https://twitter.com/a11ies_info">
