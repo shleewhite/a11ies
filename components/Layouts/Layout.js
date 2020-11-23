@@ -11,7 +11,7 @@ export default function Layout({
   title,
   subtitle,
   subNavItems,
-  mainStyles,
+  styles,
 }) {
   const formattedTitle =
     title === "a11ies.info" ? title : `${title} | a11ies.info`;
@@ -32,18 +32,17 @@ export default function Layout({
 
         <main>
           <Hero title={title} subtitle={subtitle} />
-          {children}
+          <div id="main-content">{children}</div>
         </main>
         <Footer />
       </div>
 
-      <style jsx>
-        {`
-          main {
-            ${mainStyles}
-          }
-        `}
-      </style>
+      <style jsx>{`
+        // #main-content {
+
+        // }
+        ${styles}
+      `}</style>
     </>
   );
 }
