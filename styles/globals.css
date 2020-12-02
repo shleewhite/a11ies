@@ -125,3 +125,7 @@ input:focus {
 * {
   box-sizing: border-box;
 }
+
+[aria-hidden="true"] {
+  display: none;
+}
