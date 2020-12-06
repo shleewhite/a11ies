@@ -2,8 +2,6 @@
 title: "Privacy Policy"
 ---
 
-# A11ies.info Privacy Policy
-
 Last Modified: December 1, 2020
 
 ## Introduction
@@ -24,7 +22,7 @@ Please read this policy carefully to understand our policies and practices regar
 
 Our Website is not intended for children under 13 years of age. If you are under 13, do not use or provide any information on this Website. If we learn we have collected personal information from a child under 13, without verification of parental consent, we will delete that information. If you believe that we might have any information of a child under 13, please contact us at [contact@a11ies.info](mailto:contact@a11ies.info).
 
-California residents under 16 years of age may have additional rights regarding the collection and sale of their personal information. Please see [Your California Privacy Rights](#ca-rights) for more information.
+California residents under 16 years of age may have additional rights regarding the collection and sale of their personal information. Please see [Your California Privacy Rights](#your-california-privacy-rights) for more information.
 
 ## Information We Collect About You and How We Collect It
 
@@ -83,9 +81,9 @@ You can review and change your personal information by logging into the Website 
 
 If you delete your User Contributions from the Website, copies of your User Contributions may remain viewable in cached and archived pages, or might have been copied or stored by other Website users. Proper access and use of information provided on the Website, including User Contributions, is governed by [our terms of use]().
 
-California residents may have additional personal information rights and choices. Please see [Your California Privacy Rights](#ca-rights) for more information.
+California residents may have additional personal information rights and choices. Please see [Your California Privacy Rights](#your-california-privacy-rights) for more information.
 
-## Your California Privacy Rights {#ca-rights}
+## Your California Privacy Rights
 
 If you are a California resident, California law may provide you with additional rights regarding our use of your personal information. California's "Shine the Light" law (Civil Code Section § 1798.83) permits users of our App that are California residents to request certain information regarding our disclosure of personal information to third parties for their direct marketing purposes. To make such a request, please send an email to [contact@a11ies.info](mailto:contact@a11ies.info).
 

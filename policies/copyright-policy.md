@@ -2,8 +2,6 @@
 title: "Copyright Policy"
 ---
 
-# COPYRIGHT POLICY
-
 ## Reporting Claims of Copyright Infringement
 
 We take claims of copyright infringement seriously. We will respond to notices of alleged copyright infringement that comply with applicable law. If you believe any materials accessible on or from this site (the "**Website**") infringe your copyright, you may request removal of those materials (or access to them) from the Website by submitting written notification to our copyright agent designated below. In accordance with the Online Copyright Infringement Liability Limitation Act of the Digital Millennium Copyright Act (17 U.S.C. § 512) ("**DMCA**"), the written notice (the "**DMCA Notice**") must include substantially the following:

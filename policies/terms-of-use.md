@@ -2,8 +2,6 @@
 title: "Terms of Use"
 ---
 
-# A11ies.info Terms of Use
-
 Last Modified: December 1, 2020
 
 ## Description of the Service
@@ -82,7 +80,7 @@ In addition to the above express rights, we maintain the right to cooperate full
 
 However, we cannot undertake to review all material before it is posted. As such, we cannot ensure the prompt removal of potentially harmful material after it has been posted. Though we will do our best to ensure A11ies remains a safe platform for all, we assume no liability for any performance or nonperformance of the activities described in this section.
 
-## Content Standards {#content-standards}
+## Content Standards
 
 These content standards apply to any and all User Contributions. These are in place to ensure that A11ies can remain a safe and positive platform. User Contributions must comply with all applicable federal, state, and local laws and regulations.
 
@@ -147,7 +145,7 @@ The limitation of liability set out above does not apply to liability resulting 
 
 You agree to defend, indemnify, and hold harmless the Company and its respective officers, directors, employees, contractors, agents, licensors, suppliers, successors, and assigns from and against any claims, liabilities, damages, judgments, awards, losses, costs, expenses, or fees (including reasonable attorneys' fees) arising out of or relating to your violation of these Terms of Use or your use of the Website, including, but not limited to, your User Contributions, any use of the Website's content, services, and products other than as expressly authorized in these Terms of Use, or your use of any information obtained from the Website.
 
-## Governing Law and Jurisdiction {#jurisdiction}
+## Governing Law and Jurisdiction
 
 All matters relating to the Website and these Terms of Use, and any dispute or claim arising therefrom or related thereto (in each case, including non-contractual disputes or claims), shall be governed by and construed in accordance with the internal laws of the State of California without giving effect to any choice or conflict of law provision or rule (whether of the State of California or any other jurisdiction).
 
