@@ -84,7 +84,7 @@ export default function Admin() {
                       <DropdownItem
                         key={`${collection}-row-${i}-action-${j}`}
                         onClick={() => {
-                          // action.function(row.id, collection);
+                          action.function(row.id, collection);
                         }}
                       >
                         {action.name}
