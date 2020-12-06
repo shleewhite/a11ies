@@ -130,3 +130,7 @@ input:focus {
 [aria-hidden="true"] {
   display: none;
 }
+
+.all-caps {
+  text-transform: uppercase;
+}
