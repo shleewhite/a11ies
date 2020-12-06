@@ -1,9 +1,12 @@
+import Prompt from "../components/Prompt";
 import Layout from "../components/Layouts/Layout";
 
 export default function PageNotFound() {
   return (
     <Layout title="404">
-      <p>Page not found. Sorry!</p>
+      <div id="main-content">
+        <Prompt/>
+      </div>
     </Layout>
   );
 }

@@ -14,6 +14,11 @@
   --space-m: 2rem;
   --space-l: 4rem;
   --space-xl: 6rem;
+
+  /* line-height variables */
+  --lh-0: normal;
+  --lh-s: 1.2em;
+  --lh-m: 1.5em;
 }
 
 /* Light Mode Palette */
