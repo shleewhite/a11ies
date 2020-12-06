@@ -38,10 +38,9 @@ export default function Layout({
       </div>
 
       <style jsx>{`
-        // #main-content {
-
-        // }
-        ${styles}
+        #main-content {
+          ${styles}
+        }
       `}</style>
     </>
   );

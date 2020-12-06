@@ -9,21 +9,14 @@ export default function Home() {
       <Layout
         title="a11ies.info"
         subtitle="Let's make resources more accessible."
-        styles={`
-          main {
-            display: grid;
-            grid-template-rows: auto 1fr;
-          }
-
-          #main-content {
+        styles="
             display: grid;
             grid-gap: var(--space-m) var(--space-s);
             gap: var(--space-m) var(--space-s);
             justify-content: center;
             grid-template-columns: 350px 350px 350px;
             grid-template-rows: auto 1fr;
-          }
-        `}
+        "
       >
         {/* <div id="main-content"> */}
         <Card
