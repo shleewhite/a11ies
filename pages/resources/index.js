@@ -2,8 +2,8 @@ import React from "react";
 
 import Link from "next/link";
 
-import { getAllResourceData } from "../../../lib/resources";
-import SecondaryNavLayout from "../../../components/Layouts/SecondaryNavLayout";
+import { getAllResourceData } from "../../lib/resources";
+import SecondaryNavLayout from "../../components/Layouts/SecondaryNavLayout";
 
 export async function getStaticProps() {
   const resourceData = await getAllResourceData();

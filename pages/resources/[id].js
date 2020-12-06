@@ -1,8 +1,8 @@
 import React from "react";
 
-import { getAllResourceIds, getResourceData } from "../../../lib/resources";
+import { getAllResourceIds, getResourceData } from "../../lib/resources";
 
-import SecondaryNavLayout from "../../../components/Layouts/SecondaryNavLayout";
+import SecondaryNavLayout from "../../components/Layouts/SecondaryNavLayout";
 
 export async function getStaticPaths() {
   const paths = getAllResourceIds();

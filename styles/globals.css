@@ -1,4 +1,6 @@
 @import "~tachyons/css/tachyons.css";
+/* @import "bootstrap/dist/css/bootstrap.css"; */
+@import "./bootstrap/css/bootstrap.min.css";
 @import "./variables.css";
 
 @font-face {
@@ -79,10 +81,6 @@ footer {
 
 #main-content {
   margin: var(--space-m) auto;
-  display: grid;
-  grid-gap: var(--space-m) var(--space-s);
-  gap: var(--space-m) var(--space-s);
-  justify-content: center;
 }
 
 /* @media (min-width: 43em) {}
@@ -127,4 +125,8 @@ input:focus {
 
 * {
   box-sizing: border-box;
+}
+
+[aria-hidden="true"] {
+  display: none;
 }
