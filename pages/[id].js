@@ -19,32 +19,51 @@ export default function Transcript({ transcriptData }) {
     return (
       <Layout title="Hm...">
         <div id="main-content">
-          <Prompt/>
+          <Prompt />
         </div>
       </Layout>
     );
   }
 
-  const { name, link, contentHtml, hashtags, creatorName, creatorLink } = transcriptData;
-    
+  const {
+    name,
+    link,
+    contentHtml,
+    hashtags,
+    creatorName,
+    creatorLink,
+  } = transcriptData;
+
   return (
     <>
       <Layout title={name}>
         <div id="main-content">
           <div>
             <Card header="About" headerLevel="2">
-              <a href={link} target="_blank" className="i b">{name}</a>
-              { creatorName ?
-                  creatorLink ?
-                    (<>{' by'} <a href={creatorLink} target="_blank" className="b">{creatorName}</a></>) :
-                    ' by ' + creatorName
-                  : null }
+              <a href={link} target="_blank" className="i b">
+                {name}
+              </a>
+              {creatorName ? (
+                creatorLink ? (
+                  <>
+                    {" by"}{" "}
+                    <a href={creatorLink} target="_blank" className="b">
+                      {creatorName}
+                    </a>
+                  </>
+                ) : (
+                  ` by ${creatorName}`
+                )
+              ) : null}
               <ul className="hashtags">
                 {hashtags.map((hashtag, i) => {
                   return (
                     <li key={i}>
-                      <Link href={`browse/hashtags/${hashtag}`}><a>#{hashtag}</a></Link>
-                    </li>)
+                      <Link href={`browse/hashtags/${hashtag}`}>
+                        <a>#{hashtag}</a>
+                      </Link>
+                    </li>
+                  );
                 })}
               </ul>
             </Card>
@@ -83,7 +102,7 @@ export default function Transcript({ transcriptData }) {
             #main-content {
               column-count: 1;
             }
-            
+
             #main-content > div {
               break-inside: avoid;
             }

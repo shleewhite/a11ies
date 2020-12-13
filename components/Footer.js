@@ -7,11 +7,14 @@ const Footer = () => {
   return (
     <footer>
       <div>
-        <Link href="/contribute/resources/terms-of-use">
+        <Link href="/policy/terms-of-use">
           <a>Terms of Use</a>
         </Link>
-        <Link href="/contribute/resources/code-of-conduct">
-          <a>Code of Conduct</a>
+        <Link href="/policy/privacy-policy">
+          <a>Privacy Policy</a>
+        </Link>
+        <Link href="/policy/copyright-policy">
+          <a>Copyright Policy</a>
         </Link>
         <a
           href="mailto:contact@a11ies.info"
