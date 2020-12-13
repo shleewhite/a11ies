@@ -22,8 +22,6 @@
     "firebase": "^7.24.0",
     "firebase-admin": "^9.3.0",
     "gray-matter": "^4.0.2",
-    "hastscript": "^6.0.0",
-    "mdast-util-to-string": "^2.0.0",
     "nanoid": "^3.0.0",
     "nanoid-generate": "^1.0.0",
     "next": "^10.0.1",
@@ -36,9 +34,7 @@
     "react-modal": "^3.11.2",
     "reactstrap": "^8.7.1",
     "remark": "^12.0.1",
-    "remark-autolink-headings": "^6.0.1",
     "remark-html": "^13.0.1",
-    "remark-slug": "^6.0.0",
     "styled-jsx-plugin-sass": "^1.0.0",
     "tachyons": "^4.12.0",
     "turndown": "^7.0.0"
