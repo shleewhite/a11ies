@@ -5,7 +5,7 @@ import * as cn from "classnames";
 
 import AuthModal from "./AuthModal";
 
-import { HEADER_PATHS } from "../lib/constants";
+import { HEADER_PATHS, BREAKPOINTS } from "../lib/constants";
 import { signOut } from "../lib/auth";
 import { UserContext } from "../lib/user_context";
 
@@ -17,7 +17,7 @@ const Header = () => {
   return (
     <>
       <nav aria-label="Primary">
-        <div className="nav-link-container tc">
+        <div className="nav-link-container">
           {HEADER_PATHS.map((link, i) => {
             let isCurrent;
 
@@ -87,10 +87,13 @@ const Header = () => {
           nav {
             font-size: var(--text-s);
             display: grid;
-            grid-template-columns: 1fr 2fr;
+            grid-template-columns: 1fr;
+
+
           }
 
           .nav-link-container {
+            grid-column: 1 / 3;
             display: grid;
             grid-template-columns: repeat(
               ${HEADER_PATHS.length +
@@ -102,8 +105,8 @@ const Header = () => {
           }
 
           .nav-secondary {
-            justify-self: end;
-            align-self: end;
+            justify-self: center;
+            align-self: center;
 
             display: grid;
             grid-template-columns: auto 2fr 1fr;
@@ -122,6 +125,22 @@ const Header = () => {
             display: grid;
             grid-template-rows: auto 1fr;
             justify-items: center;
+          }
+
+          @media ${BREAKPOINTS.MEDIUM_LARGE} {
+            nav {
+              grid-template-columns: 1fr 2fr;
+              grid-column: 1 / span 3;
+            }
+
+            .nav-link-container {
+              grid-column: 1/2;
+            }
+
+            .nav-secondary {
+              justify-self: end;
+              align-self: end;
+            }
           }
 
           .half-circle {

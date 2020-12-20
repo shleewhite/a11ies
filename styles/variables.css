@@ -5,7 +5,8 @@
   --text-s: 1em;
   --text-m: 1.5em;
   --text-l: 2em;
-  --text-xl: 8em;
+  --text-xl: 4em;
+  --text-xxl: 8em;
 
   /* spacing variables */
   --space-0: 0rem;
@@ -19,6 +20,11 @@
   --lh-0: normal;
   --lh-s: 1.2em;
   --lh-m: 1.5em;
+
+  /* breakpoint widths */
+  --bp-s: 42em;
+  --bp-m: 62em;
+  --bp-l: 82em;
 }
 
 /* Light Mode Palette */
