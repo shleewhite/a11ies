@@ -37,13 +37,10 @@ export default function Contribute() {
           </FormSuccess>
         ) : (
           <>
-            <span className="f6 db mb2">
-              <span className="b">Why do you want to help transcribe?</span>{" "}
-              (required)
-            </span>
             <TextEditor
-              label="Why do you want to help transcribe? (required), rich text editor"
+              label="Why do you want to help transcribe?"
               name="free-response"
+              required
             />
 
             <button onClick={submitApplication}>Submit Application</button>
