@@ -10,7 +10,6 @@ import FormSuccess from "../../components/FormSuccess";
 
 import { RESERVED_PATHS, BREAKPOINTS, URL_REGEX } from "../../lib/constants";
 import { createTranscript } from "../../lib/transcripts";
-// TODO: Url validation: import { URL_REGEX } from '../constants';
 
 const errorMessages = {
   required: `Whoops! This field is required.`,
@@ -124,11 +123,9 @@ export default function Create() {
       }
     }
 
-    // Hashtags
-    // No checks
+    // Hashtags -- TODO?
 
-    // Transcript
-    // TODO
+    // Transcript -- TODO
 
     // Creator link
     let creatorLink = data.get("creatorLink");
@@ -137,8 +134,7 @@ export default function Create() {
       firstError = "creatorLink";
     }
 
-    // Creator name
-    // No checks
+    // Creator name -- no checks
 
     // Document link
     let link = data.get("link");
