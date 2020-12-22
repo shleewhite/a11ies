@@ -89,12 +89,13 @@ export default function Create() {
             hashtags,
             uid,
           },
+          /* success callback */
           () => {
-            console.log('success');
             setIsPublished(true);
           },
+          /* failure callback */
           () => {
-            console.log('failure');
+            setURLError(errors.unavailableURL);
           }
         );
       }
