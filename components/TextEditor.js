@@ -17,8 +17,7 @@ const CONFIG = {
       "|",
       "link",
     ],
-  },
-  height: "30em"
+  }
 };
 
 class TextEditor extends React.Component {
