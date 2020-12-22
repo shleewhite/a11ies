@@ -81,7 +81,7 @@ const Input = ({
           input, textarea {
             background-color: var(--bg-light-c);
             border-radius: 5px;
-            margin-top: .25em;
+            margin: .25em 0;
           }
 
           textarea {
