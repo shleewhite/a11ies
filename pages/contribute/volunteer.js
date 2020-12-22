@@ -40,6 +40,7 @@ export default function Contribute() {
             <TextEditor
               label="Why do you want to help transcribe?"
               name="free-response"
+              required
             />
 
             <button onClick={submitApplication}>Submit Application</button>
