@@ -14,7 +14,10 @@ const Input = ({
   return (
     <>
       <div className={cn({"has-prefix": prefix})}>
-        <label htmlFor={realID}>{label}</label>
+        <label htmlFor={realID}>
+          <span className="b">{label}</span>
+          {required ? (<span> (required)</span>) : null}
+        </label>
         {description ? (<small id={descriptionID}>{description}</small>) : null}
 
         <div className="input-wrapper">
@@ -50,7 +53,7 @@ const Input = ({
           }
 
           label {
-            font-weight: 800;
+            font-weight: 400;
           }
 
           small {

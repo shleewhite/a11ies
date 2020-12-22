@@ -193,10 +193,10 @@ export default function Create() {
           </FormSuccess>
         ) : (
           <form action="" className="" onSubmit={submitTranscript} id="create" noValidate >
-            <Input label="Document title (required)" required id="name" error={errors.name} />
+            <Input label="Document title" required id="name" error={errors.name} />
 
             <Input
-              label="Link to original document (required)"
+              label="Link to original document"
               required
               type="url"
               id="link"
@@ -215,8 +215,9 @@ export default function Create() {
             <div className="full-width-input">
               <TextEditor
                 name="transcript"
-                label="Transcript (required)"
+                label="Transcript"
                 id="transcript"
+                required
               />
             </div>
 

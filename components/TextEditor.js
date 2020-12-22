@@ -53,6 +53,7 @@ class TextEditor extends React.Component {
       <>
         <span>
           <span className="b">{this.props.label}</span>
+          {this.props.required ? (<span> (required)</span>) : null}
         </span>
         <small id={this.state.keyboardInfoId}>
           Press Alt + F10 to navigate to text editor toolbar.

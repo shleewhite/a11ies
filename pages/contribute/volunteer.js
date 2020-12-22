@@ -38,7 +38,7 @@ export default function Contribute() {
         ) : (
           <>
             <TextEditor
-              label="Why do you want to help transcribe? (required)"
+              label="Why do you want to help transcribe?"
               name="free-response"
             />
 
