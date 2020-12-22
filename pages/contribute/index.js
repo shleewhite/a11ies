@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { nolookalikes } from "nanoid-generate"; // generates unique id without characters that look similar ie. 1 and I
+import * as copy from 'copy-to-clipboard'; // copy-to-clipboard
 import Link from "next/link";
 
 import SecondaryNavLayout from "../../components/Layouts/SecondaryNavLayout";
+import IconButton from "../../components/IconButton";
 import Input from "../../components/Input";
 import TextEditor from "../../components/TextEditor";
 import FormAuth from "../../components/FormAuth";
@@ -13,7 +15,7 @@ import { createTranscript } from "../../lib/transcripts";
 
 const errorMessages = {
   required: `Whoops! This field is required.`,
-  badLinkFormat: `Please make sure this URL is properly formatted.`,
+  badLinkFormat: `Make sure this URL is properly formatted and includes an http:// or https:// prefix.`,
   unavailableURL: `Alas, this short URL isn't available. Please choose 
     another one or leave blank to have one auto-generated.`,
   invalidURL: `Alas, we can only accept custom short URLs with letters, numbers,
@@ -180,11 +182,16 @@ export default function Create() {
         {isPublished ? (
           <FormSuccess>
             <p>
-              Your transcript is now published at:{" "}
+              Your transcript is now published at{" "}
               <Link href={`/${url}`}>
-                <a>{`a11ies.info/${url}`}</a>
+                <a className="b">{`a11ies.info/${url}`}</a>
               </Link>
+              {' '}
+              <IconButton label="Copy link" onClick={() => {copy(`a11ies.info/${url}`);}}>
+                📋
+              </IconButton>
             </p>
+
             <button onClick={resetForm}>Write another transcript</button>
           </FormSuccess>
         ) : (
