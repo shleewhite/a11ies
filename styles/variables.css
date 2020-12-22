@@ -34,7 +34,9 @@
   --border-c: #719366;
   --zazz-c: #86d59c;
   --bg-dark-c: #c3ebce;
-  --bg-light-c: #f4fbf9;
+  --bg-medium-c: #f4fbf9;
+  --bg-light-c: #ffffff;
+  --emphasis-c: #4000FF;
 }
 
 /* Dark Mode Palette */
