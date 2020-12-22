@@ -17,7 +17,7 @@ const CONFIG = {
       "|",
       "link",
     ],
-  },
+  }
 };
 
 class TextEditor extends React.Component {
@@ -51,6 +51,9 @@ class TextEditor extends React.Component {
   render() {
     return (
       <>
+        <small id={this.state.keyboardInfoId}>
+          Press Alt + F10 to navigate to text editor toolbar.
+        </small>
         {this.CKEditor && (
           <this.CKEditor
             editor={this.ClassicEditor}
@@ -76,18 +79,25 @@ class TextEditor extends React.Component {
             }}
           />
         )}
-        <small
-          className="f6 black-60 db mt1 mb3"
-          id={this.state.keyboardInfoId}
-        >
-          Press Alt + F10 to navigate to text editor toolbar.
-        </small>
         <textarea
           name={this.props.name}
           readOnly
           style={{ display: "none" }}
           value={this.state.markdown}
         />
+        <style jsx>
+          {`
+            .ck-editor__editable_inline {
+              min-height: 20em;
+            }
+
+            small {
+              display: block;
+              font-size: var(--text-s);
+              padding-bottom: var(--space-s);
+            }
+          `}
+        </style>
       </>
     );
   }
