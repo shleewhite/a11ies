@@ -51,6 +51,9 @@ class TextEditor extends React.Component {
   render() {
     return (
       <>
+        <span>
+          <span className="b">{this.props.label}</span>
+        </span>
         <small id={this.state.keyboardInfoId}>
           Press Alt + F10 to navigate to text editor toolbar.
         </small>
@@ -67,7 +70,7 @@ class TextEditor extends React.Component {
                 const viewEditableRoot = editor.editing.view.document.getRoot();
                 writer.setAttribute(
                   "aria-label",
-                  this.props.label,
+                  `${this.props.label}, Rich Text Editor`,
                   viewEditableRoot
                 );
                 writer.setAttribute(
@@ -87,10 +90,6 @@ class TextEditor extends React.Component {
         />
         <style jsx>
           {`
-            .ck-editor__editable_inline {
-              min-height: 20em;
-            }
-
             small {
               display: block;
               font-size: var(--text-s);
@@ -105,7 +104,7 @@ class TextEditor extends React.Component {
 
 TextEditor.defaultProps = {
   name: "textEditor",
-  label: "Rich Text Editor",
+  label: "Text Editor"
 };
 
 export default TextEditor;

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { nolookalikes } from "nanoid-generate"; // generates unique id without characters that look similar ie. 1 and I
 import Link from "next/link";
 
@@ -8,17 +8,17 @@ import TextEditor from "../../components/TextEditor";
 import FormAuth from "../../components/FormAuth";
 import FormSuccess from "../../components/FormSuccess";
 
-import { RESERVED_PATHS, BREAKPOINTS } from "../../lib/constants";
+import { RESERVED_PATHS, BREAKPOINTS, URL_REGEX } from "../../lib/constants";
 import { createTranscript } from "../../lib/transcripts";
 // TODO: Url validation: import { URL_REGEX } from '../constants';
-// TODO: Url validation: throw an error if the short url already exists
 
-const errors = {
-  required: `Whoops! Don't forget this field is required.`,
+const errorMessages = {
+  required: `Whoops! This field is required.`,
+  badLinkFormat: `Please make sure this URL is properly formatted.`,
   unavailableURL: `Alas, this short URL isn't available. Please choose 
     another one or leave blank to have one auto-generated.`,
-  invalidURL: `Whoops! We can only accept short URLs with letters, numbers,
-    hyphens, and/or underscores. Please correct stray characters.`
+  invalidURL: `Alas, we can only accept custom short URLs with letters, numbers,
+    hyphens, and/or underscores. Please remove special characters.`
 };
 
 function hasReservedPathError(url) {
@@ -33,6 +33,10 @@ function hasInvalidCharacters(url) {
   return !(/^[\w\d_-]*$/.test(url));
 }
 
+function hasBadLinkFormat(url) {
+  return !(URL_REGEX.test(url));
+}
+
 export default function Create() {
   const [isPublished, setIsPublished] = useState(false);
   const [url, setURL] = useState("");
@@ -41,24 +45,17 @@ export default function Create() {
     uid: "",
   });
 
-  // TODO, streamline error messages w/ arrays?
-  const [transcriptError, setTranscriptError] = useState(null);
-  const [urlError, setURLError] = useState(null);
-
-  const validateClientsideURL = (url) => {
-    if (hasReservedPathError(url)) {
-      setURLError(errors.unavailableURL);
-      return false;
-    }
-
-    if (hasInvalidCharacters(url)) {
-      setURLError(errors.invalidURL);
-      return false;
-    }
-
-    setURLError(null);
-    return true;
-  }
+  const [errors, setErrors] = useState({
+    name: null,
+    link: null,
+    creatorName: null,
+    creatorLink: null,
+    transcript: null,
+    hashtags: null,
+    searchable: null,
+    url: null
+  });
+  const [focusId, setFocusId] = useState(null);
 
   const submitTranscript = (event) => {
     event.preventDefault();
@@ -72,12 +69,11 @@ export default function Create() {
               .replace("#", "")
               .split(/\s*,*\s+#*/);
 
-      let tempURL = data.get("url").length > 0 ? data.get("url") : nolookalikes(6);
-
-      if (validateClientsideURL(tempURL)) {
-        setURL(tempURL);
+      if (validateData(data)) {
+        let newURL = data.get("url").length > 0 ? data.get("url") : nolookalikes(6);
+        setURL(newURL);
         createTranscript(
-          tempURL,
+          newURL,
           {
             link: data.get("link"),
             name: data.get("name"),
@@ -95,16 +91,87 @@ export default function Create() {
           },
           /* failure callback */
           () => {
-            setURLError(errors.unavailableURL);
+            setErrors({...errors, url: errorMessages.unavailableURL});
+            setFocusId('url');
           }
         );
       }
     }
   };
 
-  const handleErrors = () => {
+  const validateData = (data) => {
+    let firstError = null;
+    let errorMap = {
+      name: null,
+      link: null,
+      creatorName: null,
+      creatorLink: null,
+      transcript: null,
+      hashtags: null,
+      searchable: null,
+      url: null
+    };
 
-  };
+    // Check custom short URL for reserved path or special characters
+    let url = data.get("url");
+    if (url.length > 0) {
+      if (hasReservedPathError(url)) {
+        errorMap["url"] = errorMessages.unavailableURL;
+        firstError = "url";
+      } else if (hasInvalidCharacters(url)) {
+        errorMap["url"] = errorMessages.invalidURL;
+        firstError = "url";
+      }
+    }
+
+    // Hashtags
+    // No checks
+
+    // Transcript
+    // TODO
+
+    // Creator link
+    let creatorLink = data.get("creatorLink");
+    if (creatorLink.length > 0 && hasBadLinkFormat(creatorLink)) {
+      errorMap["creatorLink"] = errorMessages.badLinkFormat;
+      firstError = "creatorLink";
+    }
+
+    // Creator name
+    // No checks
+
+    // Document link
+    let link = data.get("link");
+    if (link.length == 0) {
+      errorMap["link"] = errorMessages.required;
+      firstError = "link";
+    } else if (hasBadLinkFormat(link)) {
+      errorMap["link"] = errorMessages.badLinkFormat;
+      firstError = "link";
+    }
+
+    // Document title
+    if (data.get("name").length == 0) {
+      errorMap["name"] = errorMessages.required;
+      firstError = "name";
+    }
+
+    setErrors(errorMap);
+    setFocusId(firstError);
+    return !firstError;
+  }
+
+  /* Dynamically focus an element when requested */
+  useEffect(() => {
+    if (focusId) {
+      let el = document.getElementById(focusId);
+      if (el) { 
+        el.focus();
+        // clear
+        setFocusId(null);
+      }
+    }
+  }, [focusId]);
 
   const resetForm = () => {
     setIsPublished(false);
@@ -125,14 +192,15 @@ export default function Create() {
             <button onClick={resetForm}>Write another transcript</button>
           </FormSuccess>
         ) : (
-          <form action="" className="" onSubmit={submitTranscript} id="create">
-            <Input label="Document title (required)" required id="name" />
+          <form action="" className="" onSubmit={submitTranscript} id="create" noValidate >
+            <Input label="Document title (required)" required id="name" error={errors.name} />
 
             <Input
               label="Link to original document (required)"
               required
               type="url"
               id="link"
+              error={errors.link}
             />
 
             <Input label="Original creator's name" id="creatorName" />
@@ -141,15 +209,13 @@ export default function Create() {
               label="Link to original creator"
               type="url"
               id="creatorLink"
+              error={errors.creatorLink}
             />
 
             <div className="full-width-input">
-              <span>
-                <span className="b">Transcript</span> (required)
-              </span>
               <TextEditor
                 name="transcript"
-                label="Transcript (required), Rich Text Editor"
+                label="Transcript (required)"
                 id="transcript"
               />
             </div>
@@ -175,7 +241,7 @@ export default function Create() {
               description="If you don't provide one, we'll generate one for you!"
               id="url" 
               variant="short" 
-              error={urlError}
+              error={errors.url}
             />
 
             <div></div>
