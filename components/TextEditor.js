@@ -27,6 +27,7 @@ class TextEditor extends React.Component {
       markdown: "",
       isServer: true,
       keyboardInfoId: nanoid(8),
+      errorId: nanoid(8)
     };
 
     this.getMarkdownFromEditor = this.getMarkdownFromEditor.bind(this);
@@ -56,7 +57,7 @@ class TextEditor extends React.Component {
           {this.props.required ? (<span> (required)</span>) : null}
         </span>
         <small id={this.state.keyboardInfoId}>
-          Press Alt + F10 to navigate to text editor toolbar.
+          Press Alt + F10 to navigate to text editor toolbar. Use the text editor toolbar or markdown syntax to format. 
         </small>
         {this.CKEditor && (
           <this.CKEditor
@@ -76,7 +77,12 @@ class TextEditor extends React.Component {
                 );
                 writer.setAttribute(
                   "aria-describedby",
-                  this.state.keyboardInfoId,
+                  `${this.state.errorId} ${this.state.keyboardInfoId}`,
+                  viewEditableRoot
+                );
+                writer.setAttribute(
+                  "id",
+                  this.props.id,
                   viewEditableRoot
                 );
               });
@@ -89,12 +95,20 @@ class TextEditor extends React.Component {
           style={{ display: "none" }}
           value={this.state.markdown}
         />
+        <div className="input-error" id={this.state.errorId}>
+          {this.props.error}
+        </div>
         <style jsx>
           {`
             small {
               display: block;
               font-size: var(--text-s);
               padding-bottom: var(--space-s);
+            }
+
+            .input-error {
+              color: var(--emphasis-c);
+              font-weight: 800;
             }
           `}
         </style>
@@ -105,7 +119,9 @@ class TextEditor extends React.Component {
 
 TextEditor.defaultProps = {
   name: "textEditor",
-  label: "Text Editor"
+  label: "Text Editor",
+  error: null,
+  id: "SOMETHING_UNIQUE"
 };
 
 export default TextEditor;

@@ -10,17 +10,8 @@ import TextEditor from "../../components/TextEditor";
 import FormAuth from "../../components/FormAuth";
 import FormSuccess from "../../components/FormSuccess";
 
-import { RESERVED_PATHS, BREAKPOINTS, URL_REGEX } from "../../lib/constants";
+import { BREAKPOINTS, ERROR_MESSAGES, RESERVED_PATHS, URL_REGEX } from "../../lib/constants";
 import { createTranscript } from "../../lib/transcripts";
-
-const errorMessages = {
-  required: `Whoops! This field is required.`,
-  badLinkFormat: `Make sure this URL is properly formatted and includes an http:// or https:// prefix.`,
-  unavailableURL: `Alas, this short URL isn't available. Please choose 
-    another one or leave blank to have one auto-generated.`,
-  invalidURL: `Alas, we can only accept custom short URLs with letters, numbers,
-    hyphens, and/or underscores. Please remove special characters.`
-};
 
 function hasReservedPathError(url) {
   let lcURL = url.toLowerCase();
@@ -92,7 +83,7 @@ export default function Create() {
           },
           /* failure callback */
           () => {
-            setErrors({...errors, url: errorMessages.unavailableURL});
+            setErrors({...errors, url: ERROR_MESSAGES.unavailableURL});
             setFocusId('url');
           }
         );
@@ -117,10 +108,10 @@ export default function Create() {
     let url = data.get("url");
     if (url.length > 0) {
       if (hasReservedPathError(url)) {
-        errorMap["url"] = errorMessages.unavailableURL;
+        errorMap["url"] = ERROR_MESSAGES.unavailableURL;
         firstError = "url";
       } else if (hasInvalidCharacters(url)) {
-        errorMap["url"] = errorMessages.invalidURL;
+        errorMap["url"] = ERROR_MESSAGES.invalidURL;
         firstError = "url";
       }
     }
@@ -128,11 +119,16 @@ export default function Create() {
     // Hashtags -- TODO?
 
     // Transcript -- TODO
+    let transcript = data.get("transcript");
+    if (transcript.length == 0) {
+      errorMap["transcript"] = "Whoops! This transcript isn't terribly useful without any text. Please add some!";
+      firstError = "transcript";
+    }
 
     // Creator link
     let creatorLink = data.get("creatorLink");
     if (creatorLink.length > 0 && hasBadLinkFormat(creatorLink)) {
-      errorMap["creatorLink"] = errorMessages.badLinkFormat;
+      errorMap["creatorLink"] = ERROR_MESSAGES.badLinkFormat;
       firstError = "creatorLink";
     }
 
@@ -141,16 +137,16 @@ export default function Create() {
     // Document link
     let link = data.get("link");
     if (link.length == 0) {
-      errorMap["link"] = errorMessages.required;
+      errorMap["link"] = ERROR_MESSAGES.required;
       firstError = "link";
     } else if (hasBadLinkFormat(link)) {
-      errorMap["link"] = errorMessages.badLinkFormat;
+      errorMap["link"] = ERROR_MESSAGES.badLinkFormat;
       firstError = "link";
     }
 
     // Document title
     if (data.get("name").length == 0) {
-      errorMap["name"] = errorMessages.required;
+      errorMap["name"] = ERROR_MESSAGES.required;
       firstError = "name";
     }
 
@@ -221,6 +217,7 @@ export default function Create() {
                 label="Transcript"
                 id="transcript"
                 required
+                error={errors.transcript}
               />
             </div>
 
