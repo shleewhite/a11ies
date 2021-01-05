@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import { BREAKPOINTS } from "../lib/constants";
 
 // import SocialIcon from "./SocialIcon";
 
@@ -37,18 +38,25 @@ const Footer = () => {
         {`
           footer {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            justify-items: end;
+            grid-template-columns: 1fr;
+            justify-items: center;
             padding-bottom: var(--space-s);
           }
 
-          footer > div {
-            grid-column: 2 / span 1;
+          div {
+            margin: 0 var(--space-xs);
+            text-align: center;
           }
 
           div > * {
             margin: var(--space-0) var(--space-xs) var(--space-0)
               var(--space-xs);
+          }
+
+          @media ${BREAKPOINTS.MEDIUM_LARGE} {
+            footer {
+              justify-items: end;
+            }
           }
         `}
       </style>

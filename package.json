@@ -19,6 +19,7 @@
     "ckeditor4": "^4.15.0",
     "ckeditor4-react": "^1.2.0",
     "classnames": "^2.2.6",
+    "copy-to-clipboard": "^3.3.1",
     "firebase": "^7.24.0",
     "firebase-admin": "^9.3.0",
     "gray-matter": "^4.0.2",

@@ -17,7 +17,7 @@ const CONFIG = {
       "|",
       "link",
     ],
-  },
+  }
 };
 
 class TextEditor extends React.Component {
@@ -27,6 +27,7 @@ class TextEditor extends React.Component {
       markdown: "",
       isServer: true,
       keyboardInfoId: nanoid(8),
+      errorId: nanoid(8)
     };
 
     this.getMarkdownFromEditor = this.getMarkdownFromEditor.bind(this);
@@ -51,6 +52,13 @@ class TextEditor extends React.Component {
   render() {
     return (
       <>
+        <span>
+          <span className="b">{this.props.label}</span>
+          {this.props.required ? (<span> (required)</span>) : null}
+        </span>
+        <small id={this.state.keyboardInfoId}>
+          Press Alt + F10 to navigate to text editor toolbar. Use the text editor toolbar or markdown syntax to format. 
+        </small>
         {this.CKEditor && (
           <this.CKEditor
             editor={this.ClassicEditor}
@@ -64,30 +72,46 @@ class TextEditor extends React.Component {
                 const viewEditableRoot = editor.editing.view.document.getRoot();
                 writer.setAttribute(
                   "aria-label",
-                  this.props.label,
+                  `${this.props.label}, Rich Text Editor`,
                   viewEditableRoot
                 );
                 writer.setAttribute(
                   "aria-describedby",
-                  this.state.keyboardInfoId,
+                  `${this.state.errorId} ${this.state.keyboardInfoId}`,
+                  viewEditableRoot
+                );
+                writer.setAttribute(
+                  "id",
+                  this.props.id,
                   viewEditableRoot
                 );
               });
             }}
           />
         )}
-        <small
-          className="f6 black-60 db mt1 mb3"
-          id={this.state.keyboardInfoId}
-        >
-          Press Alt + F10 to navigate to text editor toolbar.
-        </small>
         <textarea
           name={this.props.name}
           readOnly
           style={{ display: "none" }}
           value={this.state.markdown}
         />
+        <div className="input-error" id={this.state.errorId}>
+          {this.props.error}
+        </div>
+        <style jsx>
+          {`
+            small {
+              display: block;
+              font-size: var(--text-s);
+              padding-bottom: var(--space-s);
+            }
+
+            .input-error {
+              color: var(--emphasis-c);
+              font-weight: 800;
+            }
+          `}
+        </style>
       </>
     );
   }
@@ -95,7 +119,9 @@ class TextEditor extends React.Component {
 
 TextEditor.defaultProps = {
   name: "textEditor",
-  label: "Rich Text Editor",
+  label: "Text Editor",
+  error: null,
+  id: "SOMETHING_UNIQUE"
 };
 
 export default TextEditor;

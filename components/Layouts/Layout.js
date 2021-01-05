@@ -6,12 +6,15 @@ import Header from "../Header";
 import SubNav from "../SubNav";
 import Hero from "../Hero";
 
+import { BREAKPOINTS } from "../../lib/constants";
+
 export default function Layout({
   children,
   title,
   subtitle,
   subNavItems,
   styles,
+  wideStyles,
 }) {
   const formattedTitle =
     title === "a11ies.info" ? title : `${title} | a11ies.info`;
@@ -40,6 +43,12 @@ export default function Layout({
       <style jsx>{`
         #main-content {
           ${styles}
+        }
+
+        @media ${BREAKPOINTS.MEDIUM_LARGE} {
+          #main-content {
+            ${wideStyles}
+          }
         }
       `}</style>
     </>

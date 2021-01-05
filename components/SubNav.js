@@ -3,6 +3,8 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import * as cn from "classnames";
 
+import { BREAKPOINTS } from "../lib/constants";
+
 const SubnNav = ({ items }) => {
   const router = useRouter();
 
@@ -28,10 +30,21 @@ const SubnNav = ({ items }) => {
           nav {
             display: grid;
             grid-template-columns: repeat(${items.length}, 1fr);
-            margin: var(--space-s) var(--space-l) var(--space-0) var(--space-l);
+            padding: var(--space-xs);
+            margin: var(--space-s) auto;
             width: fit-content;
             grid-gap: 20px;
+
+            border-top: var(--space-xs) solid var(--zazz-c);
           }
+
+          @media ${BREAKPOINTS.MEDIUM_LARGE} {
+            nav {
+              padding: 0;
+              margin: var(--space-s) var(--space-l) var(--space-0) var(--space-l);
+              border-top: none;
+            }
+          }   
 
           .circle {
             width: 15px;

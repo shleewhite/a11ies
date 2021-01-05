@@ -4,7 +4,7 @@ import Link from "next/link";
 export default function FormSuccess({ children }) {
   return (
     <>
-      <div>Success!</div>
+      <h2>Success!</h2>
       {children}
     </>
   );
