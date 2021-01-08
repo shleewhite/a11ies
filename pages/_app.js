@@ -1,18 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { MDXProvider } from "@mdx-js/react";
 import Link from "next/link";
-import Router from "next/router";
 
 import { auth, getAccessLevel } from "../lib/auth";
 import { UserContext } from "../lib/user_context";
-import * as gtag from "../lib/gtag";
 
 import "../styles/globals.css";
 
 import Layout from "../components/Layouts/Layout";
-
-// count pageview when router changes
-Router.events.on("routeChangeComplete", (url) => gtag.pageview(url));
 
 function App({ Component, pageProps }) {
   const [currentUser, setCurrentUser] = useState();
