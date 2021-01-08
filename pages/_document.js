@@ -1,6 +1,6 @@
 import NextDocument, { Html, Head, Main, NextScript } from "next/document";
 
-import { GA_TRACKING_ID } from "../lib/gtag";
+import { GA_TRACKING_ID } from "../lib/firebase_env";
 
 export default class Document extends NextDocument {
   static async getInitialProps(ctx) {
