@@ -63,14 +63,14 @@ const Header = () => {
           <label htmlFor="global-search">Search</label>
           <input id="global-search" type="search" />
           {context.isLoggedIn ? (
-            <button onClick={signOut}>Log Out</button>
+            <button onClick={signOut}>Sign Out</button>
           ) : (
             <button
               onClick={() => {
                 setIsModalOpen(true);
               }}
             >
-              Login
+              Sign in
             </button>
           )}
         </div>
@@ -88,8 +88,6 @@ const Header = () => {
             font-size: var(--text-s);
             display: grid;
             grid-template-columns: 1fr;
-
-
           }
 
           .nav-link-container {
