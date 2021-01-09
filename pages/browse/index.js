@@ -109,6 +109,7 @@ export default function Browse({transcripts, hashtags}) {
           @media ${BREAKPOINTS.MEDIUM_LARGE} {
             .top-card {
               grid-column: 1 / span 2;
+              max-width: 70%;
             }
           }          
         `}

@@ -84,10 +84,20 @@ a {
   text-decoration: none;
 }
 
+
+a:hover {
+  text-decoration: underline;
+  text-decoration-thickness: var(--border-s);
+  text-decoration-color: var(--body-c);
+  text-underline-offset: .1em;
+}
+
 a:focus {
   outline: none;
   text-decoration: underline;
-  text-decoration-thickness: 3px;
+  text-decoration-thickness: var(--border-m);
+  text-decoration-color: var(--headline-c);
+  text-underline-offset: .1em;
 }
 
 a.pill {
@@ -95,6 +105,11 @@ a.pill {
   background-color: var(--bg-light-c);
   border-radius: 9999px;
   padding: var(--space-xs) var(--space-s);
+  border: 2px solid transparent;
+}
+
+a.pill:focus {
+  text-decoration: none;
 }
 
 button,
@@ -106,18 +121,14 @@ input {
   padding: 0.5rem;
 }
 
-button:focus {
-  /* outline: none;
-  border: 0.125rem solid var(--background-primary-c);
-  color: var(--background-primary-c);
-  background-color: var(--primary-c); */
-}
-
-input:focus {
-  /* outline: none;
-  -webkit-box-shadow: 0px 0px 0px 0.175rem var(--primary-c);
-  -moz-box-shadow: 0px 0px 0px 0.175rem var(--primary-c);
-  box-shadow: 0px 0px 0px 0.175rem var(--primary-c); */
+a.pill:focus,
+button:focus,
+input:focus,
+textarea:focus {
+  outline: none;
+  box-shadow: 0px 0px 0px var(--border-s) var(--headline-c);
+  -webkit-box-shadow: 0px 0px 0px var(--border-s) var(--headline-c);
+  -moz-box-shadow: 0px 0px 0px var(--border-s) var(--headline-c);
 }
 
 * {

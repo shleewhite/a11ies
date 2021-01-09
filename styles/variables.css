@@ -25,6 +25,10 @@
   --bp-s: 42em;
   --bp-m: 62em;
   --bp-l: 82em;
+
+  /* border/box-shadow widths */
+  --border-s: 2px;
+  --border-m: 4px;
 }
 
 /* Light Mode Palette */
