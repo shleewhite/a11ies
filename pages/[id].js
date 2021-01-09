@@ -18,7 +18,7 @@ export async function getServerSideProps({ params }) {
 export default function Transcript({ transcriptData }) {
   if (!transcriptData) {
     return (
-      <Layout title="Hm...">
+      <Layout title="Hmm...">
         <Prompt />
       </Layout>
     );
