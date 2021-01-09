@@ -105,7 +105,6 @@ a.pill {
   background-color: var(--bg-light-c);
   border-radius: 9999px;
   padding: var(--space-xs) var(--space-s);
-  border: 2px solid transparent;
 }
 
 a.pill:focus {
