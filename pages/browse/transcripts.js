@@ -14,21 +14,33 @@ export async function getStaticProps() {
 export default function Transcripts({ transcripts }) {
   return (
     <>
-      <SecondaryNavLayout title="All Transcripts" subnav="Browse">
-        <div id="main-content">
-          <ul>
-            {transcripts.map((transcriptData) => (
-              <li key={transcriptData.id}>
-                <Link href={`/${transcriptData.url}`}>
-                  <a>{transcriptData.name}</a>
-                </Link>
-              </li>
-            ))}
-          </ul>
+      <SecondaryNavLayout
+        title="All Transcripts"
+        subnav="Browse"
+        styles="
+          display: grid;
+          grid-template-columns: 1fr;
+          grid-gap: var(--space-m) var(--space-l);
+          gap: var(--space-m) var(--space-l);
+          justify-content: center;
+          align-items: end;
+        "
+        wideStyles="
+          grid-template-columns: 1fr 300px;
+        "
+      >
+        <ul>
+          {transcripts.map((transcriptData) => (
+            <li key={transcriptData.id}>
+              <Link href={`/${transcriptData.url}`}>
+                <a>{transcriptData.name}</a>
+              </Link>
+            </li>
+          ))}
+        </ul>
 
-          <div>
-            <Prompt headerLevel="2" />
-          </div>
+        <div>
+          <Prompt headerLevel="2" />
         </div>
       </SecondaryNavLayout>
       <style jsx>
@@ -36,9 +48,6 @@ export default function Transcripts({ transcripts }) {
           li {
             font-size: var(--text-m);
             padding-top: var(--space-s);
-          }
-          ul {
-            padding-bottom: var(--space-s);
           }
         `}
       </style>

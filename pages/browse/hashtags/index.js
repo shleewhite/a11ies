@@ -16,45 +16,38 @@ export async function getStaticProps() {
 export default function Hashtags({hashtags}) {
   return (
     <>
-      <SecondaryNavLayout title="Browse hashtags" subnav="Browse">
-        <div id="main-content">
-          <ul>
-            {hashtags.map((hashtagData) => (
-              <li key={hashtagData.id}>
-                <Link href={`/browse/hashtags/${hashtagData.hashtag}`}>
-                  <a>#{hashtagData.hashtag} ({hashtagData.transcriptIds.length})</a>
-                </Link>
-              </li>
-             ))}
-          </ul>
-
-          <div>
-            <Prompt headerLevel="2" />
-          </div>
+      <SecondaryNavLayout
+        title="All Hashtags"
+        subnav="Browse"
+        styles="
+          display: grid;
+          grid-template-columns: 1fr;
+          grid-gap: var(--space-m) var(--space-l);
+          gap: var(--space-m) var(--space-l);
+          justify-content: center;
+          align-items: end;
+        "
+        wideStyles="
+          grid-template-columns: 1fr 300px;
+        "
+      >
+        <ul>
+          {hashtags.map((hashtagData) => (
+            <li key={hashtagData.id}>
+              <Link href={`/browse/hashtags/${hashtagData.hashtag}`}>
+                <a>#{hashtagData.hashtag} ({hashtagData.transcriptIds.length})</a>
+              </Link>
+            </li>
+           ))}
+        </ul>
+        <div>
+          <Prompt headerLevel="2" />
         </div>
       </SecondaryNavLayout>
       <style jsx>
         {`
-          @media (min-width: 620px) {
-            #main-content {
-              column-count: 1;
-            }
-          }
-
-          @media (min-width: 960px) {
-            #main-content {
-              column-count: 2;
-              column-gap: 80px;
-              grid-template-columns: 1fr 300px;
-            }
-
-            #main-content > div {
-              align-self: end;
-            }
-          }
-
           li {
-            font-size: var(--text-l);
+            font-size: var(--text-m);
             padding-top: var(--space-s);
           }
         `}
