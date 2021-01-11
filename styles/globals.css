@@ -2,6 +2,7 @@
 /* @import "bootstrap/dist/css/bootstrap.css"; */
 @import "./bootstrap/css/bootstrap.min.css";
 @import "./variables.css";
+@import "./textEditor.css";
 
 @font-face {
   font-family: "AbrilFatFace";
@@ -146,8 +147,4 @@ textarea:focus {
   position: absolute;
   white-space: nowrap;
   width: 1px;
-}
-
-.ck-editor__editable_inline {
-  min-height: 25em;
 }

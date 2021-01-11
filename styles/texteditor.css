@@ -1,0 +1,10 @@
+#page-container .ck-editor__editable_inline {
+  min-height: 25em;
+}
+
+#page-container {
+  --ck-color-toolbar-border: var(--border-c);
+  --ck-color-base-border: var(--border-c);
+  --ck-border-radius: 5px;
+  --ck-inner-shadow: inset 0px 0px 0px var(--border-s) var(--headline-c);
+}
