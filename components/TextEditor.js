@@ -66,7 +66,6 @@ class TextEditor extends React.Component {
           <this.CKEditor
             editor={this.ClassicEditor}
             config={CONFIG}
-            id="fred"
             onBlur={(event, editor) => {
               this.getMarkdownFromEditor(editor);
             }}
@@ -74,7 +73,6 @@ class TextEditor extends React.Component {
               /* Hack to set aria-label */
               editor.editing.view.change((writer) => {
                 const viewEditableRoot = editor.editing.view.document.getRoot();
-                console.log(viewEditableRoot);
                 writer.setAttribute(
                   "aria-label",
                   `${this.props.label}, Rich Text Editor`,
@@ -103,7 +101,7 @@ class TextEditor extends React.Component {
         <div className="input-error" id={this.state.errorId}>
           {this.props.error}
         </div>
-        <style global jsx>
+        <style jsx>
           {`
             small {
               display: block;
