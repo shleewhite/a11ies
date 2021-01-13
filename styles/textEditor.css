@@ -8,3 +8,7 @@
   --ck-border-radius: 5px;
   --ck-inner-shadow: inset 0px 0px 0px var(--border-s) var(--headline-c);
 }
+
+#page-container .ck-editor {
+  max-width: 100vw;
+}
