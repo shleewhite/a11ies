@@ -10,5 +10,5 @@
 }
 
 #page-container .ck-editor {
-  max-width: 100vw;
+  max-width: calc(100vw - var(--space-m));
 }
