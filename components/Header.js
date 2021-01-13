@@ -59,9 +59,6 @@ const Header = () => {
           ) : null}
         </div>
         <div className="nav-secondary">
-          <div />
-          <label htmlFor="global-search">Search</label>
-          <input id="global-search" type="search" />
           {context.isLoggedIn ? (
             <button onClick={signOut}>Sign Out</button>
           ) : (
@@ -87,11 +84,10 @@ const Header = () => {
           nav {
             font-size: var(--text-s);
             display: grid;
-            grid-template-columns: 1fr;
+            grid-template-columns: 80% 1fr;
           }
 
           .nav-link-container {
-            grid-column: 1 / 3;
             display: grid;
             grid-template-columns: repeat(
               ${HEADER_PATHS.length +
@@ -103,20 +99,8 @@ const Header = () => {
           }
 
           .nav-secondary {
-            justify-self: center;
-            align-self: center;
-
-            display: grid;
-            grid-template-columns: auto 2fr 1fr;
-            grid-template-rows: 10px auto;
-            align-items: center;
-            gap: 0px 20px;
-            grid-gap: 0px 20px;
-            justify-items: center;
-          }
-
-          .nav-secondary > :first-child {
-            grid-column: 1 / span 3;
+            justify-self: end;
+            align-self: end;
           }
 
           .nav-link {
@@ -133,11 +117,8 @@ const Header = () => {
 
             .nav-link-container {
               grid-column: 1/2;
-            }
 
-            .nav-secondary {
-              justify-self: end;
-              align-self: end;
+              justify-self: auto;
             }
           }
 
@@ -153,13 +134,10 @@ const Header = () => {
             height: 20px;
           }
 
-          button {
-            width: 80%;
-          }
-
-          label {
-            font-size: var(--text-s);
-            justify-self: end;
+          @media ${BREAKPOINTS.MEDIUM} {
+            nav {
+              grid-template-columns: 40rem 1fr;
+            }
           }
         `}
       </style>
