@@ -16,5 +16,6 @@ Most web browsers these days are pretty good at auto-translating text into your 
 
 Have you ever encountered an image of text where the text seemed impossible to read? Maybe the contrast was too poor, the image too small, the kerning too close together, or the resolution so low that important pieces were indecipherable no matter how much you zoomed in? Much like closed captioning can help clarify the audio of a muffled television show, transcripts can help clarify the visual content on your screen.
 
+## So what are you waiting for?
 
-**So what are you waiting for?**
+Check out our [transcription tips](https://a11ies.info/resources/transcription-tips) and [start transcribing](https://a11ies.info/contribute)!

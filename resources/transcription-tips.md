@@ -6,13 +6,13 @@ title: "Transcription Tips"
 
 - Transcribe **all text** in the image word-for-word.
 
-  - If text is unclear, you could write **[unclear text]**.
+  - If text is unclear, you could indicate that by writing something like "**[unclear text]**".
 
   - If there are bad words that are bleeped out in the original image, bleep them in your transcript. If they’re written out in the original image, write them out in the transcript.
 
 - Format the text appropriately.
 
-  - Determine if there are any headers and format them at the correct heading level.
+  - Determine if there are any headers and format them at the [correct heading level](https://webaim.org/techniques/semanticstructure/#headings).
 
   - Use our text editor's list feature to properly format lists of information.
 
