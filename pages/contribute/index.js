@@ -9,6 +9,7 @@ import Input from "../../components/Input";
 import TextEditor from "../../components/TextEditor";
 import FormAuth from "../../components/FormAuth";
 import FormSuccess from "../../components/FormSuccess";
+import SocialMediaEmbed from "../../components/SocialMediaEmbed";
 
 import {
   BREAKPOINTS,
@@ -37,6 +38,7 @@ function hasBadLinkFormat(url) {
 export default function Create() {
   const [isPublished, setIsPublished] = useState(false);
   const [url, setURL] = useState("");
+  const [originalPostUrl, setOriginalPostUrl] = useState("");
   const [{ isLoggedIn, uid }, setContext] = useState({
     isLoggedIn: false,
     uid: "",
@@ -162,14 +164,6 @@ export default function Create() {
     }
   };
 
-  const fetchPost = (rawUrl) => {
-    let iframeUrl = undefined;
-    if (rawUrl.includes("https://twitter")) {
-      iframeUrl = `https://publish.twitter.com/oembed?
-      url=${rawUrl}`;
-    }
-  };
-
   /* Dynamically focus an element when requested */
   useEffect(() => {
     if (focusId) {
@@ -231,6 +225,11 @@ export default function Create() {
                 type="url"
                 id="link"
                 error={errors.link}
+                onBlur={(e) => {
+                  if (e.target.value !== "") {
+                    setOriginalPostUrl(e.target.value);
+                  }
+                }}
               />
 
               <Input label="Original creator's name" id="creatorName" />
@@ -280,7 +279,10 @@ export default function Create() {
 
               <input type="submit" value="Publish Transcript" name="submit" />
             </form>
-            <div>tweet goes here</div>
+            <div>
+              <h2>Reference Document</h2>
+              <SocialMediaEmbed url={originalPostUrl} msg="No reference yet." />
+            </div>
           </div>
         )}
       </SecondaryNavLayout>
@@ -288,7 +290,9 @@ export default function Create() {
         {`
           #form-wrapper {
             display: grid;
-            grid-template-columns: 5fr 1fr;
+            grid-template-columns: 4fr 1fr;
+            grid-gap: var(--space-l);
+            gap: var(--space-l);
           }
           form {
             display: grid;
@@ -299,7 +303,6 @@ export default function Create() {
 
           @media ${BREAKPOINTS.MEDIUM_LARGE} {
             form {
-              width: 80%;
               grid-template-columns: 2fr 3fr;
               grid-gap: var(--space-l) var(--space-m);
               gap: var(--space-l) var(--space-m);
