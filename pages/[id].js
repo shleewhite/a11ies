@@ -7,6 +7,7 @@ import { BREAKPOINTS } from "../lib/constants";
 import Card from "../components/Card";
 import Prompt from "../components/Prompt";
 import Layout from "../components/Layouts/Layout";
+import SocialMediaEmbed from "../components/SocialMediaEmbed";
 
 export async function getServerSideProps({ params }) {
   const transcriptData = await getTranscriptData(params.id);
@@ -66,6 +67,7 @@ export default function Transcript({ transcriptData }) {
                 })}
               </ul>
             </Card>
+            <SocialMediaEmbed url={link} msg="Unable to load post." />
           </div>
           <div>
             <h2>Transcript</h2>

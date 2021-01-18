@@ -1,34 +1,36 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { TwitterTweetEmbed } from "react-twitter-embed";
 import InstagramEmbed from "react-instagram-embed";
 
 export default function SocialMediaEmbed({ url, msg }) {
-  if (url.includes("https://twitter")) {
-    const {
-      groups: { id },
-    } = url.match(/status\/(?<id>\d+)/);
-    return <TwitterTweetEmbed tweetId={id} />;
-  }
+  const urlRef = useRef();
 
-  if (url.includes("https://instag") || url.includes("https://www.instag")) {
-    console.log("hi", url);
-    return (
-      <InstagramEmbed
-        url={url}
-        protocol="https"
-        clientAccessToken="823545711754213|b1a8bcf48e0d19dbddd4f4ec5f9d13ed"
-        onLoading={() => {
-          console.log("loadign.......");
-        }}
-        onSuccess={(res) => {
-          console.log("hell yeah", res.error.message);
-        }}
-        onFailure={() => {
-          console.log("bummer");
-        }}
-      />
-    );
-  }
+  const handleRender = () => {
+    if (url.includes("https://twitter")) {
+      const {
+        groups: { id },
+      } = url.match(/status\/(?<id>\d+)/);
+      return <TwitterTweetEmbed tweetId={id} />;
+    }
 
-  return <span>{msg || "Sorry! Something is wrong..."}</span>;
+    if (url.includes("https://www.instag")) {
+      return (
+        <InstagramEmbed
+          url={url}
+          clientAccessToken="823545711754213|b1a8bcf48e0d19dbddd4f4ec5f9d13ed"
+        />
+      );
+    }
+
+    return <span>{msg || "Unable to show preview."}</span>;
+  };
+
+  useEffect(() => {
+    if (url !== urlRef.current) {
+      urlRef.current = url;
+      handleRender();
+    }
+  });
+
+  return handleRender();
 }

@@ -290,7 +290,7 @@ export default function Create() {
         {`
           #form-wrapper {
             display: grid;
-            grid-template-columns: 4fr 1fr;
+            grid-template-columns: 5fr 2fr;
             grid-gap: var(--space-l);
             gap: var(--space-l);
           }
