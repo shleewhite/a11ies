@@ -6,6 +6,8 @@ Alternative text is metadata you can provide about an image so that users of scr
 
 Some social media platforms provide automatic alternative text for images, but none of these automated tools are as detailed, reliable, and knowledgeable as you are. Get in the habit of providing a concise description of every image you upload to social media so that folks who are blind or have low vision can understand your message.
 
+Keep in mind that alternative text doesn't allow any special formatting, and some platforms have character limits. While you should always include alternative text for informational images, we also recommend adding a transcript for images that include large amounts of text, formatted text, infographics, and charts.
+
 ## How to add alternative text on various platforms
 
 - [Instagram](https://help.instagram.com/503708446705527)
@@ -19,3 +21,4 @@ Some social media platforms provide automatic alternative text for images, but n
 - [Alt text as poetry](https://alt-text-as-poetry.net/)
 - [WebAIM guidelines on alternative text](https://webaim.org/techniques/alttext/)
 - [Twitter alt text stats](https://tweet-a11y-stats.glitch.me/stats)
+- [Transcription tips](https://a11ies.info/resources/transcription-tips)

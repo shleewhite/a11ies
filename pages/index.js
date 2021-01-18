@@ -76,7 +76,7 @@ export default function Home() {
             movement accessible to all.
           </p>
           <div className="link-wrapper">
-            <Link href="/contribute/resources">
+            <Link href="/resources">
               <a className="pill">Learn</a>
             </Link>
           </div>
