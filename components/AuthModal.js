@@ -9,8 +9,8 @@ const AuthModal = ({ isOpen, handleClose, children }) => {
   const modalRef = useRef();
 
   useEffect(() => {
-    const body = document.getElementsByTagName("body")[0];
-    Modal.setAppElement(body);
+    const root = document.getElementById("id");
+    Modal.setAppElement(root);
   }, []);
 
   return (
