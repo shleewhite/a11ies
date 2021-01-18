@@ -5,6 +5,7 @@ import { getTranscriptsData } from "../../../lib/transcripts";
 import SecondaryNavLayout from "../../../components/Layouts/SecondaryNavLayout";
 import Card from "../../../components/Card";
 import Prompt from "../../../components/Prompt";
+import TranscriptList from "../../../components/TranscriptList";
 
 export async function getServerSideProps({ params }){
   const query = params.id;
@@ -35,31 +36,19 @@ export default function Hashtag({query, hashtagData, transcripts}) {
   return (
     <>
       <SecondaryNavLayout title={`#${hashtagData.hashtag}`} subnav="Browse">
-        <div id="main-content">
+        <div>
           <h2>Transcripts</h2>
-          <ul>
-            {transcripts.map((transcript) => (
-              <li key={transcript.id}>
-                <Link href={`/${transcript.id}`}>
-                  <a>{transcript.name}</a>
-                </Link>
-              </li>
-             ))}
-          </ul>
+          <TranscriptList transcripts={transcripts} showHashtags={false}/>
         </div>
       </SecondaryNavLayout>
       <style jsx>
         {`
-          #main-content {
+          div {
             grid-template-columns: 5fr;
           }
 
           h2 {
             font-size: var(--text-l);
-          }
-
-          li {
-            padding-top: var(--space-xs);
           }
         `}
       </style>

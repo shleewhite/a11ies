@@ -18,8 +18,8 @@ const Card = ({
       >
         {imgLink ? <img src={imgLink} alt="" /> : null}
         <div
-          id="text-content"
-          className={classnames({
+          className={classnames(
+            "text-content", {
             "sm-top-padding": hasTopZazz,
           })}
         >
@@ -53,7 +53,7 @@ const Card = ({
             font-size: var(--text-l);
           }
 
-          #text-content {
+          .text-content {
             padding: var(--space-m);
             line-height: var(--lh-m);
           }

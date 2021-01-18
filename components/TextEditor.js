@@ -24,13 +24,13 @@ const CONFIG = {
 };
 
 class TextEditor extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       markdown: "",
       isServer: true,
-      keyboardInfoId: nanoid(8),
-      errorId: nanoid(8)
+      keyboardInfoId: this.props.id + '-keyboard-info',
+      errorId: this.props.id + '-error-info'
     };
 
     this.getMarkdownFromEditor = this.getMarkdownFromEditor.bind(this);

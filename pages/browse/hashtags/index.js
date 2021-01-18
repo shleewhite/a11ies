@@ -35,7 +35,7 @@ export default function Hashtags({hashtags}) {
           {hashtags.map((hashtagData) => (
             <li key={hashtagData.id}>
               <Link href={`/browse/hashtags/${hashtagData.hashtag}`}>
-                <a>#{hashtagData.hashtag} ({hashtagData.transcriptIds.length})</a>
+                <a><span>#{hashtagData.hashtag}</span> ({hashtagData.transcriptIds.length})</a>
               </Link>
             </li>
            ))}
@@ -49,6 +49,16 @@ export default function Hashtags({hashtags}) {
           li {
             font-size: var(--text-m);
             padding-top: var(--space-s);
+          }
+
+          ul {
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+          }
+
+          a span {
+            color: black;
           }
         `}
       </style>
