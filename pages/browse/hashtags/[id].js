@@ -36,14 +36,14 @@ export default function Hashtag({query, hashtagData, transcripts}) {
   return (
     <>
       <SecondaryNavLayout title={`#${hashtagData.hashtag}`} subnav="Browse">
-        <div id="main-content">
+        <div>
           <h2>Transcripts</h2>
           <TranscriptList transcripts={transcripts} showHashtags={false}/>
         </div>
       </SecondaryNavLayout>
       <style jsx>
         {`
-          #main-content {
+          div {
             grid-template-columns: 5fr;
           }
 
