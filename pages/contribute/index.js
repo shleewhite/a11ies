@@ -289,11 +289,10 @@ export default function Create() {
       <style jsx>
         {`
           #form-wrapper {
-            display: grid;
-            grid-template-columns: 5fr 2fr;
-            grid-gap: var(--space-l);
-            gap: var(--space-l);
+            grid-template-columns: 1fr;
+            grid-template-rows: auto auto;
           }
+
           form {
             display: grid;
             grid-template-columns: 1fr;
@@ -310,6 +309,14 @@ export default function Create() {
 
             .full-width-input {
               grid-column: 1 / span 2;
+            }
+
+            #form-wrapper {
+              display: grid;
+              grid-template-columns: 5fr 2fr;
+              grid-template-rows: 1fr;
+              grid-gap: var(--space-l);
+              gap: var(--space-l);
             }
           }
         `}
