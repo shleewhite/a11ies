@@ -3,43 +3,48 @@ import { nanoid } from "nanoid";
 import * as cn from "classnames";
 
 const Input = ({
-  label, required, type, id, 
-  prefix, description, error
+  label,
+  required,
+  type,
+  id,
+  prefix,
+  description,
+  error,
+  onBlur,
 }) => {
   const [realID] = useState(id !== "" ? id : nanoid);
-  const prefixID = realID + '-prefix';
-  const errorID = realID + '-error';
-  const descriptionID = description ? realID + '-desc' : null;
+  const prefixID = `${realID}-prefix`;
+  const errorID = `${realID}-error`;
+  const descriptionID = description ? `${realID}-desc` : null;
 
   return (
     <>
-      <div className={cn({"has-prefix": prefix})}>
+      <div className={cn({ "has-prefix": prefix })}>
         <label htmlFor={realID}>
           <span className="b">{label}</span>
-          {required ? (<span> (required)</span>) : null}
+          {required ? <span> (required)</span> : null}
         </label>
-        {description ? (<small id={descriptionID}>{description}</small>) : null}
+        {description ? <small id={descriptionID}>{description}</small> : null}
 
         <div className="input-wrapper">
           <span id={prefixID}>{prefix}</span>
-          {(type === "textarea") ? (
+          {type === "textarea" ? (
             <textarea
               id={realID}
               required={required}
               name={realID}
               aria-describedby={descriptionID}
-            >
-            </textarea>
-           ) : (
-            <input 
-              id={realID} 
-              required={required} 
-              type={type} 
-              name={realID}
-              aria-describedby={`${prefixID} ${errorID} ${descriptionID}`} 
             />
-           )
-          }
+          ) : (
+            <input
+              id={realID}
+              required={required}
+              type={type}
+              name={realID}
+              aria-describedby={`${prefixID} ${errorID} ${descriptionID}`}
+              onBlur={onBlur}
+            />
+          )}
         </div>
 
         <span className="input-error" id={errorID}>
@@ -61,7 +66,8 @@ const Input = ({
             font-size: var(--text-s);
           }
 
-          input:not([type="checkbox"]), textarea {
+          input:not([type="checkbox"]),
+          textarea {
             width: 100%;
           }
 
@@ -78,10 +84,11 @@ const Input = ({
             width: 2em;
           }
 
-          input, textarea {
+          input,
+          textarea {
             background-color: var(--bg-light-c);
             border-radius: 5px;
-            margin: .25em 0;
+            margin: 0.25em 0;
           }
 
           textarea {
