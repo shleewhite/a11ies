@@ -277,6 +277,9 @@ export default function Create() {
                 error={errors.url}
               />
 
+              {/* this should be refactored at some point so we dont just have blank divs */}
+              <div />
+
               <input type="submit" value="Publish Transcript" name="submit" />
             </form>
             <div>
