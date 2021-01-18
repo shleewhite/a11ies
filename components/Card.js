@@ -34,9 +34,8 @@ const Card = ({
 
           img {
             width: 100%;
-            width: -moz-available; /* For Mozzila */
-            width: -webkit-fill-available; /* For Chrome */
-            width: stretch;
+            object-fit: cover;
+            max-height: 35vh;
           }
 
           div > * {

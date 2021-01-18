@@ -56,14 +56,14 @@ export default function Browse({ transcripts, hashtags }) {
         <div className="top-card">
           <Card
             headerLevel={2}
-            header="Featured Transcript: How to call your reps when you have social anxiety"
-            imgLink="https://64.media.tumblr.com/5a15fb50c11f9ea5f73db2fcee3c87f8/1c3d528838d133f2-95/s640x960/5dc0be4e790d6cb742460720ed2d29ddaca8d096.jpg"
+            header="Featured Transcript: Preventing Burnout"
+            imgLink="https://scontent-sjc3-1.cdninstagram.com/v/t51.2885-15/e35/101447688_1659169064236953_3535803827729120082_n.jpg?_nc_ht=scontent-sjc3-1.cdninstagram.com&_nc_cat=109&_nc_ohc=HxsPdguFgT8AX9LUFxA&tp=1&oh=0a418be66ec4e7ac0d301feb839fa411&oe=602D92AE"
           >
             <p>
-              This is a great explainer on what to say when you call your state
-              and federal representatives.
+              Burnout happens to everyone. It's important to learn how to
+              recognize the signs and recover.
             </p>
-            <Link href="/call-your-reps">
+            <Link href="/preventing-burnout">
               <a className="pill">Read the transcript →</a>
             </Link>
           </Card>
