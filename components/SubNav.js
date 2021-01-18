@@ -66,6 +66,10 @@ const SubnNav = ({ items }) => {
             grid-gap: 5px;
             align-items: center;
           }
+
+          a {
+            color: var(--body-c);
+          }
         `}
       </style>
     </>
