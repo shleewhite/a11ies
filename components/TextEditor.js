@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unused-state */
 import React from "react";
-import { english as nanoid } from "nanoid-generate"; // generates unique id without characters that look similar ie. 1 and I
+// import { english as nanoid } from "nanoid-generate"; // generates unique id without characters that look similar ie. 1 and I
 import Turndown from "turndown";
 
 const turndownService = new Turndown();
@@ -8,19 +8,19 @@ const turndownService = new Turndown();
 const CONFIG = {
   toolbar: {
     items: [
-      'heading',
-      '|',
-      'bold',
-      'italic',
-      'link',
-      'bulletedList',
-      'numberedList',
-      '|',
-      'indent',
-      'outdent',
-      'blockQuote'
+      "heading",
+      "|",
+      "bold",
+      "italic",
+      "link",
+      "bulletedList",
+      "numberedList",
+      "|",
+      "indent",
+      "outdent",
+      "blockQuote",
     ],
-  }
+  },
 };
 
 class TextEditor extends React.Component {
@@ -29,8 +29,8 @@ class TextEditor extends React.Component {
     this.state = {
       markdown: "",
       isServer: true,
-      keyboardInfoId: this.props.id + '-keyboard-info',
-      errorId: this.props.id + '-error-info'
+      keyboardInfoId: `${this.props.id}-keyboard-info`,
+      errorId: `${this.props.id}-error-info`,
     };
 
     this.getMarkdownFromEditor = this.getMarkdownFromEditor.bind(this);
@@ -57,16 +57,17 @@ class TextEditor extends React.Component {
       <>
         <span>
           <span className="b">{this.props.label}</span>
-          {this.props.required ? (<span> (required)</span>) : null}
+          {this.props.required ? <span> (required)</span> : null}
         </span>
         <small id={this.state.keyboardInfoId}>
-          Press Alt + F10 to navigate to text editor toolbar. Use the text editor toolbar or markdown syntax to format. 
+          Press Alt + F10 to navigate to text editor toolbar. Use the text
+          editor toolbar or markdown syntax to format.
         </small>
         {this.CKEditor && (
           <this.CKEditor
             editor={this.ClassicEditor}
             config={CONFIG}
-            onBlur={(event, editor) => {
+            onBlur={(editor) => {
               this.getMarkdownFromEditor(editor);
             }}
             onInit={(editor) => {
@@ -83,11 +84,7 @@ class TextEditor extends React.Component {
                   `${this.state.errorId} ${this.state.keyboardInfoId}`,
                   viewEditableRoot
                 );
-                writer.setAttribute(
-                  "id",
-                  this.props.id,
-                  viewEditableRoot
-                );
+                writer.setAttribute("id", this.props.id, viewEditableRoot);
               });
             }}
           />
@@ -124,7 +121,7 @@ TextEditor.defaultProps = {
   name: "textEditor",
   label: "Text Editor",
   error: null,
-  id: "SOMETHING_UNIQUE"
+  id: "SOMETHING_UNIQUE",
 };
 
 export default TextEditor;

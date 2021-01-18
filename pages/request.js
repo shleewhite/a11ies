@@ -22,7 +22,7 @@ export default function Request() {
     if (isLoggedIn) {
       const link = document.getElementById("link").value;
       /* Error handling -- requiredness */
-      if (link.length == 0) {
+      if (link.length === 0) {
         setLinkError(ERROR_MESSAGES.required);
         setFocusId("link");
         /* Error handling -- formatting */
@@ -39,7 +39,7 @@ export default function Request() {
   /* Dynamically focus an element when requested */
   useEffect(() => {
     if (focusId) {
-      let el = document.getElementById(focusId);
+      const el = document.getElementById(focusId);
       if (el) {
         el.focus();
         // clear

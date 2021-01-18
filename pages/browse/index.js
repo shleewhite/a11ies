@@ -8,15 +8,17 @@ import Card from "../../components/Card";
 const COUNT = 5;
 
 function orderByFrequency(els, limit) {
-  let hash = {};
+  const hash = {};
 
   els.forEach((el) => {
-    let lc = el.toLowerCase();
+    const lc = el.toLowerCase();
     if (!hash[lc]) hash[lc] = { val: el, count: 0 };
     hash[lc].count++;
   });
 
-  let values = Object.values(hash).sort((a, b) => {return b.count - a.count});
+  const values = Object.values(hash).sort((a, b) => {
+    return b.count - a.count;
+  });
   return limit ? values.slice(0, limit) : values;
 }
 
@@ -28,13 +30,13 @@ export async function getStaticProps() {
   });
   return {
     props: {
-      transcripts: transcripts,
-      hashtags: orderByFrequency(hashtags, COUNT)
+      transcripts,
+      hashtags: orderByFrequency(hashtags, COUNT),
     },
   };
 }
 
-export default function Browse({transcripts, hashtags}) {
+export default function Browse({ transcripts, hashtags }) {
   return (
     <>
       <SecondaryNavLayout
@@ -61,7 +63,7 @@ export default function Browse({transcripts, hashtags}) {
               This is a great explainer on what to say when you call your state
               and federal representatives.
             </p>
-             <Link href={`/call-your-reps`}>
+            <Link href="/call-your-reps">
               <a className="pill">Read the transcript →</a>
             </Link>
           </Card>
@@ -74,7 +76,7 @@ export default function Browse({transcripts, hashtags}) {
                   <a className="pill">#{hashtag.val}</a>
                 </Link>
               </li>
-             ))}
+            ))}
           </ul>
         </Card>
         <Card header="Recent transcripts" headerLevel={2} hasTopZazz>
@@ -85,7 +87,7 @@ export default function Browse({transcripts, hashtags}) {
                   <a className="pill">{transcript.name}</a>
                 </Link>
               </li>
-             ))}
+            ))}
           </ul>
         </Card>
       </SecondaryNavLayout>
@@ -111,7 +113,7 @@ export default function Browse({transcripts, hashtags}) {
               grid-column: 1 / span 2;
               max-width: 70%;
             }
-          }          
+          }
         `}
       </style>
     </>

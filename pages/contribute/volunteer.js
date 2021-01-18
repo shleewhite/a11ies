@@ -21,21 +21,20 @@ export default function Contribute() {
   const submitApplication = async () => {
     if (isLoggedIn) {
       const response = document.getElementsByName("free-response")[0].value;
-      if (response.length == 0) {
+      if (response.length === 0) {
         setResponseError("Please provide a brief answer. Thanks!");
         setFocusId("free-response");
       } else {
-        await createVolunteerApp(uid, { response }, setIsSubmitted(true));  
+        await createVolunteerApp(uid, { response }, setIsSubmitted(true));
       }
-     
     }
   };
 
   /* Dynamically focus an element when requested */
   useEffect(() => {
     if (focusId) {
-      let el = document.getElementById(focusId);
-      if (el) { 
+      const el = document.getElementById(focusId);
+      if (el) {
         el.focus();
         // clear
         setFocusId(null);
@@ -49,8 +48,8 @@ export default function Contribute() {
         {isSubmitted ? (
           <FormSuccess>
             <p>
-              Thank you for applying to volunteer! We will get back to you as soon as
-              possible.
+              Thank you for applying to volunteer! We will get back to you as
+              soon as possible.
             </p>
             <Link href="/contribute/resources">
               <a className="pill">Learn how to write transcripts</a>
@@ -59,8 +58,8 @@ export default function Contribute() {
         ) : (
           <div className="container">
             <p>
-              Thanks for your interest! We're always looking for volunteers to 
-              help transcribe content and moderate submissions! 
+              Thanks for your interest! We're always looking for volunteers to
+              help transcribe content and moderate submissions!
             </p>
             <div>
               <TextEditor
@@ -71,33 +70,33 @@ export default function Contribute() {
                 error={responseError}
               />
             </div>
-            <button onClick={submitApplication}>Submit volunteer application</button>
+            <button onClick={submitApplication}>
+              Submit volunteer application
+            </button>
           </div>
         )}
       </SecondaryNavLayout>
       <style jsx>
-        {
-          `
+        {`
+          .container {
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-gap: var(--space-m);
+            gap: var(--space-m);
+          }
+
+          @media ${BREAKPOINTS.MEDIUM_LARGE} {
             .container {
-              display: grid;
-              grid-template-columns: 1fr;
-              grid-gap: var(--space-m);
-              gap: var(--space-m);
+              grid-template-columns: 80%;
+              grid-gap: var(--space-l) var(--space-m);
+              gap: var(--space-l) var(--space-m);
             }
 
-            @media ${BREAKPOINTS.MEDIUM_LARGE} {
-              .container {
-                grid-template-columns: 80%;
-                grid-gap: var(--space-l) var(--space-m);
-                gap: var(--space-l) var(--space-m);
-              }
-
-              button {
-                width: 50%;
-              }
-            } 
-          `
-        }
+            button {
+              width: 50%;
+            }
+          }
+        `}
       </style>
     </FormAuth>
   );

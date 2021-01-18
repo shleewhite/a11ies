@@ -40,14 +40,19 @@ export default function Transcript({ transcriptData }) {
         <div className="transcript-container">
           <div>
             <Card header="About" headerLevel="2">
-              <a href={link} target="_blank" className="i b">
+              <a href={link} target="_blank" rel="noreferrer" className="i b">
                 {name}
               </a>
               {creatorName ? (
                 creatorLink ? (
                   <>
                     {" by"}{" "}
-                    <a href={creatorLink} target="_blank" className="b">
+                    <a
+                      href={creatorLink}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="b"
+                    >
                       {creatorName}
                     </a>
                   </>

@@ -18,8 +18,7 @@ const Card = ({
       >
         {imgLink ? <img src={imgLink} alt="" /> : null}
         <div
-          className={classnames(
-            "text-content", {
+          className={classnames("text-content", {
             "sm-top-padding": hasTopZazz,
           })}
         >

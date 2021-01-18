@@ -24,23 +24,20 @@ export default function Home() {
         "
       >
         <div className="top-card">
-          <Card
-            header="How it works"
-            headerLevel={2}
-          >
+          <Card header="How it works" headerLevel={2}>
             <p>
               There are a lot of awesome social justice resources circulating
-              online to help people take action and make positive change in their
-              communities. Unfortunately, many of these resources are in the form
-              of images of text, which can present accessibility barriers for a
-              bunch of folks, including those who are blind, have learning
-              disabilities, or primarily speak a different language.
+              online to help people take action and make positive change in
+              their communities. Unfortunately, many of these resources are in
+              the form of images of text, which can present accessibility
+              barriers for a bunch of folks, including those who are blind, have
+              learning disabilities, or primarily speak a different language.
             </p>
             <p>
               <strong>a11ies.info</strong> exists to help you create and share
               transcripts of key resources, so everyone can access them. We host
-              your transcripts at short, customizable URLs so you can easily share
-              accessible, text-only versions of the resources you love.
+              your transcripts at short, customizable URLs so you can easily
+              share accessible, text-only versions of the resources you love.
             </p>
           </Card>
         </div>
@@ -48,7 +45,8 @@ export default function Home() {
           <Card header="Transcribe" hasTopZazz>
             <p>
               Have a resource you want to transcribe, or want to volunteer to
-              transcribe a requested resource? Contribute a transcript to A11ies.info!
+              transcribe a requested resource? Contribute a transcript to
+              A11ies.info!
             </p>
             <div className="link-wrapper">
               <Link href="/contribute">
@@ -71,9 +69,9 @@ export default function Home() {
         </Card>
         <Card header="Learn" hasTopZazz>
           <p>
-            There are a lot of ways to make your resources accessible. 
-            Discover tools and best practices to help make your 
-            movement accessible to all.
+            There are a lot of ways to make your resources accessible. Discover
+            tools and best practices to help make your movement accessible to
+            all.
           </p>
           <div className="link-wrapper">
             <Link href="/contribute/resources">

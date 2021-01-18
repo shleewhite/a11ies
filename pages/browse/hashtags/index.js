@@ -2,8 +2,8 @@ import Link from "next/link";
 
 import { getAllHashtags } from "../../../lib/hashtags";
 import SecondaryNavLayout from "../../../components/Layouts/SecondaryNavLayout";
-import Accordion from "../../../components/Accordion";
-import Card from "../../../components/Card";
+// import Accordion from "../../../components/Accordion";
+// import Card from "../../../components/Card";
 import Prompt from "../../../components/Prompt";
 
 export async function getStaticProps() {
@@ -13,7 +13,7 @@ export async function getStaticProps() {
   };
 }
 
-export default function Hashtags({hashtags}) {
+export default function Hashtags({ hashtags }) {
   return (
     <>
       <SecondaryNavLayout
@@ -35,10 +35,13 @@ export default function Hashtags({hashtags}) {
           {hashtags.map((hashtagData) => (
             <li key={hashtagData.id}>
               <Link href={`/browse/hashtags/${hashtagData.hashtag}`}>
-                <a><span>#{hashtagData.hashtag}</span> ({hashtagData.transcriptIds.length})</a>
+                <a>
+                  <span>#{hashtagData.hashtag}</span> (
+                  {hashtagData.transcriptIds.length})
+                </a>
               </Link>
             </li>
-           ))}
+          ))}
         </ul>
         <div>
           <Prompt headerLevel="2" />

@@ -41,10 +41,11 @@ const SubnNav = ({ items }) => {
           @media ${BREAKPOINTS.MEDIUM_LARGE} {
             nav {
               padding: 0;
-              margin: var(--space-s) var(--space-l) var(--space-0) var(--space-l);
+              margin: var(--space-s) var(--space-l) var(--space-0)
+                var(--space-l);
               border-top: none;
             }
-          }   
+          }
 
           .circle {
             width: 15px;
