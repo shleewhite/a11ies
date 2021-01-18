@@ -37,7 +37,7 @@ const TranscriptListItem = ({
   return (
     <>
       <div>
-        <Link href={`/${transcript.url}`}>
+        <Link href={`/${transcript.id}`}>
           <a className="transcriptName">{transcript.name}</a>
         </Link>
         { transcript.creatorName ? <span>by {transcript.creatorName}</span> : null}
