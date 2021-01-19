@@ -1,4 +1,4 @@
-import Link from "next/link";
+// import Link from "next/link";
 
 import { getAllTranscriptData } from "../../lib/transcripts";
 import SecondaryNavLayout from "../../components/Layouts/SecondaryNavLayout";
@@ -6,7 +6,7 @@ import Prompt from "../../components/Prompt";
 import TranscriptList from "../../components/TranscriptList";
 
 export async function getStaticProps() {
-  const transcripts = await getAllTranscriptData();
+  const transcripts = await getAllTranscriptData(true);
   return {
     props: { transcripts },
   };
@@ -29,7 +29,7 @@ export default function Transcripts({ transcripts }) {
         grid-template-columns: 1fr 300px;
       "
     >
-      <TranscriptList transcripts={transcripts} showHashtags={true}/>
+      <TranscriptList transcripts={transcripts} showHashtags />
 
       <div>
         <Prompt headerLevel="2" />

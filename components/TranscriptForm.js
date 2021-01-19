@@ -1,16 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { nolookalikes } from "nanoid-generate"; // generates unique id without characters that look similar ie. 1 and I
 import * as copy from "copy-to-clipboard"; // copy-to-clipboard
 import Link from "next/link";
 
-import SecondaryNavLayout from "./Layouts/SecondaryNavLayout";
+import { UserContext } from "../lib/user_context";
+
 import Prompt from "./Prompt";
 import IconButton from "./IconButton";
 import Input from "./Input";
 import TextEditor from "./TextEditor";
-import FormAuth from "./FormAuth";
 import FormSuccess from "./FormSuccess";
 import SocialMediaEmbed from "./SocialMediaEmbed";
+import AuthModal from "./AuthModal";
 
 import {
   BREAKPOINTS,
@@ -18,7 +19,10 @@ import {
   RESERVED_PATHS,
   URL_REGEX,
 } from "../lib/constants";
-import { createTranscript, updateTranscript } from "../lib/transcripts";
+import {
+  createTranscript,
+  updateTranscript
+} from "../lib/transcripts";
 
 function hasReservedPathError(url) {
   const lcURL = url.toLowerCase();
@@ -57,9 +61,7 @@ function TranscriptFormSuccess({url, resetCallback}) {
         </Link>{" "}
         <IconButton
           label="Copy link to clipboard"
-          onClick={() => {
-            copy(`a11ies.info/${url}`);
-          }}
+          onClick={() => {copy(`a11ies.info/${url}`);}}
         >
           📋
         </IconButton>
@@ -70,15 +72,19 @@ function TranscriptFormSuccess({url, resetCallback}) {
   );
 }
 
+const modes = {
+  CREATE: 1,
+  EDIT: 2
+};
+
 export default function TranscriptForm({transcriptData}) {
-  const [inCreateMode, setInCreateMode] = useState(!transcriptData);
+  const context = useContext(UserContext);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [isPublished, setIsPublished] = useState(false);
+  const [inCreateMode, setInCreateMode] = useState(!transcriptData);
   const [url, setURL] = useState("");
-  const [originalPostUrl, setOriginalPostUrl] = useState(transcriptData ? transcriptData.link : "");
-  const [{ isLoggedIn, uid }, setContext] = useState({
-    isLoggedIn: false,
-    uid: "",
-  });
+  const [originalPostUrl, setOriginalPostUrl] = 
+    useState(transcriptData ? transcriptData.link : "");
 
   const [errors, setErrors] = useState({
     name: null,
@@ -161,7 +167,7 @@ export default function TranscriptForm({transcriptData}) {
 
   const submitTranscript = (event) => {
     event.preventDefault();
-    if (isLoggedIn) {
+    if (context.isLoggedIn) {
       const data = new FormData(document.forms.create);
       const hashtags =
         data.get("hashtags") === ""
@@ -188,7 +194,7 @@ export default function TranscriptForm({transcriptData}) {
               searchable: data.get("searchable") !== null,
               publishDate: Date.now(),
               hashtags,
-              uid,
+              uid: context.user.uid,
             },
             /* success callback */
             () => {
@@ -212,7 +218,7 @@ export default function TranscriptForm({transcriptData}) {
               searchable: data.get("searchable") !== null,
               publishDate: Date.now(),
               hashtags,
-              uid,
+              uid: context.user.uid,
             },
             /* success callback */
             () => {
@@ -223,6 +229,8 @@ export default function TranscriptForm({transcriptData}) {
           )
         }
       }
+    } else {
+      setIsModalOpen(true);
     }
   };
 
@@ -244,109 +252,113 @@ export default function TranscriptForm({transcriptData}) {
   };
 
   return (
-    <FormAuth cb={setContext}>
-      <SecondaryNavLayout title={inCreateMode ? "Transcribe" : "Edit Transcript"} subnav="Contribute">
-        {isPublished ? <TranscriptFormSuccess url={url} resetCallback={resetForm}/> :
-          (inCreateMode || (transcriptData !== null && uid === transcriptData.uid)) ? (
-            <div id="form-wrapper">
-              <form
-                action=""
-                className=""
-                onSubmit={submitTranscript}
-                id="create"
-                noValidate
-              >
-                <Input
-                  label="Document title"
-                  required
-                  id="name"
-                  error={errors.name}
-                  defaultValue={inCreateMode ? null : transcriptData.name}
-                />
+    <>
+      {isPublished ? <TranscriptFormSuccess url={url} resetCallback={resetForm}/> :
+        <div id="form-wrapper">
+          <form
+            action=""
+            className=""
+            onSubmit={submitTranscript}
+            id="create"
+            noValidate
+          >
+            <Input
+              label="Document title"
+              required
+              id="name"
+              error={errors.name}
+              defaultValue={inCreateMode ? null : transcriptData.name}
+            />
 
-                <Input
-                  label="Link to original document"
-                  required
-                  type="url"
-                  id="link"
-                  error={errors.link}
-                  onBlur={(e) => {
-                    if (e.target.value !== "") {
-                      setOriginalPostUrl(e.target.value);
-                    }
-                  }}
-                  defaultValue={inCreateMode ? null : transcriptData.link}
-                />
+            <Input
+              label="Link to original document"
+              required
+              type="url"
+              id="link"
+              error={errors.link}
+              onBlur={(e) => {
+                if (e.target.value !== "") {
+                  setOriginalPostUrl(e.target.value);
+                }
+              }}
+              defaultValue={inCreateMode ? null : transcriptData.link}
+            />
 
-                <Input
-                  label="Original creator's name"
-                  id="creatorName"
-                  defaultValue={inCreateMode ? null : transcriptData.creatorName}
-                />
+            <Input
+              label="Original creator's name"
+              id="creatorName"
+              defaultValue={inCreateMode ? null : transcriptData.creatorName}
+            />
 
-                <Input
-                  label="Link to original creator"
-                  type="url"
-                  id="creatorLink"
-                  error={errors.creatorLink}
-                  defaultValue={inCreateMode ? null : transcriptData.creatorLink}
-                />
+            <Input
+              label="Link to original creator"
+              type="url"
+              id="creatorLink"
+              error={errors.creatorLink}
+              defaultValue={inCreateMode ? null : transcriptData.creatorLink}
+            />
 
-                <div className="full-width-input">
-                  <TextEditor
-                    name="transcript"
-                    label="Transcript"
-                    id="transcript"
-                    required
-                    error={errors.transcript}
-                    defaultValue={inCreateMode ? '' : transcriptData.contentHtml}
-                  />
-                </div>
-
-                <div className="full-width-input">
-                  <Input
-                    label="Relevant hashtags"
-                    id="hashtags"
-                    type="textarea"
-                    description="Use a comma-separated list and capitalize the first letter
-                    of each word, e.g. #ThisIsAHashtag, #ThisIsAnother"
-                    defaultValue={inCreateMode ? null : getHashtagsAsString(transcriptData.hashtags)}
-                  />
-                </div>
-
-                <div className="full-width-input">
-                  <Input
-                    label="Make transcript searchable"
-                    description="Transcript can appear in a11ies.info browse views and search results"
-                    type="checkbox"
-                    id="searchable"
-                    defaultChecked={inCreateMode ? true : transcriptData.searchable}
-                  />
-                </div>
-
-                <Input
-                  label="Custom short URL"
-                  prefix="a11ies.info/"
-                  description={inCreateMode ? 
-                    "If you don't provide one, we'll generate one for you!" :
-                    "Short URLs can't be edited after transcript creation."
-                  }
-                  id="url"
-                  error={errors.url}
-                  readOnly={!inCreateMode}
-                  defaultValue={inCreateMode ? null : transcriptData.id}
-                />
-
-                <input type="submit" value="Publish Transcript" name="submit" />
-              </form>
-              <div>
-                <h2>Reference Document</h2>
-                <SocialMediaEmbed url={originalPostUrl} msg="No reference yet." />
-              </div>
+            <div className="full-width-input">
+              <TextEditor
+                name="transcript"
+                label="Transcript"
+                id="transcript"
+                required
+                error={errors.transcript}
+                defaultValue={inCreateMode ? '' : transcriptData.contentHtml}
+              />
             </div>
-          ) : (<Prompt />)
-        }
-      </SecondaryNavLayout>
+
+            <div className="full-width-input">
+              <Input
+                label="Relevant hashtags"
+                id="hashtags"
+                type="textarea"
+                description="Use a comma-separated list and capitalize the first letter
+                of each word, e.g. #ThisIsAHashtag, #ThisIsAnother"
+                defaultValue={inCreateMode ? null : getHashtagsAsString(transcriptData.hashtags)}
+              />
+            </div>
+
+            <div className="full-width-input">
+              <Input
+                label="Make transcript searchable"
+                description="Transcript can appear in a11ies.info browse views and search results"
+                type="checkbox"
+                id="searchable"
+                defaultChecked={inCreateMode ? true : transcriptData.searchable}
+              />
+            </div>
+
+            <Input
+              label="Custom short URL"
+              prefix="a11ies.info/"
+              description={inCreateMode ? 
+                "If you don't provide one, we'll generate one for you!" :
+                "Short URLs can't be edited after transcript creation."
+              }
+              id="url"
+              error={errors.url}
+              readOnly={!inCreateMode}
+              defaultValue={inCreateMode ? null : transcriptData.id}
+            />
+
+            <input type="submit" value="Publish Transcript" name="submit" />
+          </form>
+          <div>
+            <h2>Reference Document</h2>
+            <SocialMediaEmbed url={originalPostUrl} msg="No reference preview available." />
+          </div>
+        </div>
+      }
+      <AuthModal
+        isOpen={isModalOpen}
+        handleClose={async () => {
+          setIsModalOpen(false);
+        }}
+      >
+        <div>Please log in first.</div>
+      </AuthModal>
       <style jsx>
         {`
           #form-wrapper {
@@ -386,6 +398,6 @@ export default function TranscriptForm({transcriptData}) {
           }
         `}
       </style>
-    </FormAuth>
+    </>
   );
 }

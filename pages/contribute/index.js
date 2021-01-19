@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react";
-import { nolookalikes } from "nanoid-generate"; // generates unique id without characters that look similar ie. 1 and I
-import * as copy from "copy-to-clipboard"; // copy-to-clipboard
-import Link from "next/link";
-
+import React, { } from "react";
+import SecondaryNavLayout from "../../components/layouts/SecondaryNavLayout";
 import TranscriptForm from "../../components/TranscriptForm";
+import { createTranscript } from "../../lib/transcripts";
 
 export default function Create() {
   return (
-    <TranscriptForm/>
+    <SecondaryNavLayout title="Transcribe" subnav="Contribute">
+      <TranscriptForm/>
+    </SecondaryNavLayout>
   );
 }

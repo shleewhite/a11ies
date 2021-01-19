@@ -1,33 +1,37 @@
-import Link from "next/link";
+// import Link from "next/link";
 
 import { getHashtagData } from "../../../lib/hashtags";
 import { getTranscriptsData } from "../../../lib/transcripts";
 import SecondaryNavLayout from "../../../components/Layouts/SecondaryNavLayout";
-import Card from "../../../components/Card";
+// import Card from "../../../components/Card";
 import Prompt from "../../../components/Prompt";
 import TranscriptList from "../../../components/TranscriptList";
 
-export async function getServerSideProps({ params }){
+export async function getServerSideProps({ params }) {
   const query = params.id;
   const hashtagData = await getHashtagData(query);
-  const transcripts = hashtagData ? await getTranscriptsData(hashtagData.transcriptIds) : null;
+  const transcripts = hashtagData
+    ? await getTranscriptsData(hashtagData.transcriptIds)
+    : null;
   return {
-    props: { 
+    props: {
       query,
       hashtagData,
-      transcripts
+      transcripts,
     },
   };
 }
 
-export default function Hashtag({query, hashtagData, transcripts}) {
+export default function Hashtag({ query, hashtagData, transcripts }) {
   if (!hashtagData) {
     return (
       <>
         <SecondaryNavLayout title="Sorry!" subnav="Browse">
           <div id="main-content">
-            <Prompt headerLevel="2" header={`We couldn't find any transcripts tagged with #${query}!`}>
-            </Prompt>
+            <Prompt
+              headerLevel="2"
+              header={`We couldn't find any transcripts tagged with #${query}!`}
+            />
           </div>
         </SecondaryNavLayout>
       </>
@@ -38,7 +42,7 @@ export default function Hashtag({query, hashtagData, transcripts}) {
       <SecondaryNavLayout title={`#${hashtagData.hashtag}`} subnav="Browse">
         <div>
           <h2>Transcripts</h2>
-          <TranscriptList transcripts={transcripts} showHashtags={false}/>
+          <TranscriptList transcripts={transcripts} showHashtags={false} />
         </div>
       </SecondaryNavLayout>
       <style jsx>

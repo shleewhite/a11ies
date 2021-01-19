@@ -19,8 +19,7 @@ const Card = ({
       >
         {imgLink ? <img src={imgLink} alt="" /> : null}
         <div
-          className={classnames(
-            "text-content", {
+          className={classnames("text-content", {
             "sm-top-padding": hasTopZazz,
           })}
         >
@@ -41,9 +40,8 @@ const Card = ({
 
           img {
             width: 100%;
-            width: -moz-available; /* For Mozzila */
-            width: -webkit-fill-available; /* For Chrome */
-            width: stretch;
+            object-fit: cover;
+            max-height: 35vh;
           }
 
           div > * {
@@ -65,7 +63,8 @@ const Card = ({
           }
 
           .header-content > div {
-            align-self: end;
+            align-self: center;
+            justify-self: end;
           }
 
           .text-content {
