@@ -6,7 +6,7 @@ import Prompt from "../../components/Prompt";
 import TranscriptList from "../../components/TranscriptList";
 
 export async function getStaticProps() {
-  const transcripts = await getAllTranscriptData();
+  const transcripts = await getAllTranscriptData(true);
   return {
     props: { transcripts },
   };
