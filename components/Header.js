@@ -139,6 +139,10 @@ const Header = () => {
               grid-template-columns: 40rem 1fr;
             }
           }
+
+          a {
+            color: var(--body-c);
+          }
         `}
       </style>
     </>

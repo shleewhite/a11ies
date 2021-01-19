@@ -36,8 +36,8 @@ export default function Hashtags({ hashtags }) {
             <li key={hashtagData.id}>
               <Link href={`/browse/hashtags/${hashtagData.hashtag}`}>
                 <a>
-                  <span>#{hashtagData.hashtag}</span> (
-                  {hashtagData.transcriptIds.length})
+                  <span>#{hashtagData.hashtag}</span>
+                  {` `}({hashtagData.transcriptIds.length})
                 </a>
               </Link>
             </li>
@@ -61,7 +61,7 @@ export default function Hashtags({ hashtags }) {
           }
 
           a span {
-            color: black;
+            color: var(--body-c);
           }
         `}
       </style>

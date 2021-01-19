@@ -81,12 +81,12 @@ footer {
 }
 
 a {
-  color: inherit;
+  color: var(--link-c);
   text-decoration: none;
 }
 
-
 a:hover {
+  color: var(--link-c);
   text-decoration: underline;
   text-decoration-thickness: var(--border-s);
   text-decoration-color: var(--body-c);
@@ -94,6 +94,7 @@ a:hover {
 }
 
 a:focus {
+  color: var(--link-c);
   outline: none;
   text-decoration: underline;
   text-decoration-thickness: var(--border-m);
@@ -102,7 +103,7 @@ a:focus {
 }
 
 a.pill {
-  color: inherit;
+  color: var(--body-c);
   background-color: var(--bg-light-c);
   border-radius: 9999px;
   padding: var(--space-xs) var(--space-s);

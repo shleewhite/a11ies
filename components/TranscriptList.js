@@ -28,7 +28,6 @@ const TranscriptList = ({ transcripts, showHashtags }) => {
 };
 
 const TranscriptListItem = ({ transcript, showHashtags }) => {
-  console.log(transcript, showHashtags);
   return (
     <>
       <div>
@@ -61,7 +60,6 @@ const TranscriptListItem = ({ transcript, showHashtags }) => {
 
           .transcriptName {
             font-size: var(--text-m);
-            color: black;
           }
 
           span {
@@ -76,6 +74,10 @@ const TranscriptListItem = ({ transcript, showHashtags }) => {
           li {
             display: inline-block;
             padding-right: var(--space-xs);
+          }
+
+          li a {
+            color: var(--body-c);
           }
         `}
       </style>

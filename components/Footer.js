@@ -59,6 +59,10 @@ const Footer = () => {
               justify-items: end;
             }
           }
+
+          a {
+            color: var(--body-c);
+          }
         `}
       </style>
     </footer>

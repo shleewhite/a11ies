@@ -74,7 +74,7 @@ export default function Home() {
             all.
           </p>
           <div className="link-wrapper">
-            <Link href="/contribute/resources">
+            <Link href="/resources">
               <a className="pill">Learn</a>
             </Link>
           </div>
