@@ -1,15 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { nolookalikes } from "nanoid-generate"; // generates unique id without characters that look similar ie. 1 and I
 import * as copy from "copy-to-clipboard"; // copy-to-clipboard
 import Link from "next/link";
+
+import { UserContext } from "../../lib/user_context";
 
 import SecondaryNavLayout from "../../components/Layouts/SecondaryNavLayout";
 import IconButton from "../../components/IconButton";
 import Input from "../../components/Input";
 import TextEditor from "../../components/TextEditor";
-import FormAuth from "../../components/FormAuth";
 import FormSuccess from "../../components/FormSuccess";
 import SocialMediaEmbed from "../../components/SocialMediaEmbed";
+import AuthModal from "../../components/AuthModal";
 
 import {
   BREAKPOINTS,
@@ -36,13 +38,11 @@ function hasBadLinkFormat(url) {
 }
 
 export default function Create() {
+  const context = useContext(UserContext);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [isPublished, setIsPublished] = useState(false);
   const [url, setURL] = useState("");
   const [originalPostUrl, setOriginalPostUrl] = useState("");
-  const [{ isLoggedIn, uid }, setContext] = useState({
-    isLoggedIn: false,
-    uid: "",
-  });
 
   const [errors, setErrors] = useState({
     name: null,
@@ -123,7 +123,7 @@ export default function Create() {
 
   const submitTranscript = (event) => {
     event.preventDefault();
-    if (isLoggedIn) {
+    if (context.isLoggedIn) {
       const data = new FormData(document.forms.create);
       const hashtags =
         data.get("hashtags") === ""
@@ -137,6 +137,7 @@ export default function Create() {
         const newURL =
           data.get("url").length > 0 ? data.get("url") : nolookalikes(6);
         setURL(newURL);
+        console.log("hi");
         createTranscript(
           newURL,
           {
@@ -148,7 +149,7 @@ export default function Create() {
             searchable: data.get("searchable") !== null,
             publishDate: Date.now(),
             hashtags,
-            uid,
+            uid: context.uid,
           },
           /* success callback */
           () => {
@@ -161,6 +162,8 @@ export default function Create() {
           }
         );
       }
+    } else {
+      setIsModalOpen(true);
     }
   };
 
@@ -182,7 +185,7 @@ export default function Create() {
   };
 
   return (
-    <FormAuth cb={setContext}>
+    <>
       <SecondaryNavLayout title="Transcribe" subnav="Contribute">
         {isPublished ? (
           <FormSuccess>
@@ -284,11 +287,22 @@ export default function Create() {
             </form>
             <div>
               <h2>Reference Document</h2>
-              <SocialMediaEmbed url={originalPostUrl} msg="No reference yet." />
+              <SocialMediaEmbed
+                url={originalPostUrl}
+                msg="No reference preview available."
+              />
             </div>
           </div>
         )}
       </SecondaryNavLayout>
+      <AuthModal
+        isOpen={isModalOpen}
+        handleClose={async () => {
+          setIsModalOpen(false);
+        }}
+      >
+        <div>Please log in first.</div>
+      </AuthModal>
       <style jsx>
         {`
           #form-wrapper {
@@ -324,6 +338,6 @@ export default function Create() {
           }
         `}
       </style>
-    </FormAuth>
+    </>
   );
 }

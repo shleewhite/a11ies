@@ -1,10 +1,7 @@
 import React from "react";
 import Link from "next/link";
 
-const TranscriptList = ({
-  transcripts,
-  showHashtags
-}) => {
+const TranscriptList = ({ transcripts, showHashtags }) => {
   return (
     <>
       <ul>
@@ -12,9 +9,10 @@ const TranscriptList = ({
           <li key={transcript.id}>
             <TranscriptListItem
               transcript={transcript}
-              showHashtags={showHashtags}/>
+              showHashtags={showHashtags}
+            />
           </li>
-         ))}
+        ))}
       </ul>
       <style jsx>
         {`
@@ -27,32 +25,31 @@ const TranscriptList = ({
       </style>
     </>
   );
-}
+};
 
-const TranscriptListItem = ({
-  transcript,
-  showHashtags,
-}) => {
+const TranscriptListItem = ({ transcript, showHashtags }) => {
   return (
     <>
       <div>
         <Link href={`/${transcript.id}`}>
           <a className="transcriptName">{transcript.name}</a>
         </Link>
-        { transcript.creatorName ? <span>by {transcript.creatorName}</span> : null}
-        { showHashtags && transcript.hashtags ? (
-            <ul aria-label="Hashtags">
-              {transcript.hashtags.map((hashtag, i) => (
-                <li key={i}>
-                  <Link href={`/browse/hashtags/${hashtag}`}>
-                    <a>#{hashtag}</a>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          ) : null }
+        {transcript.creatorName ? (
+          <span>by {transcript.creatorName}</span>
+        ) : null}
+        {showHashtags && transcript.hashtags ? (
+          <ul aria-label="Hashtags">
+            {transcript.hashtags.map((hashtag, i) => (
+              <li key={i}>
+                <Link href={`/browse/hashtags/${hashtag}`}>
+                  <a>#{hashtag}</a>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        ) : null}
       </div>
-       
+
       <style jsx>
         {`
           div {

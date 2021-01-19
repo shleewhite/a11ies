@@ -1,16 +1,12 @@
-import React, { useState } from "react";
-import { nanoid } from "nanoid";
-import * as cn from "classnames";
+import React from "react";
+// import { nanoid } from "nanoid";
+// import * as cn from "classnames";
 
-const IconButton = ({
-  label, onClick, children
-}) => {
+const IconButton = ({ label, onClick, children }) => {
   return (
     <>
       <button aria-label={label} title={label} onClick={onClick}>
-        <span aria-hidden="true">
-          {children}
-        </span>
+        <span aria-hidden="true">{children}</span>
       </button>
       <style jsx>
         {`
