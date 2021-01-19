@@ -40,24 +40,17 @@ export default function Transcript({transcriptData}) {
 
   const context = useContext(UserContext);
   const canEdit = context.user !== undefined && context.user.uid === transcriptData.uid;
+  const extraHeaderContent = canEdit ? (
+    <Link href={`edit/${id}`}>
+      <a className="pill pill--inverse">Edit Transcript</a>
+    </Link>) : null;
 
   return (
     <>
       <Layout title={name}>
         <div className="transcript-container">
           <div>
-            <Card header="About" headerLevel="2">
-              {canEdit ? (
-                <div className="has-bottom-zazz">
-                  <p>You added this transcript!</p>
-                  <p>
-                    <Link href={`edit/${id}`}>
-                      <a className="pill pill--inverse">Edit Transcript</a>
-                    </Link>
-                  </p>
-                </div>
-                ) : null
-              }
+            <Card header="About" headerLevel="2" extraHeaderContent={extraHeaderContent}>
               <a href={link} target="_blank" className="i b">
                 {name}
               </a>
@@ -125,7 +118,7 @@ export default function Transcript({transcriptData}) {
             border-bottom: 10px solid var(--zazz-c);
             margin-bottom: var(--space-m);
           }
-          
+
           .transcript-container {
             display: grid;
             grid-gap: var(--space-m) var(--space-s);
