@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Link from "next/link";
+
+import { UserContext } from "../lib/user_context";
 
 import Layout from "../components/Layouts/Layout";
 import Input from "../components/Input";
-import FormAuth from "../components/FormAuth";
+import AuthModal from "../components/AuthModal";
 import FormSuccess from "../components/FormSuccess";
 
 import { BREAKPOINTS, ERROR_MESSAGES, URL_REGEX } from "../lib/constants";
@@ -11,15 +13,13 @@ import { createRequest } from "../lib/request";
 
 export default function Request() {
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [{ isLoggedIn, uid }, setContext] = useState({
-    isLoggedIn: false,
-    uid: "",
-  });
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const context = useContext(UserContext);
   const [linkError, setLinkError] = useState(null);
   const [focusId, setFocusId] = useState(null);
 
   const submitRequest = async () => {
-    if (isLoggedIn) {
+    if (context.isLoggedIn) {
       const link = document.getElementById("link").value;
       /* Error handling -- requiredness */
       if (link.length === 0) {
@@ -31,9 +31,12 @@ export default function Request() {
         setFocusId("link");
       } else {
         const emailAlert = document.getElementById("email-alert").checked;
-        await createRequest({ link, emailAlert, uid }, setIsSubmitted(true));
+        await createRequest(
+          { link, emailAlert, uid: context.uid },
+          setIsSubmitted(true)
+        );
       }
-    }
+    } else setIsModalOpen(true);
   };
 
   /* Dynamically focus an element when requested */
@@ -53,7 +56,7 @@ export default function Request() {
   };
 
   return (
-    <FormAuth cb={setContext}>
+    <>
       <Layout title="Request">
         {isSubmitted ? (
           <FormSuccess>
@@ -86,6 +89,14 @@ export default function Request() {
           </div>
         )}
       </Layout>
+      <AuthModal
+        isOpen={isModalOpen}
+        handleClose={async () => {
+          setIsModalOpen(false);
+        }}
+      >
+        <div>Please log in first.</div>
+      </AuthModal>
       <style jsx>
         {`
           .container {
@@ -108,6 +119,6 @@ export default function Request() {
           }
         `}
       </style>
-    </FormAuth>
+    </>
   );
 }
