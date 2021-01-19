@@ -67,7 +67,8 @@ class TextEditor extends React.Component {
           <this.CKEditor
             editor={this.ClassicEditor}
             config={CONFIG}
-            onBlur={(editor) => {
+            // eslint-disable-next-line no-unused-vars
+            onBlur={(event, editor) => {
               this.getMarkdownFromEditor(editor);
             }}
             onInit={(editor) => {

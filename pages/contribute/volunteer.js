@@ -1,32 +1,39 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Link from "next/link";
+
+import { UserContext } from "../../lib/user_context";
 
 import SecondaryNavLayout from "../../components/Layouts/SecondaryNavLayout";
 import TextEditor from "../../components/TextEditor";
-import FormAuth from "../../components/FormAuth";
 import FormSuccess from "../../components/FormSuccess";
+import AuthModal from "../../components/AuthModal";
 
 import { BREAKPOINTS } from "../../lib/constants";
 import { createVolunteerApp } from "../../lib/volunteers";
 
 export default function Contribute() {
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [{ isLoggedIn, uid }, setContext] = useState({
-    isLoggedIn: false,
-    uid: "",
-  });
   const [responseError, setResponseError] = useState(null);
   const [focusId, setFocusId] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const context = useContext(UserContext);
 
   const submitApplication = async () => {
-    if (isLoggedIn) {
+    if (context.isLoggedIn) {
       const response = document.getElementsByName("free-response")[0].value;
       if (response.length === 0) {
         setResponseError("Please provide a brief answer. Thanks!");
         setFocusId("free-response");
       } else {
-        await createVolunteerApp(uid, { response }, setIsSubmitted(true));
+        await createVolunteerApp(
+          context.uid,
+          { response },
+          setIsSubmitted(true)
+        );
       }
+    } else {
+      setIsModalOpen(true);
     }
   };
 
@@ -43,7 +50,7 @@ export default function Contribute() {
   }, [focusId]);
 
   return (
-    <FormAuth cb={setContext}>
+    <>
       <SecondaryNavLayout title="Volunteer" subnav="Contribute">
         {isSubmitted ? (
           <FormSuccess>
@@ -76,6 +83,14 @@ export default function Contribute() {
           </div>
         )}
       </SecondaryNavLayout>
+      <AuthModal
+        isOpen={isModalOpen}
+        handleClose={async () => {
+          setIsModalOpen(false);
+        }}
+      >
+        <div>Please log in first.</div>
+      </AuthModal>
       <style jsx>
         {`
           .container {
@@ -98,6 +113,6 @@ export default function Contribute() {
           }
         `}
       </style>
-    </FormAuth>
+    </>
   );
 }
