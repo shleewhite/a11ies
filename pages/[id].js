@@ -47,6 +47,17 @@ export default function Transcript({transcriptData}) {
         <div className="transcript-container">
           <div>
             <Card header="About" headerLevel="2">
+              {canEdit ? (
+                <div className="has-bottom-zazz">
+                  <p>You added this transcript!</p>
+                  <p>
+                    <Link href={`edit/${id}`}>
+                      <a className="pill pill--inverse">Edit Transcript</a>
+                    </Link>
+                  </p>
+                </div>
+                ) : null
+              }
               <a href={link} target="_blank" className="i b">
                 {name}
               </a>
@@ -73,11 +84,6 @@ export default function Transcript({transcriptData}) {
                   );
                 })}
               </ul>
-              { canEdit ? 
-                  <Link href={`edit/${id}`}>
-                    <a className="b">Edit Transcript</a>
-                  </Link>
-                 : null }
             </Card>
             <SocialMediaEmbed url={link} msg="Unable to load post." />
           </div>
@@ -115,6 +121,11 @@ export default function Transcript({transcriptData}) {
             font-size: var(--text-l);
           }
 
+          .has-bottom-zazz {
+            border-bottom: 10px solid var(--zazz-c);
+            margin-bottom: var(--space-m);
+          }
+          
           .transcript-container {
             display: grid;
             grid-gap: var(--space-m) var(--space-s);
