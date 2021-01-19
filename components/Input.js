@@ -11,6 +11,9 @@ const Input = ({
   description,
   error,
   onBlur,
+  readOnly,
+  defaultValue,
+  defaultChecked
 }) => {
   const [realID] = useState(id !== "" ? id : nanoid);
   const prefixID = `${realID}-prefix`;
@@ -34,6 +37,9 @@ const Input = ({
               required={required}
               name={realID}
               aria-describedby={descriptionID}
+              value={undefined}
+              defaultValue={defaultValue}
+              readOnly={readOnly}
             />
           ) : (
             <input
@@ -43,6 +49,10 @@ const Input = ({
               name={realID}
               aria-describedby={`${prefixID} ${errorID} ${descriptionID}`}
               onBlur={onBlur}
+              value={undefined}
+              defaultValue={defaultValue}
+              defaultChecked={defaultChecked}
+              readOnly={readOnly}
             />
           )}
         </div>
@@ -98,6 +108,10 @@ const Input = ({
           .input-error {
             color: var(--emphasis-c);
             font-weight: 800;
+          }
+
+          input[readonly] {
+            background-color: inherit;
           }
         `}
       </style>

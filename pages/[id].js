@@ -1,8 +1,9 @@
-import React from "react";
+import React, {useContext} from "react";
 import Link from "next/link";
 
 import { getTranscriptData } from "../lib/transcripts";
 import { BREAKPOINTS } from "../lib/constants";
+import { UserContext } from "../lib/user_context";
 
 import Card from "../components/Card";
 import Prompt from "../components/Prompt";
@@ -11,12 +12,13 @@ import SocialMediaEmbed from "../components/SocialMediaEmbed";
 
 export async function getServerSideProps({ params }) {
   const transcriptData = await getTranscriptData(params.id);
+
   return {
-    props: { transcriptData },
+    props: {transcriptData},
   };
 }
 
-export default function Transcript({ transcriptData }) {
+export default function Transcript({transcriptData}) {
   if (!transcriptData) {
     return (
       <Layout title="Hmm...">
@@ -32,7 +34,15 @@ export default function Transcript({ transcriptData }) {
     hashtags,
     creatorName,
     creatorLink,
+    uid,
+    id
   } = transcriptData;
+
+  const context = useContext(UserContext);
+  const canEdit = context.user !== undefined && 
+    ((context.user.uid === transcriptData.uid) || 
+     (context.user.accessLevel > 0)
+    );
 
   return (
     <>
@@ -70,7 +80,10 @@ export default function Transcript({ transcriptData }) {
             <SocialMediaEmbed url={link} msg="Unable to load post." />
           </div>
           <div>
-            <h2>Transcript</h2>
+            <div>
+              <h2>Transcript</h2>
+              { canEdit ? <Link href={`contribute/${id}`}><a>Edit Transcript</a></Link> : null }
+            </div>
             {/* eslint-disable-next-line react/no-danger */}
             <div dangerouslySetInnerHTML={{ __html: contentHtml }} />
           </div>

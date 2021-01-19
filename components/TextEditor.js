@@ -27,7 +27,7 @@ class TextEditor extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      markdown: "",
+      markdown: turndownService.turndown(this.props.defaultValue),
       isServer: true,
       keyboardInfoId: this.props.id + '-keyboard-info',
       errorId: this.props.id + '-error-info'
@@ -69,6 +69,7 @@ class TextEditor extends React.Component {
             onBlur={(event, editor) => {
               this.getMarkdownFromEditor(editor);
             }}
+            data={this.props.defaultValue}
             onInit={(editor) => {
               /* Hack to set aria-label */
               editor.editing.view.change((writer) => {
@@ -124,7 +125,8 @@ TextEditor.defaultProps = {
   name: "textEditor",
   label: "Text Editor",
   error: null,
-  id: "SOMETHING_UNIQUE"
+  id: "SOMETHING_UNIQUE",
+  defaultValue: ""
 };
 
 export default TextEditor;
