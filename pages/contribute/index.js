@@ -149,7 +149,7 @@ export default function Create() {
             searchable: data.get("searchable") !== null,
             publishDate: Date.now(),
             hashtags,
-            uid: context.uid,
+            uid: context.user.uid,
           },
           /* success callback */
           () => {

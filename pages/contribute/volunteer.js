@@ -27,7 +27,7 @@ export default function Contribute() {
         setFocusId("free-response");
       } else {
         await createVolunteerApp(
-          context.uid,
+          context.user.uid,
           { response },
           setIsSubmitted(true)
         );

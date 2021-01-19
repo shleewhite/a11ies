@@ -32,7 +32,7 @@ export default function Request() {
       } else {
         const emailAlert = document.getElementById("email-alert").checked;
         await createRequest(
-          { link, emailAlert, uid: context.uid },
+          { link, emailAlert, uid: context.user.uid },
           setIsSubmitted(true)
         );
       }
