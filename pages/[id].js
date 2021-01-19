@@ -39,10 +39,7 @@ export default function Transcript({transcriptData}) {
   } = transcriptData;
 
   const context = useContext(UserContext);
-  const canEdit = context.user !== undefined && 
-    ((context.user.uid === transcriptData.uid) || 
-     (context.user.accessLevel > 0)
-    );
+  const canEdit = context.user !== undefined && context.user.uid === transcriptData.uid;
 
   return (
     <>
@@ -76,14 +73,16 @@ export default function Transcript({transcriptData}) {
                   );
                 })}
               </ul>
+              { canEdit ? 
+                  <Link href={`edit/${id}`}>
+                    <a className="b">Edit Transcript</a>
+                  </Link>
+                 : null }
             </Card>
             <SocialMediaEmbed url={link} msg="Unable to load post." />
           </div>
           <div>
-            <div>
-              <h2>Transcript</h2>
-              { canEdit ? <Link href={`contribute/${id}`}><a>Edit Transcript</a></Link> : null }
-            </div>
+            <h2>Transcript</h2>
             {/* eslint-disable-next-line react/no-danger */}
             <div dangerouslySetInnerHTML={{ __html: contentHtml }} />
           </div>

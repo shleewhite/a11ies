@@ -303,14 +303,16 @@ export default function TranscriptForm({transcriptData}) {
                   />
                 </div>
 
-                <Input
-                  label="Relevant hashtags"
-                  id="hashtags"
-                  type="textarea"
-                  description="Use a comma-separated list and capitalize the first letter
-                  of each word, e.g. #ThisIsAHashtag, #ThisIsAnother"
-                  defaultValue={inCreateMode ? null : getHashtagsAsString(transcriptData.hashtags)}
-                />
+                <div className="full-width-input">
+                  <Input
+                    label="Relevant hashtags"
+                    id="hashtags"
+                    type="textarea"
+                    description="Use a comma-separated list and capitalize the first letter
+                    of each word, e.g. #ThisIsAHashtag, #ThisIsAnother"
+                    defaultValue={inCreateMode ? null : getHashtagsAsString(transcriptData.hashtags)}
+                  />
+                </div>
 
                 <div className="full-width-input">
                   <Input
@@ -327,16 +329,13 @@ export default function TranscriptForm({transcriptData}) {
                   prefix="a11ies.info/"
                   description={inCreateMode ? 
                     "If you don't provide one, we'll generate one for you!" :
-                    "Short URLs currently can't be edited after transcript creation."
+                    "Short URLs can't be edited after transcript creation."
                   }
                   id="url"
                   error={errors.url}
                   readOnly={!inCreateMode}
                   defaultValue={inCreateMode ? null : transcriptData.id}
                 />
-
-                {/* this should be refactored at some point so we dont just have blank divs */}
-                <div />
 
                 <input type="submit" value="Publish Transcript" name="submit" />
               </form>
@@ -379,6 +378,10 @@ export default function TranscriptForm({transcriptData}) {
               grid-template-rows: 1fr;
               grid-gap: var(--space-l);
               gap: var(--space-l);
+            }
+
+            input[type="submit"] {
+              grid-row: 7;
             }
           }
         `}
