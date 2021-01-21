@@ -177,6 +177,9 @@ export default function TranscriptForm({transcriptData}) {
               .replace("#", "")
               .split(/\s*,*\s+#*/);
 
+
+      const hashtagIds = hashtags.map((hashtag) => {return hashtag.toLowerCase()});
+
       if (validateData(data)) {
         const newURL =
           data.get("url").length > 0 ? data.get("url") : nolookalikes(6);
@@ -194,6 +197,7 @@ export default function TranscriptForm({transcriptData}) {
               searchable: data.get("searchable") !== null,
               publishDate: Date.now(),
               hashtags,
+              hashtagIds,
               uid: context.user.uid,
             },
             /* success callback */
@@ -218,6 +222,7 @@ export default function TranscriptForm({transcriptData}) {
               searchable: data.get("searchable") !== null,
               publishDate: Date.now(),
               hashtags,
+              hashtagIds,
               uid: context.user.uid,
             },
             /* success callback */

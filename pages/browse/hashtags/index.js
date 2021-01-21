@@ -1,13 +1,14 @@
 import Link from "next/link";
 
-import { getAllHashtags } from "../../../lib/hashtags";
+import { getAllActiveHashtags } from "../../../lib/hashtags";
 import SecondaryNavLayout from "../../../components/Layouts/SecondaryNavLayout";
 // import Accordion from "../../../components/Accordion";
 // import Card from "../../../components/Card";
 import Prompt from "../../../components/Prompt";
 
 export async function getStaticProps() {
-  const hashtags = await getAllHashtags();
+  debugger;
+  const hashtags = await getAllActiveHashtags();
   return {
     props: { hashtags },
   };
@@ -37,7 +38,7 @@ export default function Hashtags({ hashtags }) {
               <Link href={`/browse/hashtags/${hashtagData.hashtag}`}>
                 <a>
                   <span>#{hashtagData.hashtag}</span>
-                  {` `}({hashtagData.transcriptIds.length})
+                  {hashtagData.transcriptCount ? ` (${hashtagData.transcriptCount})` : null }
                 </a>
               </Link>
             </li>

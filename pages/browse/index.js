@@ -23,7 +23,7 @@ function orderByFrequency(els, limit) {
 }
 
 export async function getStaticProps() {
-  const transcripts = await getTranscriptList(COUNT);
+  const transcripts = await getTranscriptList(true, COUNT);
   let hashtags = [];
   transcripts.forEach((transcript) => {
     hashtags = hashtags.concat(transcript.hashtags);
