@@ -1,17 +1,15 @@
 // import Link from "next/link";
 
-import { getHashtagData, getTranscriptsByHashtag } from "../../../lib/hashtags";
+import { getHashtagData } from "../../../lib/hashtags";
+import { getTranscriptListByIds } from "../../../lib/transcripts";
 import SecondaryNavLayout from "../../../components/Layouts/SecondaryNavLayout";
-// import Card from "../../../components/Card";
 import Prompt from "../../../components/Prompt";
 import TranscriptList from "../../../components/TranscriptList";
 
 export async function getServerSideProps({ params }) {
   const query = params.id;
   const hashtagData = await getHashtagData(query);
-  const transcripts = hashtagData
-    ? await getTranscriptsByHashtag(query)
-    : null;
+  const transcripts = await getTranscriptListByIds(hashtagData.transcriptIds, true);
   return {
     props: {
       query,
