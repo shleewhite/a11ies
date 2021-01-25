@@ -76,7 +76,8 @@ footer {
   padding: var(--space-0) var(--space-m) var(--space-0) var(--space-m);
 }
 
-#main-content {
+#main-content,
+footer {
   margin: var(--space-m) auto;
 }
 
