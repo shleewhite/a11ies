@@ -39,11 +39,23 @@ export default function Transcript({transcriptData}) {
   } = transcriptData;
 
   const context = useContext(UserContext);
-  const canEdit = context.user !== undefined && context.user.uid === transcriptData.uid;
-  const extraHeaderContent = canEdit ? (
-    <Link href={`edit/${id}`}>
-      <a className="pill pill--inverse">Edit Transcript</a>
-    </Link>) : null;
+  const isOwner = context.user !== undefined && context.user.uid === transcriptData.uid;
+  const isAdmin = context.user !== undefined && context.user.accessLevel === 2;
+  let extraHeaderContent = null;
+
+  if (isOwner) {
+    extraHeaderContent = (
+      <Link href={`edit/${id}`}>
+        <a className="pill pill--inverse">Edit Transcript</a>
+      </Link>
+    );
+  } else if (isAdmin) {
+    extraHeaderContent = (
+      <Link href={`edit/${id}`}>
+        <a>Edit as Admin</a>
+      </Link>
+    );
+  }
 
   return (
     <>
