@@ -2,37 +2,17 @@ import Link from "next/link";
 
 import { BREAKPOINTS } from "../../lib/constants";
 import { getTranscriptList } from "../../lib/transcripts";
+import { getHashtagList } from "../../lib/hashtags";
 import SecondaryNavLayout from "../../components/Layouts/SecondaryNavLayout";
 import Card from "../../components/Card";
 
 const COUNT = 5;
 
-function orderByFrequency(els, limit) {
-  const hash = {};
-
-  els.forEach((el) => {
-    const lc = el.toLowerCase();
-    if (!hash[lc]) hash[lc] = { val: el, count: 0 };
-    hash[lc].count++;
-  });
-
-  const values = Object.values(hash).sort((a, b) => {
-    return b.count - a.count;
-  });
-  return limit ? values.slice(0, limit) : values;
-}
-
 export async function getStaticProps() {
-  const transcripts = await getTranscriptList(COUNT);
-  let hashtags = [];
-  transcripts.forEach((transcript) => {
-    hashtags = hashtags.concat(transcript.hashtags);
-  });
+  const transcripts = await getTranscriptList(true, COUNT);
+  const hashtags = await getHashtagList(true, COUNT);
   return {
-    props: {
-      transcripts,
-      hashtags: orderByFrequency(hashtags, COUNT),
-    },
+    props: { transcripts, hashtags }
   };
 }
 
@@ -68,12 +48,12 @@ export default function Browse({ transcripts, hashtags }) {
             </Link>
           </Card>
         </div>
-        <Card header="Recent hashtags" headerLevel={2} hasTopZazz>
+        <Card header="Top hashtags" headerLevel={2} hasTopZazz>
           <ul>
             {hashtags.map((hashtag) => (
-              <li key={hashtag.val}>
-                <Link href={`/browse/hashtags/${hashtag.val}`}>
-                  <a className="pill">#{hashtag.val}</a>
+              <li key={hashtag.id}>
+                <Link href={`/browse/hashtags/${hashtag.id}`}>
+                  <a className="pill">#{hashtag.formattedHashtag}</a>
                 </Link>
               </li>
             ))}

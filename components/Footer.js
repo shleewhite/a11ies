@@ -18,6 +18,7 @@ const Footer = () => {
         <Link href="/policy/copyright-policy">
           <a>Copyright Policy</a>
         </Link>
+        <span aria-hidden="true">\\</span>
         <a
           href="mailto:contact@a11ies.info"
           target="_blank"
@@ -37,16 +38,17 @@ const Footer = () => {
       </div>
       <style jsx>
         {`
-          footer {
+          div {
             display: grid;
             grid-template-columns: 1fr;
-            justify-items: center;
-            padding-bottom: var(--space-s);
+            justify-items: end;
+            
+            border-top: 10px solid var(--zazz-c);
+            padding-top: var(--space-m);
           }
 
-          div {
-            margin: 0 var(--space-xs);
-            text-align: center;
+          span[aria-hidden="true"] {
+            display: none;
           }
 
           div > * {
@@ -54,9 +56,19 @@ const Footer = () => {
               var(--space-xs);
           }
 
+          div > span[aria-hidden="true"] + * {
+            margin-top: var(--space-s);
+          }
+
           @media ${BREAKPOINTS.MEDIUM_LARGE} {
-            footer {
-              justify-items: end;
+            div {
+              display: block;
+              text-align: right;
+              border-top: 0;
+            }
+
+            span[aria-hidden="true"] {
+              display: inline-block;
             }
           }
 

@@ -1,12 +1,12 @@
 // import Link from "next/link";
 
-import { getAllTranscriptData } from "../../lib/transcripts";
+import { getTranscriptList } from "../../lib/transcripts";
 import SecondaryNavLayout from "../../components/Layouts/SecondaryNavLayout";
 import Prompt from "../../components/Prompt";
 import TranscriptList from "../../components/TranscriptList";
 
 export async function getStaticProps() {
-  const transcripts = await getAllTranscriptData(true);
+  const transcripts = await getTranscriptList();
   return {
     props: { transcripts },
   };

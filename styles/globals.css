@@ -76,7 +76,8 @@ footer {
   padding: var(--space-0) var(--space-m) var(--space-0) var(--space-m);
 }
 
-#main-content {
+#main-content,
+footer {
   margin: var(--space-m) auto;
 }
 
@@ -111,6 +112,22 @@ a.pill {
 
 a.pill:focus {
   text-decoration: none;
+}
+
+a.pill.pill--inverse {
+  color: var(--bg-light-c);
+  background-color: var(--headline-c);
+}
+
+a.pill.pill--inverse:hover,
+a.pill.pill--inverse:focus {
+  text-decoration-color: var(--bg-light-c);
+}
+
+a.pill.pill--inverse:focus {
+  box-shadow: 0px 0px 0px var(--border-s) var(--bg-light-c);
+  -webkit-box-shadow: 0px 0px 0px var(--border-s) var(--bg-light-c);
+  -moz-box-shadow: 0px 0px 0px var(--border-s) var(--bg-light-c);
 }
 
 button,

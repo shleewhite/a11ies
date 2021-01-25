@@ -8,6 +8,7 @@ const Card = ({
   hasTopZazz,
   style,
   imgLink,
+  extraHeaderContent
 }) => {
   return (
     <>
@@ -22,7 +23,12 @@ const Card = ({
             "sm-top-padding": hasTopZazz,
           })}
         >
-          <h3 aria-level={headerLevel}>{header}</h3>
+          <div className="header-content">
+            <h3 aria-level={headerLevel}>{header}</h3>
+            <div>
+              {extraHeaderContent}
+            </div>
+           </div>
           {children}
         </div>
       </div>
@@ -49,6 +55,16 @@ const Card = ({
 
           h3[aria-level="2"] {
             font-size: var(--text-l);
+          }
+
+          .header-content {
+            display: grid;
+            grid-template-columns: auto 1fr;
+          }
+
+          .header-content > div {
+            align-self: center;
+            justify-self: end;
           }
 
           .text-content {

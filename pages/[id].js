@@ -1,8 +1,9 @@
-import React from "react";
+import React, {useContext} from "react";
 import Link from "next/link";
 
 import { getTranscriptData } from "../lib/transcripts";
 import { BREAKPOINTS } from "../lib/constants";
+import { UserContext } from "../lib/user_context";
 
 import Card from "../components/Card";
 import Prompt from "../components/Prompt";
@@ -11,12 +12,13 @@ import SocialMediaEmbed from "../components/SocialMediaEmbed";
 
 export async function getServerSideProps({ params }) {
   const transcriptData = await getTranscriptData(params.id);
+
   return {
-    props: { transcriptData },
+    props: {transcriptData},
   };
 }
 
-export default function Transcript({ transcriptData }) {
+export default function Transcript({transcriptData}) {
   if (!transcriptData) {
     return (
       <Layout title="Hmm...">
@@ -32,14 +34,35 @@ export default function Transcript({ transcriptData }) {
     hashtags,
     creatorName,
     creatorLink,
+    uid,
+    id
   } = transcriptData;
+
+  const context = useContext(UserContext);
+  const isOwner = context.user !== undefined && context.user.uid === transcriptData.uid;
+  const isAdmin = context.user !== undefined && context.user.accessLevel === 2;
+  let extraHeaderContent = null;
+
+  if (isOwner) {
+    extraHeaderContent = (
+      <Link href={`edit/${id}`}>
+        <a className="pill pill--inverse">Edit Transcript</a>
+      </Link>
+    );
+  } else if (isAdmin) {
+    extraHeaderContent = (
+      <Link href={`edit/${id}`}>
+        <a>Edit as Admin</a>
+      </Link>
+    );
+  }
 
   return (
     <>
       <Layout title={name}>
         <div className="transcript-container">
           <div>
-            <Card header="About" headerLevel="2">
+            <Card header="About" headerLevel="2" extraHeaderContent={extraHeaderContent}>
               <a href={link} target="_blank" rel="noreferrer" className="i b">
                 {name}
               </a>

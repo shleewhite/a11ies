@@ -1,18 +1,15 @@
 // import Link from "next/link";
 
 import { getHashtagData } from "../../../lib/hashtags";
-import { getTranscriptsData } from "../../../lib/transcripts";
+import { getTranscriptListByIds } from "../../../lib/transcripts";
 import SecondaryNavLayout from "../../../components/Layouts/SecondaryNavLayout";
-// import Card from "../../../components/Card";
 import Prompt from "../../../components/Prompt";
 import TranscriptList from "../../../components/TranscriptList";
 
 export async function getServerSideProps({ params }) {
   const query = params.id;
   const hashtagData = await getHashtagData(query);
-  const transcripts = hashtagData
-    ? await getTranscriptsData(hashtagData.transcriptIds)
-    : null;
+  const transcripts = await getTranscriptListByIds(hashtagData.transcriptIds, true);
   return {
     props: {
       query,
@@ -23,7 +20,7 @@ export async function getServerSideProps({ params }) {
 }
 
 export default function Hashtag({ query, hashtagData, transcripts }) {
-  if (!hashtagData) {
+  if (!hashtagData || transcripts.length === 0) {
     return (
       <>
         <SecondaryNavLayout title="Sorry!" subnav="Browse">
