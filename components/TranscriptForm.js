@@ -51,11 +51,12 @@ function getHashtagsAsString(hashtags) {
   return value;
 }
 
+// TODO: Improve resetCallback to work as intended
 function TranscriptFormSuccess({url, resetCallback}) {
   return (
     <FormSuccess>
       <p>
-        Your transcript has been published at{" "}
+        Your transcript is now published at{" "}
         <Link href={`/${url}`}>
           <a className="b">{`a11ies.info/${url}`}</a>
         </Link>{" "}
@@ -66,16 +67,19 @@ function TranscriptFormSuccess({url, resetCallback}) {
           📋
         </IconButton>
       </p>
-
-      <button onClick={resetCallback}>Write another transcript</button>
+      <p>
+        {"Feel free to "}
+        <a className="b" href={`/edit/${url}`}>
+          edit this transcript
+        </a>
+        {" or "} 
+        <a className="b" href="/contribute">
+          write another transcript
+        </a>.
+      </p>
     </FormSuccess>
   );
 }
-
-const modes = {
-  CREATE: 1,
-  EDIT: 2
-};
 
 export default function TranscriptForm({transcriptData}) {
   const context = useContext(UserContext);
@@ -348,7 +352,11 @@ export default function TranscriptForm({transcriptData}) {
               defaultValue={inCreateMode ? null : transcriptData.id}
             />
 
-            <input type="submit" value="Publish Transcript" name="submit" />
+            <input 
+              type="submit"
+              value={inCreateMode? "Publish Transcript" : "Publish Updated Transcript"}
+              name="submit"
+            />
           </form>
           <div>
             <h2>Reference Document</h2>

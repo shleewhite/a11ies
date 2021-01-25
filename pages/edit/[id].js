@@ -39,17 +39,20 @@ export default function Edit({ transcriptData }) {
       </>
     );
   /* transcript doesn't exist / no transcript access */
-  } else if (!transcriptData || context.user.uid != transcriptData.uid) {
+  } else if (
+      transcriptData &&
+      (context.user.uid === transcriptData.uid || context.user.accessLevel === 2)) 
+  { 
     return (
-      <Layout title="Hmm...">
-        <Prompt />
-      </Layout>
-    );
-  } else {
-    return (
-     <SecondaryNavLayout title="Edit Transcript" subnav="Contribute">
-       <TranscriptForm transcriptData={transcriptData}/>
-     </SecondaryNavLayout>
+      <SecondaryNavLayout title="Edit Transcript" subnav="Contribute">
+        <TranscriptForm transcriptData={transcriptData}/>
+      </SecondaryNavLayout>
     );
   }
+
+  return (
+    <Layout title="Hmm...">
+      <Prompt />
+    </Layout>
+  );
 }
