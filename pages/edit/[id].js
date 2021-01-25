@@ -20,6 +20,7 @@ export async function getServerSideProps({ params }) {
 export default function Edit({ transcriptData }) {
   const context = useContext(UserContext);
   const [isModalOpen, setIsModalOpen] = useState(!context.isLoggedIn);
+  console.log(context.user);
 
   /* not logged in */
   if (!context.isLoggedIn) {
