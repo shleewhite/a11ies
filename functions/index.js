@@ -57,7 +57,6 @@ exports.acceptVolunteerApp = functions.firestore
   });
 
 function difference(a1, a2) {
-  console.log('difference', a1, a2);
   var a2Set = new Set(a2);
   return a1.filter(function(x) { return !a2Set.has(x); });
 }
