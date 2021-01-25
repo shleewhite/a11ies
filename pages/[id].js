@@ -131,11 +131,6 @@ export default function Transcript({transcriptData}) {
             font-size: var(--text-l);
           }
 
-          .has-bottom-zazz {
-            border-bottom: 10px solid var(--zazz-c);
-            margin-bottom: var(--space-m);
-          }
-
           .transcript-container {
             display: grid;
             grid-gap: var(--space-m) var(--space-s);
