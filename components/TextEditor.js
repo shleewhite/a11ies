@@ -1,6 +1,5 @@
-/* eslint-disable react/no-unused-state */
-import React from "react";
-// import { english as nanoid } from "nanoid-generate"; // generates unique id without characters that look similar ie. 1 and I
+// /* eslint-disable react/no-unused-state */
+import React, { useState, useEffect, useRef } from "react";
 import Turndown from "turndown";
 
 const turndownService = new Turndown();
@@ -8,115 +7,121 @@ const turndownService = new Turndown();
 const CONFIG = {
   toolbar: {
     items: [
-      "heading",
-      "|",
-      "bold",
-      "italic",
-      "link",
-      "bulletedList",
-      "numberedList",
-      "|",
-      "indent",
-      "outdent",
-      "blockQuote",
-    ],
-  },
+      'heading',
+      '|',
+      'bold',
+      'italic',
+      'strikethrough',
+      'underline',
+      '|',
+      'link',
+      'bulletedList',
+      'numberedList',
+      '|',
+      'blockQuote',
+      'indent',
+      'outdent',
+      '|',
+      'undo',
+      'redo',
+      'removeFormat'
+    ]
+  }
 };
 
-class TextEditor extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      markdown: turndownService.turndown(this.props.defaultValue),
-      isServer: true,
-      keyboardInfoId: `${this.props.id}-keyboard-info`,
-      errorId: `${this.props.id}-error-info`,
-    };
+const TextEditor = ({
+  id,
+  name,
+  label,
+  required,
+  defaultValue,
+  error,
+  whenMarkdownUpdates
+}) => {
+  const editorRef = useRef();
+  const {CKEditor, ClassicEditor} = editorRef.current || {};
+  const [editorLoaded, setEditorLoaded] = useState(false);
+  const [markdown, setMarkdown] = useState(turndownService.turndown(defaultValue));
+  const keyboardInfoId = `${id}-keyboard-info`;
+  const errorId = `${id}-error-info`;
 
-    this.getMarkdownFromEditor = this.getMarkdownFromEditor.bind(this);
-  }
-
-  // CKEditor doesn't work with Next.js OOTB, need to hack it.
-  // https://github.com/ckeditor/ckeditor5-react/issues/36
-  componentDidMount() {
-    this.CKEditor = require("@ckeditor/ckeditor5-react");
-    this.ClassicEditor = require("@ckeditor/ckeditor5-build-classic");
-    this.setState({ isServer: false });
-  }
-
-  getMarkdownFromEditor(editor) {
-    const markdown = turndownService.turndown(editor.getData());
-    this.setState({ markdown });
-    if (this.props.whenMarkdownUpdates) {
-      this.props.whenMarkdownUpdates(markdown);
+  useEffect(() => {
+    editorRef.current = {
+      CKEditor: require('@ckeditor/ckeditor5-react'),
+      CustomEditor: require('ckeditor5-build-custom/build/ckeditor')
     }
-  }
+    setEditorLoaded(true)
+  }, []);
 
-  render() {
-    return (
-      <>
-        <span>
-          <span className="b">{this.props.label}</span>
-          {this.props.required ? <span> (required)</span> : null}
-        </span>
-        <small id={this.state.keyboardInfoId}>
-          Press Alt + F10 to navigate to text editor toolbar. Use the text
-          editor toolbar or markdown syntax to format.
-        </small>
-        {this.CKEditor && (
-          <this.CKEditor
-            editor={this.ClassicEditor}
-            config={CONFIG}
-            // eslint-disable-next-line no-unused-vars
-            onBlur={(event, editor) => {
-              this.getMarkdownFromEditor(editor);
-            }}
-            data={this.props.defaultValue}
-            onInit={(editor) => {
-              /* Hack to set aria-label */
-              editor.editing.view.change((writer) => {
-                const viewEditableRoot = editor.editing.view.document.getRoot();
-                writer.setAttribute(
-                  "aria-label",
-                  `${this.props.label}, Rich Text Editor`,
-                  viewEditableRoot
-                );
-                writer.setAttribute(
-                  "aria-describedby",
-                  `${this.state.errorId} ${this.state.keyboardInfoId}`,
-                  viewEditableRoot
-                );
-                writer.setAttribute("id", this.props.id, viewEditableRoot);
-              });
-            }}
-          />
-        )}
-        <textarea
-          name={this.props.name}
-          readOnly
-          style={{ display: "none" }}
-          value={this.state.markdown}
+  return (
+    <>
+      <span>
+        <span className="b">{label}</span>
+        {required ? <span> (required)</span> : null}
+      </span>
+      <small id={keyboardInfoId}>
+        Press Alt + F10 to navigate to text editor toolbar. Use the text
+        editor toolbar or markdown syntax to format.
+      </small>
+      {editorLoaded ? (
+        <CKEditor
+          editor={CustomEditor}
+          // eslint-disable-next-line no-unused-vars
+          onBlur={(event, editor) => {
+            const md = turndownService.turndown(editor.getData());
+            if (whenMarkdownUpdates) {
+              whenMarkdownUpdates(md);
+            }
+            setMarkdown(md);
+          }}
+          config={CONFIG}
+          data={defaultValue}
+          onInit={(editor) => {
+            /* Hack to set aria-label */
+            editor.editing.view.change((writer) => {
+              const viewEditableRoot = editor.editing.view.document.getRoot();
+              writer.setAttribute(
+                "aria-label",
+                `${label}, Rich Text Editor`,
+                viewEditableRoot
+              );
+              writer.setAttribute(
+                "aria-describedby",
+                `${errorId} ${keyboardInfoId}`,
+                viewEditableRoot
+              );
+              writer.setAttribute("id", id, viewEditableRoot);
+            });
+          }}
         />
-        <div className="input-error" id={this.state.errorId}>
-          {this.props.error}
-        </div>
-        <style jsx>
-          {`
-            small {
-              display: block;
-              font-size: var(--text-s);
-              padding-bottom: var(--space-s);
-            }
+      ) : (
+        <div>Loading editor...</div>
+      )}
+      <textarea
+        name={name}
+        readOnly
+        style={{ display: "none" }}
+        value={markdown}
+      />
+      <div className="input-error" id={errorId}>
+        {error}
+      </div>
+      <style jsx>
+        {`
+          small {
+            display: block;
+            font-size: var(--text-s);
+            padding-bottom: var(--space-s);
+          }
 
-            .input-error {
-              color: var(--emphasis-c);
-              font-weight: 800;
-            }
-          `}
-        </style>
-      </>
-    );
-  }
+          .input-error {
+            color: var(--emphasis-c);
+            font-weight: 800;
+          }
+        `}
+      </style>
+    </>
+  );
 }
 
 TextEditor.defaultProps = {
