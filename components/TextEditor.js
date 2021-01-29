@@ -39,7 +39,7 @@ const TextEditor = ({
   whenMarkdownUpdates
 }) => {
   const editorRef = useRef();
-  const {CKEditor, ClassicEditor} = editorRef.current || {};
+  const {CKEditor, CustomEditor} = editorRef.current || {};
   const [editorLoaded, setEditorLoaded] = useState(false);
   const [markdown, setMarkdown] = useState(turndownService.turndown(defaultValue));
   const keyboardInfoId = `${id}-keyboard-info`;
