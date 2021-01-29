@@ -95,7 +95,7 @@ const TextEditor = ({
           }}
         />
       ) : (
-        <div>Loading editor...</div>
+        <div role="status">Loading editor...</div>
       )}
       <textarea
         name={name}
@@ -117,6 +117,10 @@ const TextEditor = ({
           .input-error {
             color: var(--emphasis-c);
             font-weight: 800;
+          }
+
+          *[role="status"] {
+            height: 25em;
           }
         `}
       </style>
