@@ -45,6 +45,8 @@ const TextEditor = ({
   const keyboardInfoId = `${id}-keyboard-info`;
   const errorId = `${id}-error-info`;
 
+  // CKEditor doesn't work with Next.js OOTB, need to hack it
+  // https://github.com/ckeditor/ckeditor5/issues/7376#issuecomment-638727234
   useEffect(() => {
     editorRef.current = {
       CKEditor: require('@ckeditor/ckeditor5-react'),
