@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import Turndown from "turndown";
 
-const turndownService = new Turndown();
+const turndownService = new Turndown().keep('u').keep('s');
 
 const CONFIG = {
   toolbar: {
