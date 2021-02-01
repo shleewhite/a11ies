@@ -72,11 +72,11 @@ const TextEditor = ({
           onBlur={(event, editor) => {
             const editorData = editor.getData();
             const md = turndownService.turndown(editorData);
-            console.log(editorData, md);
+            // console.log(editorData, md);
+            setMarkdown(md);
             if (whenMarkdownUpdates) {
               whenMarkdownUpdates(md);
             }
-            setMarkdown(md);
           }}
           config={CONFIG}
           data={defaultValue}
