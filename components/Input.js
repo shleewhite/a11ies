@@ -124,6 +124,7 @@ Input.defaultProps = {
   required: false,
   type: "text",
   id: "",
+  defaultValue: ""
 };
 
 export default Input;

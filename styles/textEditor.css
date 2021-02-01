@@ -12,3 +12,10 @@
 #page-container .ck-editor {
   max-width: calc(100vw - var(--space-m));
 }
+
+#page-container .ck-content blockquote {
+  border-left: 5px solid var(--zazz-c);
+  padding-left: var(--space-s);
+  margin-left: var(--space-m);
+  font-style: normal;
+}

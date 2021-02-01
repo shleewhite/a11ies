@@ -70,7 +70,9 @@ const TextEditor = ({
           editor={CustomEditor}
           // eslint-disable-next-line no-unused-vars
           onBlur={(event, editor) => {
-            const md = turndownService.turndown(editor.getData());
+            const editorData = editor.getData();
+            const md = turndownService.turndown(editorData);
+            console.log(editorData, md);
             if (whenMarkdownUpdates) {
               whenMarkdownUpdates(md);
             }
