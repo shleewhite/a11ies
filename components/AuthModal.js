@@ -24,14 +24,16 @@ const AuthModal = ({ isOpen, handleClose, children }) => {
         },
         content: {
           borderRadius: "20px",
-          width: "350px",
-          height: "40vh",
-          maxHeight: "60vh",
+          width: "80vw",
+          maxWidth: "350px",
+          height: "350px",
+          maxHeight: "90vh",
           margin: "auto auto",
+          inset: "20px",
           display: "grid",
-          gridTemplateRows: "auto 1fr auto",
-          gridGap: "var(--space-m)",
-          padding: "var(--space-m) var(--space-l)",
+          gridTemplateRows: "auto auto 1fr",
+          padding: "var(--space-s) var(--space-m)",
+          overflow: "auto"
         },
       }}
     >
@@ -45,6 +47,17 @@ const AuthModal = ({ isOpen, handleClose, children }) => {
           ×
         </button>
       </div>
+      <p>
+        By clicking Sign in with Google or Twitter, you agree to a11ies.info's{" "}
+        <Link href="/policy/terms-of-use">
+          <a>Terms of Use</a>
+        </Link>{" "}
+        and{" "}
+        <Link href="/policy/privacy-policy">
+          <a>Privacy Policy</a>
+        </Link>
+        .
+      </p>
       <div>
         {children}
         <StyledFirebaseAuth
@@ -61,21 +74,18 @@ const AuthModal = ({ isOpen, handleClose, children }) => {
           firebaseAuth={auth}
         />
       </div>
-      <p>
-        By clicking Sign in with Google or Twitter, you agree to a11ies.info's{" "}
-        <Link href="/policy/terms-of-use">
-          <a>Terms of Use</a>
-        </Link>{" "}
-        and{" "}
-        <Link href="/policy/privacy-policy">
-          <a>Privacy Policy</a>
-        </Link>
-        .
-      </p>
       <style jsx>
         {`
           a {
             font-weight: bold;
+          }
+
+          p {
+            margin: 0;
+          }
+
+          p + div {
+            justify-self: center;
           }
 
           button:focus,
