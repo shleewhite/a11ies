@@ -114,6 +114,10 @@ a.pill:focus {
   text-decoration: none;
 }
 
+a.pill.pill--medium {
+  background-color: var(--bg-dark-c);
+}
+
 a.pill.pill--inverse {
   color: var(--bg-light-c);
   background-color: var(--headline-c);

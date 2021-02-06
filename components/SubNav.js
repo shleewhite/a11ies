@@ -1,29 +1,36 @@
-import React from "react";
+import React, { useContext } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import * as cn from "classnames";
 
 import { BREAKPOINTS } from "../lib/constants";
+import { UserContext } from "../lib/user_context";
 
 const SubnNav = ({ items }) => {
   const router = useRouter();
+  const context = useContext(UserContext);
 
   return (
     <>
       <nav aria-label="Secondary">
-        {items.map((link, i) => (
-          <div key={i}>
-            <div
-              className={cn({
-                circle: router.pathname === link.href,
-                "hidden-circle": router.pathname !== link.href,
-              })}
-            />
-            <Link href={link.href}>
-              <a aria-current={router.pathname === link.href}>{link.name}</a>
-            </Link>
-          </div>
-        ))}
+        {items.map((link, i) => {
+          if (!link.requiresLogin || context.user !== undefined) {
+            console.log(link, !link.requiresLogin)
+            return (
+              <div key={i}>
+                <div
+                  className={cn({
+                    circle: router.pathname === link.href,
+                    "hidden-circle": router.pathname !== link.href,
+                  })}
+                />
+                <Link href={link.href}>
+                  <a aria-current={router.pathname === link.href}>{link.name}</a>
+                </Link>
+              </div>
+            );
+          }
+        })}
       </nav>
       <style jsx>
         {`
