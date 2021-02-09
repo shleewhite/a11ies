@@ -49,16 +49,11 @@ const MenuComponent = ({label, buttonContent, items}) => {
             font-weight: bold;
           }
 
-          .menu-button[aria-expanded="true"] {
-            font-weight: bold;
-          }
-
           .menu-button:not(:focus-visible) {
             box-shadow-color: none;
             -webkit-box-shadow: none;
             -moz-box-shadow: none;
           }
-
 
           .menu-button img {
             height: 3rem;
