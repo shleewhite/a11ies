@@ -60,11 +60,13 @@ export default function Request() {
       <Layout title="Request">
         {isSubmitted ? (
           <FormSuccess>
-            <p>Your transcript request has been submitted!</p>
-            <button onClick={resetForm}>Submit another request</button>
-            <Link href="/browse">
-              <a>Browse existing transcripts</a>
-            </Link>
+            <div className="container">
+              <p>Your transcript request has been submitted!</p>
+              <button onClick={resetForm}>Submit another request</button>
+              <Link href="/browse">
+                <a>Browse existing transcripts</a>
+              </Link>
+            </div>
           </FormSuccess>
         ) : (
           <div className="container">
@@ -109,8 +111,6 @@ export default function Request() {
           @media ${BREAKPOINTS.MEDIUM_LARGE} {
             .container {
               grid-template-columns: 50%;
-              grid-gap: var(--space-l) var(--space-m);
-              gap: var(--space-l) var(--space-m);
             }
 
             button {
