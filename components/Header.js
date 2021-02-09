@@ -21,7 +21,7 @@ const UserMenu = () => {
     ;
 
   const menuItems = [
-    { label: "Manage transcripts", onClick: () => {router.push('/me')} },
+    { label: "Manage transcripts", onClick: () => {router.push('/manage')} },
     { label: "Sign out", onClick: signOut }
   ];
 
