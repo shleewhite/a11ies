@@ -58,7 +58,7 @@ export default function Contribute() {
               Thank you for applying to volunteer! We will get back to you as
               soon as possible.
             </p>
-            <Link href="/contribute/resources">
+            <Link href="/resources">
               <a className="pill">Learn how to write transcripts</a>
             </Link>
           </FormSuccess>
