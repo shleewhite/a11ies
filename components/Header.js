@@ -2,18 +2,45 @@ import React, { useState, useContext } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import * as cn from "classnames";
-
+import Menu from "./Menu";
 import AuthModal from "./AuthModal";
 
 import { HEADER_PATHS, BREAKPOINTS } from "../lib/constants";
 import { signOut } from "../lib/auth";
 import { UserContext } from "../lib/user_context";
 
+const UserMenu = () => {
+  const router = useRouter();
+  const context = useContext(UserContext);
+
+  const menuButtonContent = 
+    context.user && context.user.profilePhoto ? 
+      (<img src={context.user.profilePhoto} alt="Your account"/>) :
+      (<span>Account</span>)
+    ;
+
+  const menuItems = [
+    { label: "Manage transcripts", onClick: () => {router.push('/me')} },
+    { label: "Sign out", onClick: signOut }
+  ];
+
+  if (context.user !== undefined && context.user.accessLevel > 0) {
+    menuItems.unshift({ label: "Do admin stuff", onClick: () => {router.push('/admin')}});
+  }
+
+  return (
+    <Menu
+      buttonContent={menuButtonContent}
+      items={menuItems}
+      label="Account"
+    />
+  );
+}
+
 const Header = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const router = useRouter();
   const context = useContext(UserContext);
-
   return (
     <>
       <nav aria-label="Primary">
@@ -43,24 +70,10 @@ const Header = () => {
               </div>
             );
           })}
-          {context.user !== undefined && context.user.accessLevel > 0 ? (
-            <div className="nav-link">
-              <div
-                className={cn({
-                  "half-circle": router.pathname.includes("admin"),
-                  "hidden-half-circle": !router.pathname.includes("admin"),
-                })}
-              />
-              <Link href="/admin">
-                {/* TODO: make this not false */}
-                <a aria-current={false}>Admin</a>
-              </Link>
-            </div>
-          ) : null}
         </div>
         <div className="nav-secondary">
           {context.isLoggedIn ? (
-            <button onClick={signOut}>Sign Out</button>
+            <UserMenu context={context} />
           ) : (
             <button
               onClick={() => {
