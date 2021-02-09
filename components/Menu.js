@@ -12,7 +12,7 @@ import {
 } from "reakit/Menu";
 
 const MenuComponent = ({label, buttonContent, items}) => {
-  const menu = useMenuState({placement: "bottom-end"});
+  const menu = useMenuState();
   return (
     <>
       <MenuButton {...menu} className="menu-button">
@@ -41,7 +41,7 @@ const MenuComponent = ({label, buttonContent, items}) => {
           .menu-button {
             border: 0;
             margin: var(--space-s) 0;
-            padding: var(--space-xs) var(--space-s);
+            padding: 0;
             color: var(--headline-c);
           }
 
@@ -49,8 +49,11 @@ const MenuComponent = ({label, buttonContent, items}) => {
             font-weight: bold;
           }
 
+          ${/* this is a hack to stop the flash of a border
+               when activating this button via mouse click */''}
+          .menu-button[aria-expanded="true"]:focus,
           .menu-button:hover:focus {
-            box-shadow: none;
+            box-shadow-color: none;
             -webkit-box-shadow: none;
             -moz-box-shadow: none;
           }
@@ -63,10 +66,7 @@ const MenuComponent = ({label, buttonContent, items}) => {
           }
 
           .menu-button svg {
-            fill: var(--body-c);
-            width: 0.65em;
-            height: 0.65em;
-            margin-left: 0.5em;
+            display: none;
           }
 
           .menu {
@@ -113,6 +113,20 @@ const MenuComponent = ({label, buttonContent, items}) => {
             box-shadow: none;
             -webkit-box-shadow: none;
             -moz-box-shadow: none;
+          }
+
+          @media ${BREAKPOINTS.MEDIUM_LARGE} {
+            .menu-button {
+              padding: var(--space-xs) var(--space-s);
+            }
+
+            .menu-button svg {
+              display: inline-block;
+              fill: var(--body-c);
+              width: 0.65em;
+              height: 0.65em;
+              margin-left: 0.5em;
+            }
           }
         `}
       </style>

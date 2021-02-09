@@ -12,11 +12,12 @@ import { UserContext } from "../lib/user_context";
 const UserMenu = () => {
   const router = useRouter();
   const context = useContext(UserContext);
+  const label = "Account";
 
   const menuButtonContent = 
     context.user && context.user.profilePhoto ? 
-      (<img src={context.user.profilePhoto} alt="Your account"/>) :
-      (<span>Account</span>)
+      (<img src={context.user.profilePhoto} alt={label} title={label} />) :
+      (<span>{label}</span>)
     ;
 
   const menuItems = [
@@ -32,7 +33,7 @@ const UserMenu = () => {
     <Menu
       buttonContent={menuButtonContent}
       items={menuItems}
-      label="Account"
+      label={label}
     />
   );
 }
