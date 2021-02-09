@@ -33,8 +33,7 @@ function App({ Component, pageProps }) {
     link: Link,
   };
 
-  return (
-            
+  return (         
     <UserContext.Provider
       value={{
         user: currentUser,
