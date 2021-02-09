@@ -135,12 +135,19 @@ a.pill.pill--inverse:focus {
 }
 
 button,
-input {
+input,
+textarea {
   color: inherit;
   background-color: transparent;
   border-radius: 9999px;
   border: 0.125rem solid var(--border-c);
   padding: 0.5rem;
+}
+
+input::-moz-focus-inner,
+button::-moz-focus-inner {
+  border: 0;
+  outline: none;
 }
 
 a.pill:focus,

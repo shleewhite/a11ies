@@ -70,10 +70,9 @@ export default function Create() {
 
   return (
     <>
-      {context.isLoggedIn ? (
-        <Layout title="My Transcripts">
+      <Layout title="Your Transcripts">
+        {context.isLoggedIn ? (
           <div className="transcript-list-container">
-
             <div>
               <Card header={context.user ? `Hi ${context.user.name}!` : "Hi!"} headerLevel="2" hasTopZazz>
                 {dataLoaded ? 
@@ -112,10 +111,11 @@ export default function Create() {
                 />
               </div>)
             }
-
           </div>
+          ) : (
+            <p>Please sign in to manage your submitted transcripts.</p>
+          )}
         </Layout>
-      ) : (<PageNotFound/>)}
       <style jsx>
         {`
           .transcript-list-container {

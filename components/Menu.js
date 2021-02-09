@@ -28,7 +28,10 @@ const MenuComponent = ({label, buttonContent, items}) => {
               key={i}
               {...menu}
               className="menu-item"
-              onClick={item.onClick}
+              onClick={() => {
+                item.onClick();
+                menu.hide();
+              }}
             >
               {item.label}
             </MenuItem>
@@ -43,16 +46,14 @@ const MenuComponent = ({label, buttonContent, items}) => {
             margin: var(--space-s) 0;
             padding: 0;
             color: var(--headline-c);
+            font-weight: bold;
           }
 
           .menu-button[aria-expanded="true"] {
             font-weight: bold;
           }
 
-          ${/* this is a hack to stop the flash of a border
-               when activating this button via mouse click */''}
-          .menu-button[aria-expanded="true"]:focus,
-          .menu-button:hover:focus {
+          .menu-button:not(:focus-visible) {
             box-shadow-color: none;
             -webkit-box-shadow: none;
             -moz-box-shadow: none;
