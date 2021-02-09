@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { MDXProvider } from "@mdx-js/react";
-import { ChakraProvider } from "@chakra-ui/react";
 import { Provider as ReakitProvider } from "reakit";
 import Link from "next/link";
 

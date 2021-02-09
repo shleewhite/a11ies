@@ -11,21 +11,19 @@ const SubnNav = ({ items }) => {
   return (
     <>
       <nav aria-label="Secondary">
-        {items.map((link, i) => {
-          return (
-            <div key={i}>
-              <div
-                className={cn({
-                  circle: router.pathname === link.href,
-                  "hidden-circle": router.pathname !== link.href,
-                })}
-              />
-              <Link href={link.href}>
-                <a aria-current={router.pathname === link.href}>{link.name}</a>
-              </Link>
-            </div>
-          );
-        })}
+        {items.map((link, i) => (
+          <div key={i}>
+            <div
+              className={cn({
+                circle: router.pathname === link.href,
+                "hidden-circle": router.pathname !== link.href,
+              })}
+            />
+            <Link href={link.href}>
+              <a aria-current={router.pathname === link.href}>{link.name}</a>
+            </Link>
+          </div>
+        ))}
       </nav>
       <style jsx>
         {`
