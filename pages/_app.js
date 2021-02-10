@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { MDXProvider } from "@mdx-js/react";
+import { Provider as ReakitProvider } from "reakit";
 import Link from "next/link";
 
 import { auth, getAccessLevel } from "../lib/auth";
@@ -40,7 +41,9 @@ function App({ Component, pageProps }) {
       }}
     >
       <MDXProvider components={components}>
-        <Component {...pageProps} />
+        <ReakitProvider>
+          <Component {...pageProps} />
+        </ReakitProvider>
       </MDXProvider>
     </UserContext.Provider>
   );
