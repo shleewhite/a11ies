@@ -42,6 +42,7 @@ const Header = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const router = useRouter();
   const context = useContext(UserContext);
+  
   return (
     <>
       <nav aria-label="Primary">

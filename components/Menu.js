@@ -12,7 +12,10 @@ import {
 } from "reakit/Menu";
 
 const MenuComponent = ({label, buttonContent, items}) => {
-  const menu = useMenuState();
+  const menu = useMenuState({
+    placement: "bottom-end", 
+    unstable_offset: [0,10]
+  });
   return (
     <>
       <MenuButton {...menu} className="menu-button">
@@ -24,9 +27,7 @@ const MenuComponent = ({label, buttonContent, items}) => {
       <Menu {...menu} aria-label={label} className="menu">
         {items.map((item, i) => {
           return (
-            <MenuItem
-              key={i}
-              {...menu}
+            <MenuItem key={i} {...menu}
               className="menu-item"
               onClick={() => {
                 item.onClick();
@@ -66,11 +67,12 @@ const MenuComponent = ({label, buttonContent, items}) => {
           }
 
           .menu {
-            margin-top: var(--space-xs);
-            background-color: var(--bg-light-c);
             width: 20rem;
             display: grid;
             grid-template-columns: 100%;
+
+            background-color: var(--bg-light-c);
+
             box-shadow: 0px 0px 0px var(--border-s) var(--zazz-c);
             -webkit-box-shadow: 0px 0px 0px var(--border-s) var(--zazz-c);
             -moz-box-shadow: 0px 0px 0px var(--border-s) var(--zazz-c);

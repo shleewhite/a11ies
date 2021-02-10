@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from "react";
 import Link from "next/link";
 import Layout from "../components/Layouts/Layout";
 import Card from "../components/Card";
-import PageNotFound from "./404";
 import TranscriptList from "../components/TranscriptList";
 import { BREAKPOINTS } from "../lib/constants";
 import { getTranscriptListByUserId } from "../lib/transcripts";
