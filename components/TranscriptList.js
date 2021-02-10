@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 
-const TranscriptList = ({ transcripts, showHashtags, showEdit }) => {
+const TranscriptList = ({ transcripts, showHashtags }) => {
   return (
     <>
       <ul>
@@ -10,7 +10,6 @@ const TranscriptList = ({ transcripts, showHashtags, showEdit }) => {
             <TranscriptListItem
               transcript={transcript}
               showHashtags={showHashtags}
-              showEdit={showEdit}
             />
           </li>
         ))}
@@ -28,7 +27,7 @@ const TranscriptList = ({ transcripts, showHashtags, showEdit }) => {
   );
 };
 
-const TranscriptListItem = ({ transcript, showHashtags, showEdit }) => {
+const TranscriptListItem = ({ transcript, showHashtags }) => {
   return (
     <>
       <div>
@@ -38,12 +37,6 @@ const TranscriptListItem = ({ transcript, showHashtags, showEdit }) => {
         {transcript.creatorName ? (
           <span>by {transcript.creatorName}</span>
         ) : null}
-
-        {showEdit ? (
-          <Link href={`edit/${transcript.id}`}>
-            <a className="pill pill--medium" aria-label={`Edit ${transcript.name}`}>Edit</a>
-          </Link>
-          ) : null}
         {showHashtags && transcript.hashtags ? (
           <ul aria-label="Hashtags">
             {transcript.hashtags.map((hashtag, i) => (
@@ -85,10 +78,6 @@ const TranscriptListItem = ({ transcript, showHashtags, showEdit }) => {
 
           li a {
             color: var(--body-c);
-          }
-
-          .pill {
-            margin-left: var(--space-s);
           }
         `}
       </style>

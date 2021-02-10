@@ -114,10 +114,6 @@ a.pill:focus {
   text-decoration: none;
 }
 
-a.pill.pill--medium {
-  background-color: var(--bg-dark-c);
-}
-
 a.pill.pill--inverse {
   color: var(--bg-light-c);
   background-color: var(--headline-c);
@@ -135,19 +131,12 @@ a.pill.pill--inverse:focus {
 }
 
 button,
-input,
-textarea {
+input {
   color: inherit;
   background-color: transparent;
   border-radius: 9999px;
   border: 0.125rem solid var(--border-c);
   padding: 0.5rem;
-}
-
-input::-moz-focus-inner,
-button::-moz-focus-inner {
-  border: 0;
-  outline: none;
 }
 
 a.pill:focus,
