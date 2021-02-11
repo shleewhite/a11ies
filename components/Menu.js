@@ -1,19 +1,15 @@
 import React from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
-
-import { BREAKPOINTS } from "../lib/constants";
-
 import {
   Menu,
-  MenuList,
   MenuButton,
   MenuItem,
   MenuItems,
-  MenuPopover,
-  MenuLink,
+  MenuPopover
 } from "@reach/menu-button";
 import { positionRight } from "@reach/popover";
+import { BREAKPOINTS } from "../lib/constants";
 
 const MenuComponent = ({buttonContent, items}) => {
   const router = useRouter();
