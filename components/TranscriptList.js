@@ -41,7 +41,9 @@ const TranscriptListItem = ({ transcript, showHashtags, showEdit }) => {
 
         {showEdit ? (
           <Link href={`edit/${transcript.id}`}>
-            <a className="pill pill--medium" aria-label={`Edit ${transcript.name}`}>Edit</a>
+            <a className="pill pill--medium" aria-label={`Edit ${transcript.name}`}>
+              Edit
+            </a>
           </Link>
           ) : null}
         {showHashtags && transcript.hashtags ? (
