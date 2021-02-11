@@ -10,7 +10,6 @@ import { signOut } from "../lib/auth";
 import { UserContext } from "../lib/user_context";
 
 const UserMenu = () => {
-  const router = useRouter();
   const context = useContext(UserContext);
   const label = "Account";
 
@@ -21,12 +20,12 @@ const UserMenu = () => {
     ;
 
   const menuItems = [
-    { label: "Manage transcripts", url: '/manage', onClick: () => {router.push('/manage')} },
-    { label: "Sign out", action: signOut, onClick: signOut }
+    { label: "Manage transcripts", url: '/manage'},
+    { label: "Sign out", onClick: signOut }
   ];
 
   if (context.user !== undefined && context.user.accessLevel > 0) {
-    menuItems.unshift({ label: "Do admin stuff", url: '/admin', onClick: () => {router.push('/admin')}});
+    menuItems.unshift({ label: "Do admin stuff", url: '/admin'});
   }
 
   return (
@@ -41,7 +40,7 @@ const Header = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const router = useRouter();
   const context = useContext(UserContext);
-  
+
   return (
     <>
       <nav aria-label="Primary">

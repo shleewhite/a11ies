@@ -73,7 +73,11 @@ export default function Create() {
         {context.isLoggedIn ? (
           <div className="transcript-list-container">
             <div>
-              <Card header={context.user ? `Hi ${context.user.name}!` : "Hi!"} headerLevel="2" hasTopZazz>
+              <Card 
+                header={context.user ? `Hi ${context.user.name}!` : "Hi!"} 
+                headerLevel="2" 
+                hasTopZazz
+              >
                 {dataLoaded ? 
                   transcriptCount > 0 ?
                   (<p>
