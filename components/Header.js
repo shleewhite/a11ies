@@ -21,19 +21,18 @@ const UserMenu = () => {
     ;
 
   const menuItems = [
-    { label: "Manage transcripts", onClick: () => {router.push('/manage')} },
-    { label: "Sign out", onClick: signOut }
+    { label: "Manage transcripts", url: '/manage', onClick: () => {router.push('/manage')} },
+    { label: "Sign out", action: signOut, onClick: signOut }
   ];
 
   if (context.user !== undefined && context.user.accessLevel > 0) {
-    menuItems.unshift({ label: "Do admin stuff", onClick: () => {router.push('/admin')}});
+    menuItems.unshift({ label: "Do admin stuff", url: '/admin', onClick: () => {router.push('/admin')}});
   }
 
   return (
     <Menu
       buttonContent={menuButtonContent}
       items={menuItems}
-      label={label}
     />
   );
 }
