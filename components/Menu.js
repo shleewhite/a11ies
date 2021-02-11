@@ -24,19 +24,20 @@ const MenuComponent = ({buttonContent, items}) => {
         </MenuButton>
         <MenuPopover position={positionRight}>
           <MenuItems className="menu">
-          {items.map((item, i) => {
-            return (
-              <MenuItem key={i}
-                className="menu-item"
-                onSelect={item.url ? 
-                  () => {router.push(item.url)} :
-                  item.onClick
-                }
-              >
-                {item.label}
-              </MenuItem>
-            );
-          })}
+            {items.map((item, i) => {
+              /* TODO: Use MenuLink for links! */
+              return (
+                <MenuItem key={i}
+                  className="menu-item"
+                  onSelect={item.url ? 
+                    () => {router.push(item.url)} :
+                    item.onClick
+                  }
+                >
+                  {item.label}
+                </MenuItem>
+              );
+            })}
           </MenuItems>
         </MenuPopover>
       </Menu>
