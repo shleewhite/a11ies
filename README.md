@@ -8,8 +8,8 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## File Structure
 ```
-  /functions - firebase functions that run when documents are created
   /components - reusable stuff
+  /functions - firebase functions that run when documents are created
   /lib - where make paths, extract data from files, etc.
   /pages - actual pages users see
     /resources
